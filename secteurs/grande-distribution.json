@@ -1,0 +1,593 @@
+{
+ "identifiant": "grande-distribution",
+ "libelle": "Grande distribution — Groupe Marelle",
+ "client": "Marelle",
+ "espace": "Grande distribution — Groupe Marelle",
+ "groupe": "MRL",
+ "volumes": {
+  "identites": 30000,
+  "droits": 9000,
+  "applications": 260,
+  "graine": 20261001
+ },
+ "sites": [
+  "Rennes",
+  "Tours",
+  "Angers",
+  "Dijon",
+  "Metz",
+  "Rouen",
+  "Orléans"
+ ],
+ "organisation": {
+  "Souscription": [
+   "Souscripteur",
+   "Assistant souscription",
+   "Responsable souscription"
+  ],
+  "Sinistres": [
+   "Gestionnaire sinistres",
+   "Expert sinistres",
+   "Responsable sinistres"
+  ],
+  "Indemnisation": [
+   "Gestionnaire indemnisation",
+   "Contrôleur indemnisation"
+  ],
+  "Comptabilité": [
+   "Comptable fournisseurs",
+   "Comptable magasins",
+   "Trésorier",
+   "Contrôleur de gestion"
+  ],
+  "Recouvrement": [
+   "Chargé de recouvrement",
+   "Analyste recouvrement"
+  ],
+  "Juridique": [
+   "Juriste",
+   "Assistant juridique"
+  ],
+  "Actuariat": [
+   "Actuaire",
+   "Analyste données"
+  ],
+  "Réseau commercial": [
+   "Conseiller",
+   "Conseiller senior",
+   "Animateur réseau"
+  ],
+  "Marketing": [
+   "Chargé de promotion",
+   "Chef de produit marque propre"
+  ],
+  "Ressources humaines": [
+   "Gestionnaire paie",
+   "Chargé de recrutement",
+   "Responsable RH"
+  ],
+  "Informatique": [
+   "Développeur",
+   "Administrateur systèmes",
+   "Support magasins",
+   "Architecte"
+  ],
+  "Services généraux": [
+   "Agent d'accueil",
+   "Gestionnaire achats",
+   "Agent logistique"
+  ],
+  "Magasins": [
+   "Hôte de caisse",
+   "Chef de caisse",
+   "Employé libre-service",
+   "Chef de rayon",
+   "Directeur de magasin"
+  ],
+  "Logistique": [
+   "Préparateur de commandes",
+   "Cariste",
+   "Chef d'équipe entrepôt",
+   "Responsable transport"
+  ],
+  "Achats": [
+   "Acheteur",
+   "Assistant achats",
+   "Chef de groupe achats"
+  ],
+  "Approvisionnement": [
+   "Approvisionneur",
+   "Gestionnaire de stocks"
+  ],
+  "E-commerce": [
+   "Chef de projet digital",
+   "Préparateur drive",
+   "Community manager"
+  ],
+  "Service client": [
+   "Conseiller service client",
+   "Superviseur service client"
+  ],
+  "Qualité": [
+   "Auditeur qualité",
+   "Responsable sécurité alimentaire"
+  ]
+ },
+ "applications": [
+  [
+   "CAI",
+   "Encaissement",
+   "Métier"
+  ],
+  [
+   "STK",
+   "Gestion des stocks",
+   "Métier"
+  ],
+  [
+   "APR",
+   "Approvisionnement",
+   "Métier"
+  ],
+  [
+   "ECO",
+   "Site marchand",
+   "Métier"
+  ],
+  [
+   "FID",
+   "Fidélité",
+   "Marketing"
+  ],
+  [
+   "PRX",
+   "Prix et promotions",
+   "Métier"
+  ],
+  [
+   "LOG",
+   "Entrepôts",
+   "Métier"
+  ],
+  [
+   "FOU",
+   "Référentiel fournisseurs",
+   "Finance"
+  ],
+  [
+   "PAI",
+   "Paiements",
+   "Finance"
+  ],
+  [
+   "CRM",
+   "Relation client",
+   "Métier"
+  ],
+  [
+   "ACH",
+   "Achats",
+   "Finance"
+  ],
+  [
+   "CPT",
+   "Comptabilité générale",
+   "Finance"
+  ],
+  [
+   "PAY",
+   "Paie",
+   "RH"
+  ],
+  [
+   "SIR",
+   "SIRH",
+   "RH"
+  ],
+  [
+   "GED",
+   "Gestion documentaire",
+   "Transverse"
+  ],
+  [
+   "BIA",
+   "Décisionnel",
+   "Transverse"
+  ],
+  [
+   "SUP",
+   "Support informatique",
+   "Informatique"
+  ],
+  [
+   "INF",
+   "Infrastructure",
+   "Informatique"
+  ]
+ ],
+ "socle_application": [
+  "SOC",
+  "Socle poste de travail",
+  "Transverse"
+ ],
+ "domaines_traine": [
+  "Métier",
+  "Finance",
+  "RH",
+  "Transverse",
+  "Informatique",
+  "Marketing"
+ ],
+ "convention": {
+  "modules": [
+   "ADM",
+   "DOS",
+   "REF",
+   "FLU",
+   "ETA",
+   "PAR",
+   "CTL",
+   "ARC",
+   "SAI",
+   "VAL"
+  ],
+  "actions": [
+   "REA",
+   "CRE",
+   "MOD",
+   "SUP",
+   "VAL",
+   "EXP",
+   "EXE"
+  ],
+  "objets": [
+   "ARTICLE",
+   "CLIENT",
+   "COMMANDE",
+   "FACTURE",
+   "TICKET",
+   "LOT",
+   "PRIX",
+   "FOURNISSEUR",
+   "STOCK",
+   "PROMOTION"
+  ]
+ },
+ "prenoms": [
+  "Camille",
+  "Louis",
+  "Inès",
+  "Adrien",
+  "Nour",
+  "Théo",
+  "Sarah",
+  "Malik",
+  "Élodie",
+  "Hugo",
+  "Awa",
+  "Rémi",
+  "Chloé",
+  "Yanis",
+  "Manon",
+  "Sofiane",
+  "Julie",
+  "Paul",
+  "Lina",
+  "Antoine",
+  "Fatou",
+  "Gabriel",
+  "Maya",
+  "Victor",
+  "Anaïs",
+  "Ismaël",
+  "Clara",
+  "Basile",
+  "Leïla",
+  "Nathan",
+  "Jade",
+  "Oscar",
+  "Salomé",
+  "Tristan",
+  "Amina",
+  "Félix",
+  "Romane",
+  "Ayoub",
+  "Alice",
+  "Jonas"
+ ],
+ "noms": [
+  "Brunet",
+  "Lefranc",
+  "Ouattara",
+  "Delaunay",
+  "Mercier",
+  "Vasseur",
+  "Prigent",
+  "Aubry",
+  "Nguyen",
+  "Chevalier",
+  "Barros",
+  "Fontaine",
+  "Kerbrat",
+  "Lemoine",
+  "Sadiki",
+  "Charpentier",
+  "Rousset",
+  "Bonnet",
+  "Tavares",
+  "Guillou",
+  "Marchand",
+  "Pereira",
+  "Lacroix",
+  "Dombre",
+  "Sissoko",
+  "Verdier",
+  "Aubert",
+  "Riviere",
+  "Costes",
+  "Neveu",
+  "Bourdon",
+  "Cazeneuve",
+  "Ferrand",
+  "Mallet"
+ ],
+ "contrats": [
+  [
+   "CDI",
+   0.46
+  ],
+  [
+   "C.D.I.",
+   0.13
+  ],
+  [
+   "Contrat à durée indéterminée",
+   0.07
+  ],
+  [
+   "CDD",
+   0.12
+  ],
+  [
+   "C.D.D.",
+   0.04
+  ],
+  [
+   "Contrat à durée déterminée",
+   0.03
+  ],
+  [
+   "Alternance",
+   0.05
+  ],
+  [
+   "ALT",
+   0.03
+  ],
+  [
+   "Prestataire",
+   0.05
+  ],
+  [
+   "PRESTA",
+   0.02
+  ]
+ ],
+ "socles": [
+  [
+   "SOC_ADM_REA_BADGE",
+   "Accès badge site"
+  ],
+  [
+   "SOC_ADM_REA_MESSAGERIE",
+   "Messagerie"
+  ],
+  [
+   "SOC_ADM_REA_INTRANET",
+   "Intranet groupe"
+  ]
+ ],
+ "part_socle": 0.985,
+ "populations": {
+  "serrees": 15,
+  "poids_serrees": [
+   80,
+   400
+  ],
+  "poids_laches": [
+   120,
+   900
+  ],
+  "droits_par_population": [
+   6,
+   12
+  ],
+  "adherence_serree": 0.97,
+  "adherence_lache": 0.86,
+  "part_avec_extras": 0.4,
+  "extras": [
+   1,
+   3
+  ],
+  "part_conformes": 0.9,
+  "poids_nommees": 12
+ },
+ "privileges": {
+  "departements": [
+   "Informatique",
+   "Comptabilité"
+  ],
+  "prefixes_droits": [
+   "INF",
+   "SUP"
+  ],
+  "part": 0.03,
+  "droits": [
+   4,
+   9
+  ],
+  "suffixe": ".ADM",
+  "minimum_verifie": 200
+ },
+ "troncature": {
+  "droit": "CAI_DOS_REA_TICKET",
+  "porteurs": 5000,
+  "departements_eligibles": [
+   "Magasins",
+   "Logistique",
+   "Approvisionnement",
+   "E-commerce",
+   "Service client"
+  ]
+ },
+ "couples_separes": [
+  [
+   "FOU_REF_CRE_FOURNISSEUR",
+   "PAI_FLU_VAL_PAIEMENT",
+   [
+    "Achats",
+    "Approvisionnement",
+    "Logistique"
+   ],
+   [
+    "Comptabilité",
+    "Juridique",
+    "Qualité"
+   ],
+   3000
+  ],
+  [
+   "PRX_PAR_MOD_PRIX",
+   "CAI_CTL_VAL_REMISE",
+   [
+    "Marketing",
+    "Achats",
+    "E-commerce"
+   ],
+   [
+    "Magasins",
+    "Service client"
+   ],
+   2600
+  ]
+ ],
+ "manquants_min": 200,
+ "couple_enfreint": {
+  "droits": [
+   "ACH_DOS_CRE_COMMANDE",
+   "ACH_VAL_VAL_COMMANDE"
+  ],
+  "fonction": "Acheteur",
+  "par_role": 38,
+  "isoles": 2,
+  "departement_isoles": "Approvisionnement",
+  "cotes": [
+   [
+    "Achats"
+   ],
+   [
+    "Comptabilité"
+   ]
+  ],
+  "porteurs_cotes": 1200
+ },
+ "croisement": {
+  "droits": [
+   "BIA_ETA_REA_ARTICLE",
+   "GED_ARC_REA_FACTURE",
+   "CRM_DOS_REA_CLIENT"
+  ],
+  "groupe": 300,
+  "temoins": 1200,
+  "minimum_verifie": 150
+ },
+ "mobilite": {
+  "origine": "Acheteur",
+  "arrivee": "Chef de rayon",
+  "nombre": 6
+ },
+ "usage": {
+  "date_export": "2026-09-15",
+  "seuil_jours": 180,
+  "part_dormantes": 0.02,
+  "identites_eteintes": 700,
+  "dormantes_min": 2000
+ },
+ "bornes": [
+  1000,
+  1500,
+  5000,
+  10000,
+  20000,
+  50000,
+  65536,
+  100000
+ ],
+ "gouvernance": {
+  "severites": [
+   "Critique",
+   "Élevé",
+   "Modéré"
+  ],
+  "regles": [
+   {
+    "id": "R1",
+    "libelle": "Créer et valider une même commande",
+    "gauche": "ACH_DOS_CRE_COMMANDE",
+    "droite": "ACH_VAL_VAL_COMMANDE",
+    "severite": "Critique",
+    "processus": "Achats",
+    "proprietaire": "Direction des achats"
+   },
+   {
+    "id": "R2",
+    "libelle": "Créer un fournisseur et le payer",
+    "gauche": "FOU_REF_CRE_FOURNISSEUR",
+    "droite": "PAI_FLU_VAL_PAIEMENT",
+    "severite": "Critique",
+    "processus": "Paiement fournisseurs",
+    "proprietaire": "Direction financière"
+   },
+   {
+    "id": "R3",
+    "libelle": "Fixer un prix et valider une remise en caisse",
+    "gauche": "PRX_PAR_MOD_PRIX",
+    "droite": "CAI_CTL_VAL_REMISE",
+    "severite": "Élevé",
+    "processus": "Prix et promotions",
+    "proprietaire": "Direction commerciale"
+   }
+  ],
+  "controle": {
+   "id": "C1",
+   "libelle": "Revue hebdomadaire des commandes auto-validées",
+   "executant": "Julie Aubry",
+   "relecteur": "Paul Mercier",
+   "age_max_jours": 10,
+   "preuve": "CTRL-ACH-208"
+  },
+  "derogation": "Magasin de Metz : un seul acheteur local pendant la réouverture. Chaque commande est relue par le contrôle de gestion chaque semaine.",
+  "role_fait_main": {
+   "nom": "Achats — acheteurs de catégorie",
+   "description": "Les droits communs aux acheteurs de catégorie."
+  },
+  "execution_il_y_a_jours": 7,
+  "derogation_dans_jours": 90,
+  "decisions": {
+   "validations": 33,
+   "refus": 23,
+   "motif_refus": "Population trop petite pour justifier un rôle : reste en attribution individuelle."
+  },
+  "mining_metier": {
+   "attributes": [
+    "departement",
+    "fonction"
+   ],
+   "min_coverage": 70,
+   "min_users": 5,
+   "min_rights": 3,
+   "mining_depth": 2,
+   "parcimonie": 0
+  }
+ }
+}

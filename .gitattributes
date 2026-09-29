@@ -1,0 +1,4 @@
+# Le lanceur Linux doit garder des fins de ligne LF, même extrait sous Windows.
+*.sh text eol=lf
+*.bat text eol=crlf
+*.tar.gz binary

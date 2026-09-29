@@ -1,0 +1,20 @@
+{
+  "prereglage": {
+    "identifiant": "demo",
+    "libelle": "Modèle de démonstration",
+    "adresse": "",
+    "modele": ""
+  },
+  "assistance": {
+    "nommage_de_role": {"actif": true, "matiere": ["libelles_de_droits", "regle_metier", "noms_valides"]},
+    "droits_sensibles": {"actif": true, "matiere": ["libelles_de_droits"]},
+    "attributs_pertinents": {"actif": true, "matiere": ["noms_de_colonnes"]},
+    "coherence_des_valeurs": {"actif": true, "matiere": ["valeurs_d_attribut", "noms_de_colonnes"],
+                              "colonnes": [{"referentiel": "identities", "colonne": "type_contrat"},
+                                           {"referentiel": "identities", "colonne": "fonction"},
+                                           {"referentiel": "identities", "colonne": "departement"}]},
+    "explication_de_role": {"actif": true, "matiere": ["libelles_de_droits", "regle_metier"]},
+    "explication_de_conflit": {"actif": true, "matiere": ["regles_de_separation", "libelles_de_droits", "noms_valides"]},
+    "agent_de_navigation": {"actif": true, "matiere": ["question_libre"]}
+  }
+}

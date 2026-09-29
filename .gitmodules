@@ -1,0 +1,3 @@
+[submodule "kovex"]
+	path = kovex
+	url = https://github.com/Ptitnic87/KovexD-mo.git

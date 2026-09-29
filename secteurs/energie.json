@@ -1,0 +1,597 @@
+{
+ "identifiant": "energie",
+ "libelle": "Énergie — Hélior Énergie",
+ "client": "Helior",
+ "espace": "Énergie — Hélior Énergie",
+ "groupe": "HEL",
+ "volumes": {
+  "identites": 12000,
+  "droits": 6000,
+  "applications": 200,
+  "graine": 20261003
+ },
+ "sites": [
+  "Siège",
+  "Centrale Val-de-Loire",
+  "Centrale Rhône",
+  "Poste de conduite Est",
+  "Salle de marché"
+ ],
+ "organisation": {
+  "Souscription": [
+   "Souscripteur",
+   "Assistant souscription",
+   "Responsable souscription"
+  ],
+  "Sinistres": [
+   "Gestionnaire sinistres",
+   "Expert sinistres",
+   "Responsable sinistres"
+  ],
+  "Indemnisation": [
+   "Gestionnaire indemnisation",
+   "Contrôleur indemnisation"
+  ],
+  "Comptabilité": [
+   "Comptable",
+   "Comptable fournisseurs",
+   "Trésorier",
+   "Responsable comptable"
+  ],
+  "Recouvrement": [
+   "Chargé de recouvrement",
+   "Analyste recouvrement"
+  ],
+  "Juridique": [
+   "Juriste",
+   "Assistant juridique"
+  ],
+  "Actuariat": [
+   "Actuaire",
+   "Analyste données"
+  ],
+  "Réseau commercial": [
+   "Conseiller",
+   "Conseiller senior",
+   "Animateur réseau"
+  ],
+  "Marketing": [
+   "Chargé de communication",
+   "Chef de produit"
+  ],
+  "Ressources humaines": [
+   "Gestionnaire paie",
+   "Chargé RH"
+  ],
+  "Informatique": [
+   "Administrateur systèmes",
+   "Ingénieur OT",
+   "Support utilisateurs",
+   "Architecte"
+  ],
+  "Services généraux": [
+   "Agent d'accueil",
+   "Gestionnaire achats",
+   "Agent logistique"
+  ],
+  "Production": [
+   "Opérateur de conduite",
+   "Chef de quart",
+   "Ingénieur exploitation"
+  ],
+  "Maintenance": [
+   "Technicien de maintenance",
+   "Planificateur maintenance",
+   "Responsable maintenance"
+  ],
+  "Réseau": [
+   "Technicien réseau",
+   "Chargé de consignation",
+   "Dispatcheur"
+  ],
+  "Trading": [
+   "Trader",
+   "Analyste marché"
+  ],
+  "Back-office": [
+   "Gestionnaire back-office",
+   "Contrôleur des risques"
+  ],
+  "Clientèle": [
+   "Conseiller clientèle",
+   "Chargé de facturation",
+   "Superviseur clientèle"
+  ],
+  "Achats": [
+   "Acheteur",
+   "Gestionnaire contrats fournisseurs"
+  ],
+  "Finances": [
+   "Comptable",
+   "Trésorier",
+   "Contrôleur de gestion"
+  ],
+  "HSE": [
+   "Préventeur",
+   "Responsable HSE"
+  ]
+ },
+ "applications": [
+  [
+   "SCA",
+   "Supervision des installations",
+   "Métier"
+  ],
+  [
+   "GMA",
+   "Maintenance assistée",
+   "Métier"
+  ],
+  [
+   "CSG",
+   "Consignations",
+   "Métier"
+  ],
+  [
+   "TRD",
+   "Trading",
+   "Métier"
+  ],
+  [
+   "RSQ",
+   "Risques de marché",
+   "Finance"
+  ],
+  [
+   "MES",
+   "Mesure et comptage",
+   "Métier"
+  ],
+  [
+   "CLI",
+   "Clientèle",
+   "Métier"
+  ],
+  [
+   "FAC",
+   "Facturation",
+   "Finance"
+  ],
+  [
+   "PAI",
+   "Paiements",
+   "Finance"
+  ],
+  [
+   "HSE",
+   "Hygiène sécurité environnement",
+   "Transverse"
+  ],
+  [
+   "ACH",
+   "Achats",
+   "Finance"
+  ],
+  [
+   "CPT",
+   "Comptabilité générale",
+   "Finance"
+  ],
+  [
+   "PAY",
+   "Paie",
+   "RH"
+  ],
+  [
+   "SIR",
+   "SIRH",
+   "RH"
+  ],
+  [
+   "GED",
+   "Gestion documentaire",
+   "Transverse"
+  ],
+  [
+   "BIA",
+   "Décisionnel",
+   "Transverse"
+  ],
+  [
+   "SUP",
+   "Support informatique",
+   "Informatique"
+  ],
+  [
+   "INF",
+   "Infrastructure",
+   "Informatique"
+  ]
+ ],
+ "socle_application": [
+  "SOC",
+  "Socle poste de travail",
+  "Transverse"
+ ],
+ "domaines_traine": [
+  "Métier",
+  "Finance",
+  "RH",
+  "Transverse",
+  "Informatique",
+  "Marketing"
+ ],
+ "convention": {
+  "modules": [
+   "ADM",
+   "DOS",
+   "REF",
+   "FLU",
+   "ETA",
+   "PAR",
+   "CTL",
+   "ARC",
+   "SAI",
+   "VAL"
+  ],
+  "actions": [
+   "REA",
+   "CRE",
+   "MOD",
+   "SUP",
+   "VAL",
+   "EXP",
+   "EXE"
+  ],
+  "objets": [
+   "ORDRE",
+   "OUVRAGE",
+   "CONSIGNE",
+   "TRANSACTION",
+   "POSITION",
+   "COMPTEUR",
+   "CLIENT",
+   "FACTURE",
+   "CONTRAT",
+   "LOT"
+  ]
+ },
+ "prenoms": [
+  "Camille",
+  "Louis",
+  "Inès",
+  "Adrien",
+  "Nour",
+  "Théo",
+  "Sarah",
+  "Malik",
+  "Élodie",
+  "Hugo",
+  "Awa",
+  "Rémi",
+  "Chloé",
+  "Yanis",
+  "Manon",
+  "Sofiane",
+  "Julie",
+  "Paul",
+  "Lina",
+  "Antoine",
+  "Fatou",
+  "Gabriel",
+  "Maya",
+  "Victor",
+  "Anaïs",
+  "Ismaël",
+  "Clara",
+  "Basile",
+  "Leïla",
+  "Nathan",
+  "Jade",
+  "Oscar",
+  "Salomé",
+  "Tristan",
+  "Amina",
+  "Félix",
+  "Romane",
+  "Ayoub",
+  "Alice",
+  "Jonas"
+ ],
+ "noms": [
+  "Brunet",
+  "Lefranc",
+  "Ouattara",
+  "Delaunay",
+  "Mercier",
+  "Vasseur",
+  "Prigent",
+  "Aubry",
+  "Nguyen",
+  "Chevalier",
+  "Barros",
+  "Fontaine",
+  "Kerbrat",
+  "Lemoine",
+  "Sadiki",
+  "Charpentier",
+  "Rousset",
+  "Bonnet",
+  "Tavares",
+  "Guillou",
+  "Marchand",
+  "Pereira",
+  "Lacroix",
+  "Dombre",
+  "Sissoko",
+  "Verdier",
+  "Aubert",
+  "Riviere",
+  "Costes",
+  "Neveu",
+  "Bourdon",
+  "Cazeneuve",
+  "Ferrand",
+  "Mallet"
+ ],
+ "contrats": [
+  [
+   "CDI",
+   0.46
+  ],
+  [
+   "C.D.I.",
+   0.13
+  ],
+  [
+   "Contrat à durée indéterminée",
+   0.07
+  ],
+  [
+   "CDD",
+   0.12
+  ],
+  [
+   "C.D.D.",
+   0.04
+  ],
+  [
+   "Contrat à durée déterminée",
+   0.03
+  ],
+  [
+   "Alternance",
+   0.05
+  ],
+  [
+   "ALT",
+   0.03
+  ],
+  [
+   "Prestataire",
+   0.05
+  ],
+  [
+   "PRESTA",
+   0.02
+  ]
+ ],
+ "socles": [
+  [
+   "SOC_ADM_REA_BADGE",
+   "Accès badge site"
+  ],
+  [
+   "SOC_ADM_REA_MESSAGERIE",
+   "Messagerie"
+  ],
+  [
+   "SOC_ADM_REA_INTRANET",
+   "Intranet groupe"
+  ]
+ ],
+ "part_socle": 0.985,
+ "populations": {
+  "serrees": 15,
+  "poids_serrees": [
+   80,
+   400
+  ],
+  "poids_laches": [
+   120,
+   900
+  ],
+  "droits_par_population": [
+   6,
+   12
+  ],
+  "adherence_serree": 0.97,
+  "adherence_lache": 0.86,
+  "part_avec_extras": 0.4,
+  "extras": [
+   1,
+   3
+  ],
+  "part_conformes": 0.9,
+  "poids_nommees": 12
+ },
+ "privileges": {
+  "departements": [
+   "Informatique"
+  ],
+  "prefixes_droits": [
+   "INF",
+   "SUP",
+   "SCA"
+  ],
+  "part": 0.03,
+  "droits": [
+   4,
+   9
+  ],
+  "suffixe": ".ADM",
+  "minimum_verifie": 100
+ },
+ "troncature": {
+  "droit": "MES_DOS_REA_COMPTEUR",
+  "porteurs": 1000,
+  "departements_eligibles": [
+   "Production",
+   "Maintenance",
+   "Réseau",
+   "Clientèle",
+   "HSE",
+   "Back-office",
+   "Achats"
+  ]
+ },
+ "couples_separes": [
+  [
+   "GMA_DOS_CRE_ORDRE",
+   "CSG_FLU_VAL_CONSIGNATION",
+   [
+    "Maintenance",
+    "Informatique"
+   ],
+   [
+    "Réseau",
+    "HSE",
+    "Production"
+   ],
+   1800
+  ],
+  [
+   "CLI_DOS_CRE_CLIENT",
+   "FAC_FLU_VAL_AVOIR",
+   [
+    "Clientèle",
+    "Achats"
+   ],
+   [
+    "Finances",
+    "Back-office",
+    "Juridique"
+   ],
+   1600
+  ]
+ ],
+ "manquants_min": 120,
+ "couple_enfreint": {
+  "droits": [
+   "TRD_DOS_CRE_TRANSACTION",
+   "TRD_VAL_VAL_TRANSACTION"
+  ],
+  "fonction": "Trader",
+  "par_role": 38,
+  "isoles": 2,
+  "departement_isoles": "Back-office",
+  "cotes": [
+   [
+    "Trading"
+   ],
+   [
+    "Back-office"
+   ]
+  ],
+  "porteurs_cotes": 400
+ },
+ "croisement": {
+  "droits": [
+   "BIA_ETA_REA_POSITION",
+   "GED_ARC_REA_CONTRAT",
+   "SCA_DOS_REA_OUVRAGE"
+  ],
+  "groupe": 200,
+  "temoins": 900,
+  "minimum_verifie": 100
+ },
+ "mobilite": {
+  "origine": "Trader",
+  "arrivee": "Contrôleur des risques",
+  "nombre": 4
+ },
+ "usage": {
+  "date_export": "2026-09-15",
+  "seuil_jours": 180,
+  "part_dormantes": 0.02,
+  "identites_eteintes": 300,
+  "dormantes_min": 900
+ },
+ "bornes": [
+  1000,
+  1500,
+  5000,
+  10000,
+  20000,
+  50000,
+  65536,
+  100000
+ ],
+ "gouvernance": {
+  "severites": [
+   "Critique",
+   "Élevé",
+   "Modéré"
+  ],
+  "regles": [
+   {
+    "id": "R1",
+    "libelle": "Saisir et confirmer une même transaction",
+    "gauche": "TRD_DOS_CRE_TRANSACTION",
+    "droite": "TRD_VAL_VAL_TRANSACTION",
+    "severite": "Critique",
+    "processus": "Trading",
+    "proprietaire": "Direction des risques"
+   },
+   {
+    "id": "R2",
+    "libelle": "Émettre un ordre de travail et valider la consignation",
+    "gauche": "GMA_DOS_CRE_ORDRE",
+    "droite": "CSG_FLU_VAL_CONSIGNATION",
+    "severite": "Critique",
+    "processus": "Sécurité des interventions",
+    "proprietaire": "Direction de l'exploitation"
+   },
+   {
+    "id": "R3",
+    "libelle": "Créer un client et valider un avoir",
+    "gauche": "CLI_DOS_CRE_CLIENT",
+    "droite": "FAC_FLU_VAL_AVOIR",
+    "severite": "Élevé",
+    "processus": "Facturation",
+    "proprietaire": "Direction clientèle"
+   }
+  ],
+  "controle": {
+   "id": "C1",
+   "libelle": "Rapprochement quotidien front-office / back-office",
+   "executant": "Sarah Lemoine",
+   "relecteur": "Hugo Tavares",
+   "age_max_jours": 3,
+   "preuve": "BO-RAPP-3391"
+  },
+  "derogation": "Desk de nuit : un seul trader habilité pendant la période d'astreinte. Chaque transaction est rapprochée le matin par le back-office.",
+  "role_fait_main": {
+   "nom": "Trading — desk électricité",
+   "description": "Les droits communs aux traders."
+  },
+  "execution_il_y_a_jours": 2,
+  "derogation_dans_jours": 90,
+  "decisions": {
+   "validations": 33,
+   "refus": 23,
+   "motif_refus": "Population trop petite pour justifier un rôle : reste en attribution individuelle."
+  },
+  "mining_metier": {
+   "attributes": [
+    "departement",
+    "fonction"
+   ],
+   "min_coverage": 70,
+   "min_users": 5,
+   "min_rights": 3,
+   "mining_depth": 2,
+   "parcimonie": 0
+  }
+ }
+}

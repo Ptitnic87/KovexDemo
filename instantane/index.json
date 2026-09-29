@@ -1,0 +1,90 @@
+{
+  "construit_le": "2026-09-28",
+  "kovex_version": "1b04df1a8e4ac503361bd316e2565a2601b57d71",
+  "espaces": [
+    {
+      "id": "Alvea_DEMO",
+      "name": "Assurance — Groupe Alvéa",
+      "client": "Alvea",
+      "environment": "DEMO",
+      "created_at": "2026-09-28T14:06:44.386303",
+      "theme": "default",
+      "data_stats": {
+        "users": 20999,
+        "apps": 240,
+        "rights": 8000,
+        "habs": 255882
+      }
+    },
+    {
+      "id": "Helior_DEMO",
+      "name": "Énergie — Hélior Énergie",
+      "client": "Helior",
+      "environment": "DEMO",
+      "created_at": "2026-09-28T14:10:27.729407",
+      "theme": "default",
+      "data_stats": {
+        "users": 11999,
+        "apps": 200,
+        "rights": 6000,
+        "habs": 144696
+      }
+    },
+    {
+      "id": "Marelle_DEMO",
+      "name": "Grande distribution — Groupe Marelle",
+      "client": "Marelle",
+      "environment": "DEMO",
+      "created_at": "2026-09-28T14:11:38.175513",
+      "theme": "default",
+      "data_stats": {
+        "users": 29999,
+        "apps": 260,
+        "rights": 9000,
+        "habs": 361284
+      }
+    },
+    {
+      "id": "Aurele_DEMO",
+      "name": "Luxe — Maison Aurèle",
+      "client": "Aurele",
+      "environment": "DEMO",
+      "created_at": "2026-09-28T14:17:20.239336",
+      "theme": "default",
+      "data_stats": {
+        "users": 5991,
+        "apps": 100,
+        "rights": 3000,
+        "habs": 75341
+      }
+    },
+    {
+      "id": "Tilleuls_DEMO",
+      "name": "Santé — Hôpital des Tilleuls",
+      "client": "Tilleuls",
+      "environment": "DEMO",
+      "created_at": "2026-09-28T14:17:58.082115",
+      "theme": "default",
+      "data_stats": {
+        "users": 13999,
+        "apps": 220,
+        "rights": 7000,
+        "habs": 172678
+      }
+    },
+    {
+      "id": "Alvea_ATELIER",
+      "name": "Atelier — référentiel brut",
+      "client": "Alvea",
+      "environment": "ATELIER",
+      "created_at": "2026-09-28T14:19:40.760669",
+      "theme": "default",
+      "data_stats": {
+        "users": 20999,
+        "apps": 240,
+        "rights": 8000,
+        "habs": 255882
+      }
+    }
+  ]
+}

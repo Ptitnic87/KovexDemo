@@ -1,0 +1,551 @@
+{
+ "identifiant": "assurance",
+ "libelle": "Assurance — Groupe Alvéa",
+ "client": "Alvea",
+ "espace": "Assurance — Groupe Alvéa",
+ "groupe": "ALV",
+ "volumes": {
+  "identites": 21000,
+  "droits": 8000,
+  "applications": 240,
+  "graine": 20260915
+ },
+ "sites": [
+  "Nantes",
+  "Lyon",
+  "Lille",
+  "Bordeaux",
+  "Strasbourg",
+  "Paris"
+ ],
+ "organisation": {
+  "Souscription": [
+   "Souscripteur",
+   "Assistant souscription",
+   "Responsable souscription"
+  ],
+  "Sinistres": [
+   "Gestionnaire sinistres",
+   "Expert sinistres",
+   "Responsable sinistres"
+  ],
+  "Indemnisation": [
+   "Gestionnaire indemnisation",
+   "Contrôleur indemnisation"
+  ],
+  "Comptabilité": [
+   "Comptable",
+   "Comptable fournisseurs",
+   "Trésorier",
+   "Responsable comptable"
+  ],
+  "Recouvrement": [
+   "Chargé de recouvrement",
+   "Analyste recouvrement"
+  ],
+  "Juridique": [
+   "Juriste",
+   "Assistant juridique"
+  ],
+  "Actuariat": [
+   "Actuaire",
+   "Analyste données"
+  ],
+  "Réseau commercial": [
+   "Conseiller",
+   "Conseiller senior",
+   "Animateur réseau"
+  ],
+  "Marketing": [
+   "Chargé de communication",
+   "Chef de produit"
+  ],
+  "Ressources humaines": [
+   "Gestionnaire paie",
+   "Chargé de recrutement",
+   "Responsable RH"
+  ],
+  "Informatique": [
+   "Développeur",
+   "Administrateur systèmes",
+   "Support utilisateurs",
+   "Architecte"
+  ],
+  "Services généraux": [
+   "Agent d'accueil",
+   "Gestionnaire achats",
+   "Agent logistique"
+  ]
+ },
+ "applications": [
+  [
+   "SOU",
+   "Souscription Alvéa",
+   "Métier"
+  ],
+  [
+   "SIN",
+   "Gestion des sinistres",
+   "Métier"
+  ],
+  [
+   "IND",
+   "Indemnisation",
+   "Métier"
+  ],
+  [
+   "CTR",
+   "Contrats",
+   "Métier"
+  ],
+  [
+   "FOU",
+   "Référentiel fournisseurs",
+   "Finance"
+  ],
+  [
+   "PAI",
+   "Chaîne de paiement",
+   "Finance"
+  ],
+  [
+   "CPT",
+   "Comptabilité générale",
+   "Finance"
+  ],
+  [
+   "REC",
+   "Recouvrement",
+   "Finance"
+  ],
+  [
+   "PAY",
+   "Paie",
+   "RH"
+  ],
+  [
+   "SIR",
+   "SIRH",
+   "RH"
+  ],
+  [
+   "GED",
+   "Gestion documentaire",
+   "Transverse"
+  ],
+  [
+   "CRM",
+   "Relation client",
+   "Métier"
+  ],
+  [
+   "BIA",
+   "Décisionnel",
+   "Transverse"
+  ],
+  [
+   "JUR",
+   "Dossiers juridiques",
+   "Métier"
+  ],
+  [
+   "ACH",
+   "Achats",
+   "Finance"
+  ],
+  [
+   "SUP",
+   "Support informatique",
+   "Informatique"
+  ],
+  [
+   "INF",
+   "Infrastructure",
+   "Informatique"
+  ],
+  [
+   "MKT",
+   "Campagnes marketing",
+   "Marketing"
+  ]
+ ],
+ "socle_application": [
+  "SOC",
+  "Socle poste de travail",
+  "Transverse"
+ ],
+ "domaines_traine": [
+  "Métier",
+  "Finance",
+  "RH",
+  "Transverse",
+  "Informatique",
+  "Marketing"
+ ],
+ "convention": {
+  "modules": [
+   "ADM",
+   "DOS",
+   "REF",
+   "FLU",
+   "ETA",
+   "PAR",
+   "CTL",
+   "ARC",
+   "SAI",
+   "VAL"
+  ],
+  "actions": [
+   "REA",
+   "CRE",
+   "MOD",
+   "SUP",
+   "VAL",
+   "EXP",
+   "EXE"
+  ],
+  "objets": [
+   "DOSSIER",
+   "CLIENT",
+   "CONTRAT",
+   "PIECE",
+   "ETAT",
+   "LOT",
+   "REGLE",
+   "TIERS",
+   "COMPTE",
+   "MOUVEMENT"
+  ]
+ },
+ "prenoms": [
+  "Camille",
+  "Louis",
+  "Inès",
+  "Adrien",
+  "Nour",
+  "Théo",
+  "Sarah",
+  "Malik",
+  "Élodie",
+  "Hugo",
+  "Awa",
+  "Rémi",
+  "Chloé",
+  "Yanis",
+  "Manon",
+  "Sofiane",
+  "Julie",
+  "Paul",
+  "Lina",
+  "Antoine",
+  "Fatou",
+  "Gabriel",
+  "Maya",
+  "Victor",
+  "Anaïs",
+  "Ismaël",
+  "Clara",
+  "Basile",
+  "Leïla",
+  "Nathan",
+  "Jade",
+  "Oscar",
+  "Salomé",
+  "Tristan",
+  "Amina",
+  "Félix",
+  "Romane",
+  "Ayoub",
+  "Alice",
+  "Jonas"
+ ],
+ "noms": [
+  "Brunet",
+  "Lefranc",
+  "Ouattara",
+  "Delaunay",
+  "Mercier",
+  "Vasseur",
+  "Prigent",
+  "Aubry",
+  "Nguyen",
+  "Chevalier",
+  "Barros",
+  "Fontaine",
+  "Kerbrat",
+  "Lemoine",
+  "Sadiki",
+  "Charpentier",
+  "Rousset",
+  "Bonnet",
+  "Tavares",
+  "Guillou",
+  "Marchand",
+  "Pereira",
+  "Lacroix",
+  "Dombre",
+  "Sissoko",
+  "Verdier",
+  "Aubert",
+  "Riviere",
+  "Costes",
+  "Neveu",
+  "Bourdon",
+  "Cazeneuve",
+  "Ferrand",
+  "Mallet"
+ ],
+ "contrats": [
+  [
+   "CDI",
+   0.46
+  ],
+  [
+   "C.D.I.",
+   0.13
+  ],
+  [
+   "Contrat à durée indéterminée",
+   0.07
+  ],
+  [
+   "CDD",
+   0.12
+  ],
+  [
+   "C.D.D.",
+   0.04
+  ],
+  [
+   "Contrat à durée déterminée",
+   0.03
+  ],
+  [
+   "Alternance",
+   0.05
+  ],
+  [
+   "ALT",
+   0.03
+  ],
+  [
+   "Prestataire",
+   0.05
+  ],
+  [
+   "PRESTA",
+   0.02
+  ]
+ ],
+ "socles": [
+  [
+   "SOC_ADM_REA_BADGE",
+   "Accès badge site"
+  ],
+  [
+   "SOC_ADM_REA_MESSAGERIE",
+   "Messagerie"
+  ],
+  [
+   "SOC_ADM_REA_INTRANET",
+   "Intranet groupe"
+  ]
+ ],
+ "part_socle": 0.985,
+ "populations": {
+  "serrees": 15,
+  "poids_serrees": [
+   80,
+   400
+  ],
+  "poids_laches": [
+   120,
+   900
+  ],
+  "droits_par_population": [
+   6,
+   12
+  ],
+  "adherence_serree": 0.97,
+  "adherence_lache": 0.86,
+  "part_avec_extras": 0.4,
+  "extras": [
+   1,
+   3
+  ],
+  "part_conformes": 0.9,
+  "poids_nommees": 12
+ },
+ "privileges": {
+  "departements": [
+   "Informatique",
+   "Comptabilité"
+  ],
+  "prefixes_droits": [
+   "INF",
+   "SUP"
+  ],
+  "part": 0.03,
+  "droits": [
+   4,
+   9
+  ],
+  "suffixe": ".ADM",
+  "minimum_verifie": 200
+ },
+ "troncature": {
+  "droit": "GED_DOS_REA_DOCUMENT",
+  "porteurs": 5000,
+  "departements_eligibles": [
+   "Sinistres",
+   "Indemnisation",
+   "Souscription",
+   "Juridique",
+   "Recouvrement",
+   "Actuariat"
+  ]
+ },
+ "couples_separes": [
+  [
+   "SIN_DOS_CRE_DOSSIER",
+   "IND_FLU_VAL_MOUVEMENT",
+   [
+    "Sinistres",
+    "Réseau commercial"
+   ],
+   [
+    "Indemnisation",
+    "Comptabilité"
+   ],
+   2600
+  ],
+  [
+   "ACH_DOS_CRE_COMMANDE",
+   "CPT_FLU_VAL_REGLEMENT",
+   [
+    "Services généraux",
+    "Marketing",
+    "Informatique",
+    "Souscription"
+   ],
+   [
+    "Comptabilité",
+    "Recouvrement",
+    "Juridique",
+    "Actuariat"
+   ],
+   2600
+  ]
+ ],
+ "manquants_min": 280,
+ "couple_enfreint": {
+  "droits": [
+   "CTR_DOS_CRE_CONTRAT",
+   "CTR_VAL_VAL_CONTRAT"
+  ],
+  "fonction": "Souscripteur",
+  "par_role": 38,
+  "isoles": 2,
+  "departement_isoles": "Juridique",
+  "cotes": [
+   [
+    "Souscription"
+   ],
+   [
+    "Actuariat",
+    "Juridique"
+   ]
+  ],
+  "porteurs_cotes": 1200
+ },
+ "croisement": {
+  "droits": [
+   "BIA_ETA_REA_ETAT",
+   "GED_ARC_REA_PIECE",
+   "CRM_DOS_REA_CLIENT"
+  ],
+  "groupe": 300,
+  "temoins": 1200,
+  "minimum_verifie": 150
+ },
+ "mobilite": {
+  "origine": "Gestionnaire sinistres",
+  "arrivee": "Chargé de recouvrement",
+  "nombre": 5
+ },
+ "usage": {
+  "date_export": "2026-09-15",
+  "seuil_jours": 180,
+  "part_dormantes": 0.02,
+  "identites_eteintes": 520,
+  "dormantes_min": 2000
+ },
+ "bornes": [
+  1000,
+  1500,
+  5000,
+  10000,
+  20000,
+  50000,
+  65536,
+  100000
+ ],
+ "gouvernance": {
+  "severites": [
+   "Critique",
+   "Élevé",
+   "Modéré"
+  ],
+  "regles": [
+   {
+    "id": "R1",
+    "libelle": "Créer et valider un même contrat",
+    "gauche": "CTR_DOS_CRE_CONTRAT",
+    "droite": "CTR_VAL_VAL_CONTRAT",
+    "severite": "Critique",
+    "processus": "Souscription",
+    "proprietaire": "Direction des risques"
+   },
+   {
+    "id": "R2",
+    "libelle": "Commander et régler",
+    "gauche": "ACH_DOS_CRE_COMMANDE",
+    "droite": "CPT_FLU_VAL_REGLEMENT",
+    "severite": "Élevé",
+    "processus": "Achats",
+    "proprietaire": "Direction financière"
+   }
+  ],
+  "controle": {
+   "id": "C1",
+   "libelle": "Revue mensuelle des contrats validés",
+   "executant": "Alice Brunet",
+   "relecteur": "Bruno Mercier",
+   "age_max_jours": 31,
+   "preuve": "GRC-4412"
+  },
+  "derogation": "Agence de Lille : un seul souscripteur habilité à valider. Chaque contrat est relu par le responsable dans la revue mensuelle.",
+  "role_fait_main": {
+   "nom": "Souscription — bureau des contrats",
+   "description": "Les droits communs aux souscripteurs du bureau des contrats."
+  },
+  "execution_il_y_a_jours": 7,
+  "derogation_dans_jours": 90,
+  "decisions": {
+   "validations": 33,
+   "refus": 23,
+   "motif_refus": "Population trop petite pour justifier un rôle : reste en attribution individuelle."
+  },
+  "mining_metier": {
+   "attributes": [
+    "departement",
+    "fonction"
+   ],
+   "min_coverage": 70,
+   "min_users": 5,
+   "min_rights": 3,
+   "mining_depth": 2,
+   "parcimonie": 0
+  }
+ }
+}
