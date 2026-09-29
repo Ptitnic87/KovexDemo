@@ -271,3 +271,52 @@ def test_une_mise_a_jour_garde_ce_qui_vit_sur_le_serveur(tmp_path):
     assert (cible / "workspaces" / "w.json").exists()
     assert not (cible / "src" / "ancien.py").exists()
     assert (cible / "src" / "nouveau.py").exists()
+
+
+# -- le site ------------------------------------------------------------------
+
+
+import construire_le_site  # noqa: E402
+
+PONT = ("(function () {\n  async function monterLeDisque(p) {}\n"
+        "  async function demarrer() {\n    await monterLeDisque(pyodide);\n  }\n})();\n")
+
+
+def test_l_amorce_s_insere_une_fois_aux_deux_ancres():
+    resultat = construire_le_site.inserer_l_amorce(PONT, "  async function amorcerLaDemo(p) {}\n")
+    assert resultat.count("async function amorcerLaDemo") == 1
+    assert "    await monterLeDisque(pyodide);\n    await amorcerLaDemo(pyodide);\n" in resultat
+
+
+def test_une_ancre_deplacee_arrete_la_construction():
+    with pytest.raises(construire_le_site.SiteImpossible):
+        construire_le_site.inserer_l_amorce(PONT.replace("monterLeDisque(pyodide)", "x()"), "")
+
+
+def test_le_pont_change_d_adresse_pour_ne_pas_etre_servi_du_cache():
+    html = '<script src="moteur/pont.js?v=abc"></script>'
+    assert construire_le_site.marquer_le_pont(html) == \
+        '<script src="moteur/pont.js?demo=1&v=abc"></script>'
+
+
+def test_le_site_embarque_l_amorce_et_rien_de_secret(tmp_path):
+    pages = tmp_path / "pages"
+    (pages / "moteur").mkdir(parents=True)
+    (pages / "moteur" / "kovex-src.zip").write_bytes(b"PK")
+    (pages / "moteur" / "pont.js").write_text(PONT, encoding="utf-8")
+    (pages / "index.html").write_text('<script src="moteur/pont.js?v=1"></script>',
+                                      encoding="utf-8")
+    sortie = tmp_path / "docs"
+    construire_le_site.construire(pages, sortie)
+    publies = {f.relative_to(sortie).as_posix() for f in sortie.rglob("*") if f.is_file()}
+    assert "amorce/index.json" in publies and "amorce/restaurer.py" in publies
+    assert ".nojekyll" in publies
+    assert not any(n.endswith((".env", "users.json", "cles_annotateur.json")) for n in publies)
+    assert "cle" not in json.loads((sortie / "amorce" / "modele.json").read_text(
+        encoding="utf-8"))["prereglage"]
+
+
+def test_une_page_sans_archive_du_produit_est_refusee(tmp_path):
+    (tmp_path / "pages" / "moteur").mkdir(parents=True)
+    with pytest.raises(construire_le_site.SiteImpossible):
+        construire_le_site.construire(tmp_path / "pages", tmp_path / "docs")

@@ -24,6 +24,7 @@ une démonstration qui fonctionne, sans accès au dépôt du produit.
 | `lancer_la_demo.sh`, `LANCER_LA_DEMO.bat` | restaurer, puis lancer Kovex |
 | `mettre_a_jour_kovex.py` | la seule façon de changer la version de Kovex copiée |
 | `empaqueter.py` | une archive unique pour un serveur sans réseau |
+| `construire_le_site.py`, `site/` | le site GitHub Pages (`docs/`) : la page autonome et son amorce |
 | `atelier/` | le déroulé de l'atelier en direct des Assises |
 | `tests/` | générateur, restauration, contrôle de version |
 
@@ -61,6 +62,29 @@ Chaque espace sectoriel contient :
 
 L'espace « Atelier — référentiel brut » sert au déroulé en direct : rien n'y
 est décidé, tout se joue devant la salle.
+
+## Le site : la démonstration dans un navigateur
+
+`docs/` est publié par GitHub Pages. C'est la page autonome de Kovex — le
+produit entier qui tourne dans le navigateur, sans serveur — à la version de
+l'instantané, plus une **amorce** : à l'ouverture d'un onglet, la page
+remet les six espaces de démonstration, datés du jour, avec leurs minings
+conservés. Changer d'espace recharge la page sans effacer la séance ; un
+nouvel onglet repart de l'état figé. Chaque visiteur a sa propre copie : ce
+qu'il fait ne se voit pas ailleurs.
+
+Pour le reconstruire (après une nouvelle version de Kovex ou un nouvel
+instantané) :
+
+```
+python construire_le_site.py --source <clone de KovexD-mo>
+git add -A docs && git commit && git push
+```
+
+La page vient de `pages/` au commit de l'instantané, lu par `git archive`.
+Rien de secret n'y entre : tout ce qui est publié est lisible par quiconque
+a l'adresse. **Aucune clé de modèle dans le site** : l'IA passe par un point de
+terminaison qui porte lui-même la clé (Parallax), réglé dans `modele.json`.
 
 ## Récupérer
 

@@ -1,0 +1,588 @@
+/* ==========================================================================
+   CSS Variables - PyGIA Design System
+   ========================================================================== */
+
+:root {
+    /* ===== Color Palette ===== */
+    
+    /* Primary - Deep Blue */
+    --color-primary-50: #e8f0fe;
+    --color-primary-100: #c5dafc;
+    --color-primary-200: #9ec2fa;
+    --color-primary-300: #74a9f8;
+    --color-primary-400: #5196f6;
+    --color-primary-500: #2e84f4;
+    --color-primary-600: #1a6ee0;
+    --color-primary-700: #1458b8;
+    --color-primary-800: #0f4390;
+    --color-primary-900: #0a2d68;
+    
+    /* Secondary - Cyan */
+    --color-secondary-50: #e0f7fa;
+    --color-secondary-100: #b2ebf2;
+    --color-secondary-200: #80deea;
+    --color-secondary-300: #4dd0e1;
+    --color-secondary-400: #26c6da;
+    --color-secondary-500: #00bcd4;
+    --color-secondary-600: #00acc1;
+    --color-secondary-700: #0097a7;
+    --color-secondary-800: #00838f;
+    --color-secondary-900: #006064;
+    
+    /* Success - Emerald */
+    --color-success-50: #ecfdf5;
+    --color-success-100: #d1fae5;
+    --color-success-200: #a7f3d0;
+    --color-success-300: #6ee7b7;
+    --color-success-400: #34d399;
+    --color-success-500: #10b981;
+    --color-success-600: #059669;
+    --color-success-700: #047857;
+    --color-success-800: #065f46;
+    --color-success-900: #064e3b;
+    
+    /* Warning - Amber */
+    --color-warning-50: #fffbeb;
+    --color-warning-100: #fef3c7;
+    --color-warning-200: #fde68a;
+    --color-warning-300: #fcd34d;
+    --color-warning-400: #fbbf24;
+    --color-warning-500: #f59e0b;
+    --color-warning-600: #d97706;
+    --color-warning-700: #b45309;
+    --color-warning-800: #92400e;
+    --color-warning-900: #78350f;
+    
+    /* Danger - Rose */
+    --color-danger-50: #fff1f2;
+    --color-danger-100: #ffe4e6;
+    --color-danger-200: #fecdd3;
+    --color-danger-300: #fda4af;
+    --color-danger-400: #fb7185;
+    --color-danger-500: #f43f5e;
+    --color-danger-600: #e11d48;
+    --color-danger-700: #be123c;
+    --color-danger-800: #9f1239;
+    --color-danger-900: #881337;
+    
+    /* Info - Indigo */
+    --color-info-50: #eef2ff;
+    --color-info-100: #e0e7ff;
+    --color-info-200: #c7d2fe;
+    --color-info-300: #a5b4fc;
+    --color-info-400: #818cf8;
+    --color-info-500: #6366f1;
+    --color-info-600: #4f46e5;
+    --color-info-700: #4338ca;
+    --color-info-800: #3730a3;
+    --color-info-900: #312e81;
+    
+    /* Neutrals - Slate */
+    --color-neutral-0: #ffffff;
+    --color-neutral-50: #f8fafc;
+    --color-neutral-100: #f1f5f9;
+    --color-neutral-200: #e2e8f0;
+    --color-neutral-300: #cbd5e1;
+    --color-neutral-400: #94a3b8;
+    --color-neutral-500: #64748b;
+    /* Palier ajouté pour l'accessibilité : sur le thème clair, le 500 ne
+       tient pas 4,5:1 sur une surface tertiaire (4,34) et le 600 est déjà
+       l'encre secondaire. Le 550 est l'interpolation des deux. */
+    --color-neutral-550: #55647a;
+    --color-neutral-600: #475569;
+    --color-neutral-700: #334155;
+    --color-neutral-800: #1e293b;
+    --color-neutral-900: #0f172a;
+    --color-neutral-950: #020617;
+    
+    /* ===== Typography ===== */
+    --font-family-display: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+    
+    /* L'échelle monte d'un cran.
+
+       Le texte courant était à 14px et le bas de l'échelle à 12px, avec
+       quarante-deux tailles écrites en pixels par-dessus, jusqu'à 9px. Aucun
+       critère RGAA n'impose de taille minimale — c'est un choix de confort,
+       pas de conformité — mais le produit s'adresse à des consultants qui
+       lisent des tableaux denses une journée entière.
+
+       Le cran est le même partout : ce qui était le barreau n devient le
+       barreau n+1. Les rapports de taille entre les niveaux sont conservés,
+       donc les hiérarchies visuelles aussi. */
+    --font-size-xs: 0.8125rem;   /* 13px */
+    --font-size-sm: 0.875rem;    /* 14px */
+    --font-size-base: 1rem;      /* 16px */
+    --font-size-md: 1.125rem;    /* 18px */
+    --font-size-lg: 1.25rem;     /* 20px */
+    --font-size-xl: 1.375rem;    /* 22px */
+    --font-size-2xl: 1.625rem;   /* 26px */
+    --font-size-3xl: 2rem;       /* 32px */
+    --font-size-4xl: 2.5rem;     /* 40px */
+    
+    --font-weight-light: 300;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+    
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+    
+    /* ===== Spacing ===== */
+    --space-0: 0;
+    --space-1: 0.25rem;   /* 4px */
+    --space-2: 0.5rem;    /* 8px */
+    --space-3: 0.75rem;   /* 12px */
+    --space-4: 1rem;      /* 16px */
+    --space-5: 1.25rem;   /* 20px */
+    --space-6: 1.5rem;    /* 24px */
+    --space-8: 2rem;      /* 32px */
+    --space-10: 2.5rem;   /* 40px */
+    --space-12: 3rem;     /* 48px */
+    --space-16: 4rem;     /* 64px */
+    --space-20: 5rem;     /* 80px */
+    
+    /* ===== Border Radius ===== */
+    --radius-none: 0;
+    --radius-sm: 0.25rem;    /* 4px */
+    --radius-md: 0.5rem;     /* 8px */
+    --radius-lg: 0.75rem;    /* 12px */
+    --radius-xl: 1rem;       /* 16px */
+    --radius-2xl: 1.5rem;    /* 24px */
+    --radius-full: 9999px;
+    
+    /* ===== Shadows ===== */
+    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    
+    /* ===== Transitions ===== */
+    --transition-fast: 150ms ease;
+    --transition-normal: 250ms ease;
+    --transition-slow: 350ms ease;
+    --transition-bounce: 500ms cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    /* ===== Z-Index Scale ===== */
+    --z-dropdown: 100;
+    --z-sticky: 200;
+    --z-fixed: 300;
+    --z-modal-backdrop: 400;
+    --z-modal: 500;
+    --z-popover: 600;
+    --z-tooltip: 700;
+    --z-toast: 800;
+    --z-loader: 900;
+    
+    /* ===== Layout ===== */
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 72px;
+    --topbar-height: 64px;
+    /* Largeur utile d'une page. Elle était de 1 400 px : sur un écran large,
+       les tableaux et les paramètres se repliaient sur plusieurs lignes à
+       côté d'une marge vide. La lecture des paragraphes reste bornée à part
+       (`max-width` en `ch` sur les textes longs). */
+    --container-max-width: 1760px;
+}
+
+/* ==========================================================================
+   Dark Theme (Default)
+   ========================================================================== */
+
+[data-theme="dark"] {
+    --bg-primary: var(--color-neutral-950);
+    --bg-secondary: var(--color-neutral-900);
+    --bg-tertiary: var(--color-neutral-800);
+    --bg-elevated: var(--color-neutral-800);
+    --bg-hover: var(--color-neutral-700);
+    --bg-active: var(--color-neutral-600);
+    
+    /* Échelle d'encres.
+
+       Trois niveaux, pas quatre. Sous le 400 en thème sombre, et sous le 550
+       en thème clair, aucun gris de la rampe ne tient 4,5:1 sur toutes les
+       surfaces qui portent du texte : `--text-tertiary` et `--text-muted`
+       partagent donc la même valeur. Le nom reste, la nuance disparaît — un
+       quatrième niveau n'existait que dans la feuille de style, pas à
+       l'écran, et il était illisible. */
+    --text-primary: var(--color-neutral-50);
+    --text-secondary: var(--color-neutral-300);
+    --text-tertiary: var(--color-neutral-400);
+    --text-muted: var(--color-neutral-400);
+    --text-inverse: var(--color-neutral-900);
+    
+    --border-primary: var(--color-neutral-700);
+    --border-secondary: var(--color-neutral-800);
+    --border-focus: var(--color-primary-500);
+    
+    /* L'aplat porte du texte blanc : primary-500 n'y suffit pas (3,67:1), le
+       600 oui (4,83:1). L'anneau de focus, lui, garde le 500 — il n'a pas
+       besoin de 4,5:1 mais de 3:1 face à la surface, et le 600 tombe à 2,52:1
+       sur une surface tertiaire sombre. Deux exigences opposées, deux
+       jetons : `--accent-primary` et `--border-focus`. */
+    --accent-primary: var(--color-primary-600);
+    --accent-secondary: var(--color-secondary-500);
+    --accent-success: var(--color-success-500);
+    --accent-warning: var(--color-warning-500);
+    --accent-danger: var(--color-danger-500);
+
+    /* Un accent remplit ou s'écrit — jamais les deux à la même valeur.
+
+       `--accent-*` est l'aplat : la couleur d'identité, posée derrière du
+       texte. Elle est choisie vive, donc elle ne se lit pas elle-même sur une
+       surface du thème : `--accent-danger` sur une carte sombre donne 3,98:1,
+       `--accent-success` sur une carte claire 3,44:1. Les cinquante-sept
+       règles qui écrivaient `color: var(--accent-…)` produisaient donc du
+       texte sous le seuil, sans qu'aucune ne soit fautive prise isolément :
+       c'est le jeton qui portait deux métiers contradictoires.
+
+       `--encre-*` est le même accent décliné pour être lu. Un palier plus
+       clair en thème sombre, plus foncé en thème clair. */
+    --encre-primary: var(--color-primary-400);
+    --encre-secondary: var(--color-secondary-400);
+    --encre-success: var(--color-success-400);
+    --encre-warning: var(--color-warning-400);
+    --encre-danger: var(--color-danger-400);
+    --encre-info: var(--color-info-400);
+
+    /* Encres de la barre latérale.
+
+       Elle est sombre dans les deux thèmes — même raison que `--sidebar-hover`
+       juste au-dessus. Ses textes empruntaient les paliers de gris du thème :
+       en thème clair, le titre de section s'écrivait en `neutral-500` sur un
+       fond `neutral-900`, soit 3,75:1, et personne ne le voyait puisque le
+       thème sombre donnait la même valeur — le défaut était identique des deux
+       côtés, donc invisible à la comparaison. */
+    --sidebar-encre: var(--color-neutral-50);
+    --sidebar-encre-attenuee: var(--color-neutral-400);
+
+    /* Titre de section de la barre, et fond de l'élément sélectionné.
+
+       Les libellés de navigation et le titre de chaque section s'écrivaient
+       avec des paliers de la rampe de gris, déclarés dans `:root` : ils
+       échappaient au contrat de contraste de la barre — qui ne porte que sur
+       ses propres encres — et un thème client repeignant le fond de la barre
+       les laissait derrière. C'est le défaut déjà corrigé sur le sous-titre du
+       logo, qui subsistait sur les quatre lignes les plus lues de l'écran.
+
+       Le titre de section a son propre jeton plutôt que d'emprunter l'encre
+       atténuée : une charte cliente distingue souvent l'intitulé de rubrique
+       du libellé courant, et les confondre interdit de les distinguer. */
+    --sidebar-titre-de-section: var(--color-neutral-400);
+
+    /* Encre des libellés de navigation.
+       Distincte de l'encre atténuée, qui habille ce qui entoure la navigation
+       — sous-titre du produit, compteurs, numéro de version. Les confondre
+       interdit d'écrire les libellés en blanc sans emporter le reste avec eux,
+       et la hiérarchie de la barre disparaît. */
+    --sidebar-encre-lien: var(--color-neutral-400);
+
+    /* La marque du produit dans la barre. Elle ne porte pas de texte : une
+       marque est exemptée d'exigence de contraste (WCAG 1.4.11), mais elle
+       doit pouvoir suivre l'habillage, sans quoi un sigle bleu reste posé sur
+       une barre repeinte par le client. */
+    --sidebar-marque: var(--color-primary-400);
+    --sidebar-selection-debut: var(--color-primary-600);
+    --sidebar-selection-fin: var(--color-primary-700);
+
+    /* Voile sombre, pour poser une pastille sur un aplat déjà coloré. */
+    --voile-sombre: rgba(0, 0, 0, 0.35);
+
+    /* Pastille de comptage de la cloche.
+
+       Elle porte un nombre, donc du texte : l'aplat `--accent-danger` ne
+       convient pas — blanc sur `danger-500` donne 3,67:1, sous le seuil du
+       texte courant. Un palier plus foncé, réservé à cet usage, le fait
+       passer sans changer la couleur d'alerte du reste du produit. */
+    --pastille-fond: var(--color-danger-600);
+    --pastille-encre: var(--color-neutral-0);
+
+    /* Graphe des accès. La palette était dupliquée dans graph.py et dans
+       graph_view.js, indépendamment : elle vit désormais dans le thème. */
+    --graph-node-user: var(--color-success-500);
+    --graph-node-right: var(--color-info-500);
+    --graph-node-application: var(--color-warning-500);
+    --graph-node-role: var(--color-primary-500);
+    --graph-edge-entitlement: var(--color-success-500);
+    --graph-edge-assignment: var(--color-primary-500);
+    --graph-edge-composition: var(--color-info-500);
+    --graph-edge-membership: var(--color-warning-500);
+    --graph-link: var(--color-neutral-600);
+    --accent-info: var(--color-info-500);
+
+    /* Courbe d'exploration du seuil. Trois séries lues par le JS depuis le
+       thème : la palette n'est écrite qu'ici. */
+    --chart-coverage: var(--color-success-500);
+    --chart-over-granted: var(--color-danger-500);
+    --chart-roles: var(--color-info-500);
+    --chart-grid: var(--color-neutral-800);
+    --chart-tick: var(--color-neutral-400);
+    
+    /* Component-specific */
+    /* Fond de la barre latérale.
+
+       Le dégradé citait directement la rampe de gris, déclarée dans `:root`
+       et donc commune aux deux variantes. Un thème de workspace ne peut pas
+       redéfinir ces jetons-là — ils ne sont pas propres à une variante — et
+       la surface la plus visible du produit, celle qui porte l'identité,
+       restait la seule qu'un client ne pouvait pas habiller. Les deux arrêts
+       sont désormais des jetons de variante : le dégradé ne change pas, il
+       cite des noms qu'un thème a le droit de reprendre. */
+    --sidebar-fond-haut: var(--color-neutral-900);
+    --sidebar-fond-bas: var(--color-neutral-950);
+    --sidebar-bg: linear-gradient(180deg, var(--sidebar-fond-haut) 0%, var(--sidebar-fond-bas) 100%);
+    --card-bg: var(--color-neutral-900);
+    --card-border: var(--color-neutral-800);
+    --input-bg: var(--color-neutral-800);
+    --input-border: var(--color-neutral-700);
+    --input-focus-border: var(--color-primary-500);
+    --table-header-bg: var(--color-neutral-800);
+    --table-row-hover: var(--color-neutral-800);
+    --table-border: var(--color-neutral-700);
+    
+    /* Voiles posés sur une couleur, non sur une surface du thème : le reflet
+       en haut d'un bouton, l'onde au clic, la piste d'un indicateur d'attente
+       sur un voile sombre. Le fond sous eux est le même dans les deux thèmes —
+       un bleu d'accent, un noir de surimpression — donc leur teinte l'est
+       aussi. Les faire dépendre du thème peignait un gris presque blanc sur un
+       bouton bleu. */
+    --voile-clair: rgba(255, 255, 255, 0.10);
+    --voile-clair-fort: rgba(255, 255, 255, 0.20);
+
+    /* Barre latérale.
+
+       Elle est sombre dans les deux thèmes — `--sidebar-bg` porte le même
+       dégradé de part et d'autre. Ses surfaces ne peuvent donc pas emprunter
+       les jetons de fond du thème : en thème clair, `--bg-hover` vaut un gris
+       presque blanc, et le survol d'un lien peignait du texte blanc sur du
+       blanc. Un voile clair, lui, tient sur n'importe quel fond sombre. */
+    --sidebar-hover: rgba(255, 255, 255, 0.06);
+    --sidebar-surface: rgba(255, 255, 255, 0.10);
+    --sidebar-border: rgba(255, 255, 255, 0.10);
+
+    /* Couleurs des rôles de compte. Elles étaient une carte d'hexadécimaux
+       dans `app.js`, avec une teinte de repli que le thème ne connaissait
+       pas : le seul endroit du produit où une couleur d'interface vivait
+       hors de la feuille de style. */
+    --compte-role-admin: var(--color-warning-500);
+    --compte-role-analyst: var(--color-success-500);
+    --compte-role-viewer: var(--color-info-500);
+    --compte-role-inconnu: var(--color-neutral-500);
+
+    /* Identité des types de rôle.
+
+       Un rôle métier était vert dans le mining et bleu dans le catalogue :
+       le même objet, deux couleurs, deux écrans. Le vert est par ailleurs la
+       couleur du jugement — une couverture élevée, un état sain — et servir
+       aussi d'identité lui faisait dire deux choses à la fois.
+
+       Les deux types prennent donc deux teintes qui ne portent aucun
+       jugement et ne se confondent pas avec l'action : indigo et cyan. La
+       surface est dérivée de la teinte, pour qu'il n'y ait qu'une valeur à
+       changer. */
+    --role-type-app: var(--color-info-400);
+    --role-type-app-surface: color-mix(in srgb, var(--color-info-500) 18%, transparent);
+    --role-type-biz: var(--color-secondary-300);
+    --role-type-biz-surface: color-mix(in srgb, var(--color-secondary-500) 18%, transparent);
+    /* Le socle n'est ni métier ni applicatif : une troisième teinte, et non
+       une nuance de l'une des deux. Il ne sort d'aucun mining — il vient
+       d'une décision de détection — et le confondre à l'œil avec un rôle
+       proposé serait le contresens à ne pas installer. */
+    --role-type-socle: var(--color-primary-400);
+    --role-type-socle-surface: color-mix(in srgb, var(--color-primary-500) 18%, transparent);
+
+    /* Glow effects */
+    --glow-primary: 0 0 20px rgba(46, 132, 244, 0.3);
+    --glow-success: 0 0 20px rgba(16, 185, 129, 0.3);
+    --glow-warning: 0 0 20px rgba(245, 158, 11, 0.3);
+    --glow-danger: 0 0 20px rgba(244, 63, 94, 0.3);
+}
+
+/* ==========================================================================
+   Light Theme
+   ========================================================================== */
+
+[data-theme="light"] {
+    --bg-primary: var(--color-neutral-50);
+    --bg-secondary: var(--color-neutral-0);
+    --bg-tertiary: var(--color-neutral-100);
+    --bg-elevated: var(--color-neutral-0);
+    --bg-hover: var(--color-neutral-100);
+    --bg-active: var(--color-neutral-200);
+    
+    /* Échelle d'encres.
+
+       Trois niveaux, pas quatre. Sous le 400 en thème sombre, et sous le 550
+       en thème clair, aucun gris de la rampe ne tient 4,5:1 sur toutes les
+       surfaces qui portent du texte : `--text-tertiary` et `--text-muted`
+       partagent donc la même valeur. Le nom reste, la nuance disparaît — un
+       quatrième niveau n'existait que dans la feuille de style, pas à
+       l'écran, et il était illisible. */
+    --text-primary: var(--color-neutral-900);
+    --text-secondary: var(--color-neutral-600);
+    --text-tertiary: var(--color-neutral-550);
+    --text-muted: var(--color-neutral-550);
+    --text-inverse: var(--color-neutral-0);
+    
+    --border-primary: var(--color-neutral-200);
+    --border-secondary: var(--color-neutral-100);
+    --border-focus: var(--color-primary-500);
+    
+    --accent-primary: var(--color-primary-600);
+    --accent-secondary: var(--color-secondary-600);
+    --accent-success: var(--color-success-600);
+    --accent-warning: var(--color-warning-600);
+    --accent-danger: var(--color-danger-600);
+    --accent-info: var(--color-info-600);
+
+    /* Un accent remplit ou s'écrit — jamais les deux à la même valeur.
+
+       `--accent-*` est l'aplat : la couleur d'identité, posée derrière du
+       texte. Elle est choisie vive, donc elle ne se lit pas elle-même sur une
+       surface du thème : `--accent-danger` sur une carte sombre donne 3,98:1,
+       `--accent-success` sur une carte claire 3,44:1. Les cinquante-sept
+       règles qui écrivaient `color: var(--accent-…)` produisaient donc du
+       texte sous le seuil, sans qu'aucune ne soit fautive prise isolément :
+       c'est le jeton qui portait deux métiers contradictoires.
+
+       `--encre-*` est le même accent décliné pour être lu. Un palier plus
+       clair en thème sombre, plus foncé en thème clair. */
+    --encre-primary: var(--color-primary-700);
+    --encre-secondary: var(--color-secondary-900);
+    --encre-success: var(--color-success-700);
+    --encre-warning: var(--color-warning-800);
+    --encre-danger: var(--color-danger-700);
+    --encre-info: var(--color-info-600);
+
+    /* Encres de la barre latérale.
+
+       Elle est sombre dans les deux thèmes — même raison que `--sidebar-hover`
+       juste au-dessus. Ses textes empruntaient les paliers de gris du thème :
+       en thème clair, le titre de section s'écrivait en `neutral-500` sur un
+       fond `neutral-900`, soit 3,75:1, et personne ne le voyait puisque le
+       thème sombre donnait la même valeur — le défaut était identique des deux
+       côtés, donc invisible à la comparaison. */
+    --sidebar-encre: var(--color-neutral-50);
+    --sidebar-encre-attenuee: var(--color-neutral-400);
+
+    /* Titre de section de la barre, et fond de l'élément sélectionné.
+
+       Les libellés de navigation et le titre de chaque section s'écrivaient
+       avec des paliers de la rampe de gris, déclarés dans `:root` : ils
+       échappaient au contrat de contraste de la barre — qui ne porte que sur
+       ses propres encres — et un thème client repeignant le fond de la barre
+       les laissait derrière. C'est le défaut déjà corrigé sur le sous-titre du
+       logo, qui subsistait sur les quatre lignes les plus lues de l'écran.
+
+       Le titre de section a son propre jeton plutôt que d'emprunter l'encre
+       atténuée : une charte cliente distingue souvent l'intitulé de rubrique
+       du libellé courant, et les confondre interdit de les distinguer. */
+    --sidebar-titre-de-section: var(--color-neutral-400);
+
+    /* Encre des libellés de navigation.
+       Distincte de l'encre atténuée, qui habille ce qui entoure la navigation
+       — sous-titre du produit, compteurs, numéro de version. Les confondre
+       interdit d'écrire les libellés en blanc sans emporter le reste avec eux,
+       et la hiérarchie de la barre disparaît. */
+    --sidebar-encre-lien: var(--color-neutral-400);
+
+    /* La marque du produit dans la barre. Elle ne porte pas de texte : une
+       marque est exemptée d'exigence de contraste (WCAG 1.4.11), mais elle
+       doit pouvoir suivre l'habillage, sans quoi un sigle bleu reste posé sur
+       une barre repeinte par le client. */
+    --sidebar-marque: var(--color-primary-400);
+    --sidebar-selection-debut: var(--color-primary-600);
+    --sidebar-selection-fin: var(--color-primary-700);
+
+    /* Voile sombre, pour poser une pastille sur un aplat déjà coloré. */
+    --voile-sombre: rgba(0, 0, 0, 0.35);
+
+    /* Graphe des accès, déclinaison claire. */
+    --graph-node-user: var(--color-success-600);
+    --graph-node-right: var(--color-info-600);
+    --graph-node-application: var(--color-warning-600);
+    --graph-node-role: var(--color-primary-600);
+    --graph-edge-entitlement: var(--color-success-600);
+    --graph-edge-assignment: var(--color-primary-600);
+    --graph-edge-composition: var(--color-info-600);
+    --graph-edge-membership: var(--color-warning-600);
+    --graph-link: var(--color-neutral-300);
+
+    /* Courbe d'exploration du seuil, déclinaison claire. */
+    --chart-coverage: var(--color-success-600);
+    --chart-over-granted: var(--color-danger-600);
+    --chart-roles: var(--color-info-600);
+    --chart-grid: var(--color-neutral-200);
+    --chart-tick: var(--color-neutral-500);
+    
+    /* Component-specific */
+    /* Fond de la barre latérale.
+
+       Le dégradé citait directement la rampe de gris, déclarée dans `:root`
+       et donc commune aux deux variantes. Un thème de workspace ne peut pas
+       redéfinir ces jetons-là — ils ne sont pas propres à une variante — et
+       la surface la plus visible du produit, celle qui porte l'identité,
+       restait la seule qu'un client ne pouvait pas habiller. Les deux arrêts
+       sont désormais des jetons de variante : le dégradé ne change pas, il
+       cite des noms qu'un thème a le droit de reprendre. */
+    --sidebar-fond-haut: var(--color-neutral-900);
+    --sidebar-fond-bas: var(--color-neutral-950);
+    --sidebar-bg: linear-gradient(180deg, var(--sidebar-fond-haut) 0%, var(--sidebar-fond-bas) 100%);
+    --card-bg: var(--color-neutral-0);
+    --card-border: var(--color-neutral-200);
+    --input-bg: var(--color-neutral-0);
+    --input-border: var(--color-neutral-300);
+    --input-focus-border: var(--color-primary-500);
+    --table-header-bg: var(--color-neutral-100);
+    --table-row-hover: var(--color-neutral-50);
+    --table-border: var(--color-neutral-200);
+    
+    /* Voiles posés sur une couleur, non sur une surface du thème : le reflet
+       en haut d'un bouton, l'onde au clic, la piste d'un indicateur d'attente
+       sur un voile sombre. Le fond sous eux est le même dans les deux thèmes —
+       un bleu d'accent, un noir de surimpression — donc leur teinte l'est
+       aussi. Les faire dépendre du thème peignait un gris presque blanc sur un
+       bouton bleu. */
+    --voile-clair: rgba(255, 255, 255, 0.10);
+    --voile-clair-fort: rgba(255, 255, 255, 0.20);
+
+    /* Barre latérale.
+
+       Elle est sombre dans les deux thèmes — `--sidebar-bg` porte le même
+       dégradé de part et d'autre. Ses surfaces ne peuvent donc pas emprunter
+       les jetons de fond du thème : en thème clair, `--bg-hover` vaut un gris
+       presque blanc, et le survol d'un lien peignait du texte blanc sur du
+       blanc. Un voile clair, lui, tient sur n'importe quel fond sombre. */
+    --sidebar-hover: rgba(255, 255, 255, 0.06);
+    --sidebar-surface: rgba(255, 255, 255, 0.10);
+    --sidebar-border: rgba(255, 255, 255, 0.10);
+
+    /* Couleurs des rôles de compte, déclinaison claire. */
+    --compte-role-admin: var(--color-warning-600);
+    --compte-role-analyst: var(--color-success-600);
+    --compte-role-viewer: var(--color-info-600);
+    --compte-role-inconnu: var(--color-neutral-500);
+
+    /* Identité des types de rôle, déclinaison claire. */
+    --role-type-app: var(--color-info-700);
+    --role-type-app-surface: color-mix(in srgb, var(--color-info-500) 14%, transparent);
+    --role-type-biz: var(--color-secondary-800);
+    --role-type-biz-surface: color-mix(in srgb, var(--color-secondary-500) 16%, transparent);
+    --role-type-socle: var(--color-primary-700);
+    --role-type-socle-surface: color-mix(in srgb, var(--color-primary-500) 14%, transparent);
+
+    /* Glow effects (subtle in light mode) */
+    --glow-primary: 0 0 15px rgba(46, 132, 244, 0.15);
+    --glow-success: 0 0 15px rgba(16, 185, 129, 0.15);
+    --glow-warning: 0 0 15px rgba(245, 158, 11, 0.15);
+    --glow-danger: 0 0 15px rgba(244, 63, 94, 0.15);
+
+    /* Voir le commentaire du thème sombre. */
+    --pastille-fond: var(--color-danger-700);
+    --pastille-encre: var(--color-neutral-0);
+}

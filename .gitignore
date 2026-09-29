@@ -1,5 +1,6 @@
 __pycache__/
 *.pyc
-/KovexDemo.zip
-*.zip
 .pytest_cache/
+# L archive produite par empaqueter.py, hors du site.
+/KovexDemo.zip
+/.pages-temporaires/

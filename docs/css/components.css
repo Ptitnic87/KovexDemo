@@ -1,0 +1,1791 @@
+/* ==========================================================================
+   Components - Reusable UI Components
+   ========================================================================== */
+
+/* ===== Buttons ===== */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    line-height: 1;
+    border-radius: var(--radius-md);
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn i {
+    font-size: 0.9em;
+}
+
+.btn-sm { padding: var(--space-1) var(--space-3); font-size: var(--font-size-xs); }
+.btn-lg { padding: var(--space-3) var(--space-6); font-size: var(--font-size-md); }
+.btn-block { width: 100%; }
+
+/* Les paliers des aplats sont choisis par mesure, comme ceux du serveur.
+   Blanc sur primary-500 : 3,67:1 — le bouton le plus utilisé du produit était
+   sous le seuil dans les deux thèmes. Sur primary-600 : 4,83:1. */
+.btn-primary {
+    background: linear-gradient(135deg, var(--color-primary-600) 0%, var(--color-primary-700) 100%);
+    color: var(--color-neutral-0);
+    box-shadow: var(--shadow-sm), inset 0 1px 0 var(--voile-clair);
+}
+
+/* Le survol assombrit au lieu d'éclaircir : éclaircir ramenait l'aplat sous
+   le seuil. L'affordance reste portée par l'élévation et la lueur. */
+.btn-primary:hover:not(:disabled) {
+    background: linear-gradient(135deg, var(--color-primary-700) 0%, var(--color-primary-800) 100%);
+    box-shadow: var(--shadow-md), var(--glow-primary);
+    transform: translateY(-1px);
+}
+
+.btn-secondary {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    border-color: var(--border-primary);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: var(--bg-hover);
+    border-color: var(--text-tertiary);
+}
+
+/* Blanc sur émeraude : 2,54:1. Encre sombre : 7,95:1. */
+.btn-success {
+    background: linear-gradient(135deg, var(--color-success-500) 0%, var(--color-success-600) 100%);
+    color: var(--color-neutral-950);
+}
+
+.btn-success:hover:not(:disabled) {
+    box-shadow: var(--shadow-md), var(--glow-success);
+    transform: translateY(-1px);
+}
+
+.btn-warning {
+    background: linear-gradient(135deg, var(--color-warning-500) 0%, var(--color-warning-600) 100%);
+    color: var(--color-neutral-900);
+}
+
+.btn-warning:hover:not(:disabled) {
+    box-shadow: var(--shadow-md), var(--glow-warning);
+    transform: translateY(-1px);
+}
+
+/* Blanc sur danger-500 : 3,67:1 ; sur danger-600 : 4,70:1. */
+.btn-danger {
+    background: linear-gradient(135deg, var(--color-danger-600) 0%, var(--color-danger-700) 100%);
+    color: var(--color-neutral-0);
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+}
+
+.btn-ghost:hover:not(:disabled) {
+    background: var(--bg-hover);
+    color: var(--text-primary);
+}
+
+/* ===== Cards ===== */
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-5);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.card-title {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-md);
+    font-weight: var(--font-weight-semibold);
+}
+
+.card-title i { color: var(--encre-primary); }
+.card-body { padding: var(--space-5); }
+
+/* Deux cartes qui se suivent directement dans une page se séparent. Elles se
+   touchaient sur la séparation des tâches, les conflits et l'export du
+   modèle — les trois seuls écrans où deux cartes se suivent sans conteneur. */
+.page > .card + .card { margin-top: var(--space-5); }
+
+/* ===== Forms ===== */
+.form-group { margin-bottom: var(--space-4); }
+
+.form-label {
+    display: block;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+}
+
+.form-label.required::after {
+    content: '*';
+    color: var(--encre-danger);
+    margin-left: var(--space-1);
+}
+
+.form-input, .form-select, .form-textarea {
+    width: 100%;
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+    transition: all var(--transition-fast);
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-primary) 15%, transparent);
+    outline: none;
+}
+
+.form-hint {
+    display: block;
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    margin-top: var(--space-1);
+}
+
+/* Un indice qui annonce que rien ne s'applique. La teinte est celle des
+   autres refus du produit : un réglage écrit mais inactif se lit autrement
+   qu'un réglage vide, et c'est la couleur qui fait cette différence avant que
+   la phrase ne soit lue. */
+.form-hint-error {
+    color: var(--encre-danger);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr));
+    gap: var(--space-4);
+}
+
+/* Un libellé posé directement dans la rangée, à côté de son champ : centré
+   sur lui, et non collé en haut d'une case plus haute que lui. */
+.form-row > .form-label {
+    align-self: center;
+    margin-bottom: 0;
+}
+
+.select-wrapper { position: relative; }
+.select-wrapper .form-select { appearance: none; padding-right: var(--space-10); }
+
+.select-mini {
+    padding: var(--space-1) var(--space-3);
+    font-size: var(--font-size-xs);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+}
+
+/* ===== Data Tables ===== */
+.data-table-container {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.table-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+    border-bottom: 1px solid var(--card-border);
+    gap: var(--space-4);
+}
+
+.table-search {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    background: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-4);
+    flex: 1;
+    max-width: 400px;
+}
+
+.table-search:focus-within {
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-primary) 15%, transparent);
+}
+
+.table-search i { color: var(--text-muted); }
+
+.table-search input {
+    flex: 1;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+.table-search input:focus { outline: none; box-shadow: none; }
+
+.table-count { font-size: var(--font-size-sm); color: var(--text-secondary); }
+
+/* Hauteur réservée à tout ce qui entoure le tableau : barre supérieure,
+   en-tête de page, barre d'outils, pagination et gouttières. Le tableau prend
+   ce qui reste et défile **dans ses deux axes à l'intérieur de son
+   enveloppe**.
+
+   C'est ce qui règle deux gênes signalées sur un référentiel réel, et elles
+   n'en font qu'une : l'en-tête disparaissait dès qu'on descendait, et la barre
+   de défilement horizontale se trouvait tout en bas d'un tableau de cinquante
+   lignes — il fallait descendre pour l'atteindre, la déplacer, puis remonter
+   pour lire les colonnes de droite. Une enveloppe bornée met les deux barres
+   à portée en permanence.
+
+   Un plancher garde l'enveloppe utilisable sur un écran court et sous fort
+   zoom, où la part de fenêtre restante deviendrait dérisoire. */
+.data-table-container { --hauteur-hors-tableau: 22rem; }
+.table-wrapper {
+    overflow: auto;
+    max-height: max(20rem, calc(100vh - var(--hauteur-hors-tableau)));
+}
+/* Le tableau garde sa largeur plancher : ses colonnes sont nombreuses et
+   comprimer une grille de données à 320px la rend illisible. C'est le
+   conteneur qui défile — et non la page, ce que le critère 1.4.10 autorise
+   explicitement pour un tableau. */
+.data-table { width: 100%; min-width: 600px; }
+
+.data-table th {
+    padding: var(--space-3) var(--space-4);
+    text-align: left;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid var(--table-border);
+    cursor: pointer;
+    transition: background var(--transition-fast);
+    /* L'en-tête reste en vue pendant le défilement vertical. Le fond est
+       porté par la cellule et non par `thead` : une cellule collante se
+       détache de son groupe pendant le défilement, et un fond posé sur
+       `thead` laisserait le texte des lignes passer au travers. */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background: var(--table-header-bg);
+    /* Place pour la poignée de redimensionnement, posée dans la cellule et
+       alignée sur son bord droit. `position: sticky` fait déjà de la cellule
+       un bloc conteneur : la poignée n'a pas besoin d'un `relative` de plus. */
+    padding-right: var(--space-6);
+}
+
+.data-table th:hover { background: var(--bg-hover); }
+
+/* La colonne de sélection ne trie rien : ni curseur de lien, ni survol. */
+.data-table th.colonne-selection { cursor: default; }
+.data-table th.colonne-selection:hover { background: var(--table-header-bg); }
+.data-table th.sorted { color: var(--encre-primary); }
+
+.data-table td {
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-sm);
+    border-bottom: 1px solid var(--table-border);
+    max-width: 300px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ===== Colonnes : largeur réglable ===== */
+
+/* La poignée occupe le bord droit de l'en-tête sur toute sa hauteur. C'est un
+   bouton, et non un simple élément décoré : régler la largeur d'une colonne
+   est une fonction du produit, et une fonction qui n'existe qu'à la souris
+   n'existe pas pour tout le monde (WCAG 2.1.1). Les flèches gauche et droite
+   la règlent au clavier. */
+.poignee-de-colonne {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: var(--space-4);
+    height: 100%;
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: col-resize;
+    color: var(--text-muted);
+    touch-action: none;
+}
+
+.poignee-de-colonne::before {
+    content: '';
+    position: absolute;
+    top: 25%;
+    right: 45%;
+    width: 2px;
+    height: 50%;
+    background: var(--table-border);
+    transition: background var(--transition-fast);
+}
+
+.poignee-de-colonne:hover::before,
+.poignee-de-colonne:focus-visible::before,
+.poignee-de-colonne[data-en-cours]::before {
+    background: var(--accent-primary);
+    width: 3px;
+}
+
+/* Pendant le glissement, la sélection de texte suivrait le pointeur et
+   surlignerait la moitié du tableau. */
+.redimensionnement-en-cours { user-select: none; cursor: col-resize; }
+
+/* ===== Sélecteur de colonnes ===== */
+
+.selecteur-de-colonnes { position: relative; }
+
+/* Le compte des colonnes masquées reprend la couleur du bouton qui le porte :
+   aucune paire de couleurs nouvelle n'entre dans le contrat de contraste, et
+   il n'y a donc rien de plus à vérifier dans les deux variantes. */
+.selecteur-de-colonnes__compte {
+    color: currentColor;
+    font-size: var(--font-size-xs);
+    font-variant-numeric: tabular-nums;
+}
+
+.selecteur-de-colonnes__panneau {
+    position: absolute;
+    right: 0;
+    top: calc(100% + var(--space-2));
+    z-index: var(--z-dropdown);
+    min-width: 16rem;
+    max-height: 20rem;
+    overflow: auto;
+    padding: var(--space-3);
+    background: var(--bg-elevated);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+}
+
+.selecteur-de-colonnes__titre {
+    margin: 0 0 var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.selecteur-de-colonnes__liste {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+    margin-bottom: var(--space-3);
+}
+
+.selecteur-de-colonnes__ligne {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    cursor: pointer;
+}
+
+/* La dernière colonne visible ne peut pas être décochée : un tableau sans
+   aucune colonne n'apprend rien et ne se répare qu'en devinant. */
+.selecteur-de-colonnes__ligne input:disabled + span { color: var(--text-muted); }
+
+.data-table tbody tr { transition: background var(--transition-fast); }
+.data-table tbody tr:hover { background: var(--table-row-hover); }
+
+.table-loading {
+    text-align: center;
+    padding: var(--space-10) !important;
+    color: var(--text-secondary);
+}
+
+.table-pagination {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4);
+    border-top: 1px solid var(--card-border);
+}
+
+.pagination-btn {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.pagination-btn:hover:not(:disabled) { background: var(--bg-hover); }
+.pagination-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.pagination-info {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.pagination-current, .pagination-total {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+}
+
+/* ===== Modals ===== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-modal-backdrop);
+    opacity: 0;
+    visibility: hidden;
+    /* `visibility` ne se transitionne pas comme le reste.
+
+       Avec `transition: all`, elle restait `hidden` pendant toute la durée du
+       fondu : deux cent cinquante millisecondes durant lesquelles la fenêtre
+       est à l'écran mais ne peut recevoir ni focus ni lecture — `focus()` sur
+       un élément invisible ne fait rien. Le défaut ne se voyait pas à la
+       souris, et rendait la fenêtre inatteignable au clavier.
+
+       À l'ouverture elle bascule sans délai ; à la fermeture elle attend la
+       fin du fondu, sinon la fenêtre disparaîtrait d'un coup. */
+    transition: opacity var(--transition-normal),
+                transform var(--transition-normal),
+                visibility 0s linear var(--transition-normal);
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity var(--transition-normal),
+                transform var(--transition-normal),
+                visibility 0s;
+}
+
+.modal {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-xl);
+    width: 100%;
+    max-width: 500px;
+    transform: scale(0.95) translateY(20px);
+    transition: transform var(--transition-normal);
+}
+
+.modal-overlay.active .modal { transform: scale(1) translateY(0); }
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-5);
+    border-bottom: 1px solid var(--card-border);
+}
+
+.modal-title { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); }
+
+.modal-close {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+}
+
+.modal-close:hover { background: var(--bg-hover); }
+.modal-body { padding: var(--space-5); }
+
+.modal-info {
+    display: flex;
+    gap: var(--space-3);
+    padding: var(--space-3);
+    background: color-mix(in srgb, var(--accent-info) 10%, transparent);
+    border-radius: var(--radius-md);
+    color: var(--color-info-400);
+    font-size: var(--font-size-sm);
+    margin-top: var(--space-4);
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    padding: var(--space-4) var(--space-5);
+    border-top: 1px solid var(--card-border);
+    background: var(--bg-tertiary);
+}
+
+/* ===== Toast ===== */
+.toast-container {
+    position: fixed;
+    /* Au-dessus du lanceur de l'assistant, qui occupe le même coin : deux
+       éléments flottants superposés, c'est l'un des deux qu'on ne peut plus
+       cliquer — et on ne découvre lequel qu'en essayant. */
+    bottom: calc(var(--space-6) + 64px);
+    right: var(--space-6);
+    z-index: var(--z-toast);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    /* Le conteneur occupe tout le coin de l'écran, notifications ou non : il
+       interceptait les clics sur ce qui se trouve dessous. Sans effet tant que
+       les notifications disparaissaient d'elles-mêmes ; bloquant depuis qu'une
+       erreur reste jusqu'à ce qu'on la ferme. */
+    pointer-events: none;
+}
+
+/* Une notification ne doit jamais intercepter un clic sur la page.
+
+   Le corps de la notification ne sert qu'à lire : lui laisser les clics rend
+   inatteignable ce qu'elle recouvre — et elle recouvre justement le coin où se
+   trouvent les commandes d'un écran de résultats. Le défaut est silencieux :
+   le clic part, rien ne se passe, et l'utilisateur conclut que le bouton est
+   cassé. Observé sur le bouton de nommage en lot, sous la notification de fin
+   de mining.
+
+   Seule la croix de fermeture reçoit les clics : c'est la seule partie de la
+   notification sur laquelle on agit. */
+.toast {
+    pointer-events: none;
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-4);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    min-width: min(320px, 100%);
+    animation: toast-in 0.3s ease;
+}
+
+@keyframes toast-in {
+    from { opacity: 0; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.toast-icon {
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-full);
+}
+
+.toast.success .toast-icon { background: color-mix(in srgb, var(--accent-success) 15%, transparent); color: var(--encre-success); }
+.toast.error .toast-icon { background: color-mix(in srgb, var(--accent-danger) 15%, transparent); color: var(--encre-danger); }
+.toast.warning .toast-icon { background: color-mix(in srgb, var(--accent-warning) 15%, transparent); color: var(--encre-warning); }
+
+.toast-close {
+    pointer-events: auto;
+}
+
+.toast-content { flex: 1; }
+.toast-title { font-weight: var(--font-weight-semibold); font-size: var(--font-size-sm); }
+.toast-message { font-size: var(--font-size-xs); color: var(--text-secondary); }
+
+/* ===== Badges ===== */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    border-radius: var(--radius-full);
+}
+
+/* Les surfaces étaient des `rgba()` recopiées, sans lien avec la teinte
+   qu'elles teintent : changer une couleur du thème laissait le fond derrière.
+   `color-mix` la dérive du jeton, il n'y a plus qu'une valeur à changer. */
+.badge-primary {
+    background: color-mix(in srgb, var(--accent-primary) 15%, transparent);
+    color: var(--encre-primary);
+}
+.badge-success {
+    background: color-mix(in srgb, var(--accent-success) 15%, transparent);
+    color: var(--encre-success);
+}
+.badge-warning {
+    background: color-mix(in srgb, var(--accent-warning) 15%, transparent);
+    color: var(--encre-warning);
+}
+.badge-danger {
+    background: color-mix(in srgb, var(--accent-danger) 15%, transparent);
+    color: var(--encre-danger);
+}
+.badge-neutral { background: var(--bg-tertiary); color: var(--text-secondary); }
+
+/* Type de rôle. Ces deux pastilles disaient la même chose de deux manières
+   selon l'écran — vert dans le mining, bleu dans le catalogue — et les
+   variantes du mining n'avaient aucune règle de forme : c'était du texte
+   teinté, sans pastille. Un seul composant, deux modificateurs. */
+.badge-role-app {
+    background: var(--role-type-app-surface);
+    color: var(--role-type-app);
+}
+.badge-role-biz {
+    background: var(--role-type-biz-surface);
+    color: var(--role-type-biz);
+}
+.badge-role-socle {
+    background: var(--role-type-socle-surface);
+    color: var(--role-type-socle);
+}
+
+/* Un type de rôle est une étiquette, pas une phrase : la casse et
+   l'interlettrage la distinguent du titre qu'elle accompagne. */
+.badge-role-app,
+.badge-role-biz,
+.badge-role-socle {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    white-space: nowrap;
+}
+
+/* ===== Filter Tabs ===== */
+/* Une rangée d'onglets qui passe à la ligne. Trois tenaient dans 320 pixels,
+   le quatrième — le socle — a fait déborder l'écran entier : une rangée
+   flexible sans `wrap` pousse la page plutôt que de se replier, et le
+   défilement horizontal qui en résulte rend la lecture impraticable pour qui
+   agrandit le texte. */
+.filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    padding: var(--space-1);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-lg);
+}
+
+.filter-tab {
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-medium);
+    color: var(--text-secondary);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.filter-tab:hover { color: var(--text-primary); }
+.filter-tab.active { background: var(--accent-primary); color: var(--color-neutral-0); }
+
+/* ===== Progress Ring ===== */
+.progress-ring { width: 48px; height: 48px; }
+.progress-ring svg { transform: rotate(-90deg); }
+.progress-ring-bg { fill: none; stroke: var(--bg-tertiary); stroke-width: 3; }
+.progress-ring-fill {
+    fill: none;
+    stroke: var(--accent-success);
+    stroke-width: 3;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.5s ease;
+}
+/* Le sélecteur de droits unitaires du compositeur.
+
+   Ces règles existaient deux fois, l'une au-dessus de l'autre. La première
+   citait `--border-radius` et `--border-radius-sm`, deux jetons qui n'ont
+   jamais existé dans la feuille : le navigateur jetait les déclarations, et
+   seule la seconde écriture peignait quelque chose. Un doublon dont une
+   moitié est invalide ne se voit ni à la lecture ni à l'écran — il a été
+   supprimé, pas arbitré. */
+.rights-selector-container {
+    padding: var(--space-2);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    background-color: var(--bg-secondary);
+}
+
+.right-select-item {
+    display: flex;
+    align-items: center;
+    padding: 6px 10px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: background-color 0.15s, color 0.15s;
+    /* Styles par défaut pour garantir la visibilité du texte */
+    background-color: transparent;
+    color: var(--text-primary);
+}
+
+.right-select-item:hover {
+    background-color: var(--bg-hover);
+}
+
+/* État sélectionné */
+.right-select-item.selected {
+    background-color: var(--bg-active);
+    font-weight: var(--font-weight-medium);
+}
+
+/* Couleur de l'icône de la case (forcée) */
+.right-select-item .fas {
+    color: var(--encre-primary);
+}
+
+/* Couleur de l'icône cochée (feedback visuel clair) */
+.right-select-item.selected .fa-square-check {
+    color: var(--color-success-500); /* Vert pour l'état coché */
+}
+
+.right-select-item span {
+    /* Le texte doit prendre toute la place et ne pas être coupé */
+    flex-grow: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+
+
+/* ===================================================================
+   SPRINT 2 : DRILL-DOWN HABILITATIONS
+   =================================================================== */
+
+/* Cellules cliquables */
+.clickable-cell {
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.clickable-cell:hover {
+    background-color: color-mix(in srgb, var(--accent-primary) 10%, transparent);
+    color: var(--color-primary-600);
+}
+
+.clickable-icon {
+    margin-right: 6px;
+    font-size: var(--font-size-xs);
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+}
+
+.clickable-cell:hover .clickable-icon {
+    opacity: 1;
+}
+
+/* La marque d'un compte à privilèges, dans la cellule qui le nomme.
+   Un pictogramme et un titre, jamais une couleur seule : la couleur employée
+   seule n'est pas une information pour qui ne la distingue pas. */
+.table-privilege {
+    color: var(--encre-warning);
+    font-size: var(--font-size-xs);
+}
+
+/* Loading container */
+.loading-container {
+    text-align: center;
+    padding: 40px;
+    color: var(--text-secondary);
+}
+
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid color-mix(in srgb, var(--accent-primary) 20%, transparent);
+    border-top-color: var(--color-primary-500);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 16px auto;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Habilitations summary */
+.habilitations-summary {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.habilitations-summary .stat-mini {
+    flex: 1;
+    text-align: center;
+    padding: 16px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+}
+
+.habilitations-summary .stat-label {
+    display: block;
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.habilitations-summary .stat-value {
+    display: block;
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--color-primary-500);
+}
+
+/* Habilitations table */
+.habilitations-table-container {
+    max-height: 400px;
+    overflow-y: auto;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--border-primary);
+}
+
+.habilitations-table-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.habilitations-table-container thead {
+    position: sticky;
+    top: 0;
+    background: var(--bg-primary);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.habilitations-table-container th {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 2px solid var(--border-secondary);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+}
+
+.habilitations-table-container td {
+    padding: 10px;
+    border-bottom: 1px solid var(--border-secondary);
+}
+
+.habilitations-table-container tbody tr:hover {
+    background: var(--bg-hover);
+}
+
+/* ===================================================================
+   FIX SPRINT 2 : MODALE HABILITATIONS
+   =================================================================== */
+
+/* Ce bloc redéfinissait `.modal-overlay` en entier, en `!important`, avec
+ * `z-index: 99999` et `display: none` levé par `.active`. Deux conséquences :
+ *
+ * - la boîte de confirmation, posée à 1200, passait **sous** la modale : la
+ *   demande de confirmation d'un refus de rôle s'affichait sans que ses
+ *   boutons soient cliquables ;
+ * - toute modale ouverte autrement que par la classe `.active` restait
+ *   invisible, ce qui était le cas de l'import d'un workspace.
+ *
+ * Les modales passent désormais toutes par le gestionnaire de modales, qui
+ * pose `.active` : la définition d'origine, plus haut dans ce fichier,
+ * suffit. Seules les tailles restent ici.
+ */
+
+/* Tailles et découpe des grandes modales (validation d'un rôle, détail d'une
+ * habilitation). Les couleurs étaient écrites ici en dur — `white`, `#e5e7eb`,
+ * `#6b7280` — et en `!important` : toute modale s'affichait en blanc, quel que
+ * soit le thème, alors que le thème livré par défaut est sombre. Elles
+ * passent par les variables, comme le reste du produit. Le `!important` est
+ * retiré : ces règles sont plus spécifiques ou plus tardives que celles
+ * qu'elles précisent, il n'apportait rien qu'un conflit de plus. */
+
+.modal-overlay .modal {
+    position: relative;
+    width: 900px;
+    max-width: 90vw;
+    max-height: 90vh;
+    background: var(--card-bg);
+    border-radius: var(--radius-xl);
+    padding: 0;
+    overflow: hidden;
+    box-shadow: var(--shadow-xl, 0 20px 60px rgba(0, 0, 0, 0.3));
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-overlay .modal.large {
+    width: 1100px;
+}
+
+.modal-header {
+    padding: var(--space-5, 1.5rem);
+    border-bottom: 1px solid var(--card-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.modal-body {
+    padding: var(--space-5, 1.5rem);
+    overflow-y: auto;
+    flex: 1;
+}
+
+.modal-footer {
+    padding: var(--space-4, 1rem) var(--space-5, 1.5rem);
+    border-top: 1px solid var(--card-border);
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3, 0.75rem);
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: var(--font-size-xl, 1.5rem);
+    cursor: pointer;
+    color: var(--text-muted);
+    padding: 0;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm, 0.375rem);
+}
+
+.modal-close:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+/* ------------------------------------------------ demande de confirmation */
+/* Remplace `confirm()` du navigateur, qui ecrit ses boutons dans la langue du
+   navigateur et ignore le theme. */
+
+.confirm-fond {
+    position: fixed;
+    inset: 0;
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-4);
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.confirm-boite {
+    width: 100%;
+    max-width: 460px;
+    padding: var(--space-6);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.28);
+}
+
+/* Une action destructrice se signale autrement que par la couleur seule :
+   le liseré superieur la distingue a l'impression et en niveaux de gris. */
+.confirm-boite--danger {
+    border-top: 3px solid var(--accent-danger);
+}
+
+.confirm-titre {
+    margin: 0 0 var(--space-3);
+    font-size: var(--font-size-lg);
+    color: var(--text-primary);
+}
+
+.confirm-message {
+    margin: 0;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.confirm-details {
+    margin: var(--space-3) 0 0;
+    padding-left: var(--space-5);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+}
+
+.confirm-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: var(--space-3);
+    margin-top: var(--space-6);
+}
+
+/* Pied des modales de validation d'un rôle.
+ *
+ * Sa disposition était décrite par des styles en ligne, et le bouton de refus
+ * y portait `display: none` sans que rien ne le lève : refuser un rôle
+ * proposé — la moitié de la décision de gouvernance — n'était pas accessible. */
+.modal-footer--reparti {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3, 0.75rem);
+}
+
+.modal-footer__note {
+    font-size: var(--font-size-xs, 0.75rem);
+    color: var(--text-muted);
+}
+
+.modal-footer__alerte {
+    color: var(--color-warning-500);
+}
+
+.modal-footer__actions {
+    display: flex;
+    gap: var(--space-2, 0.5rem);
+}
+
+/* ===========================================================================
+   Onglets d'une fenêtre
+   ---------------------------------------------------------------------------
+   `.tab-button` existait comme classe mais n'avait aucune règle : toute son
+   apparence tenait dans un attribut `style` recopié quatre fois, dans deux
+   fenêtres qui sont la même à un mot près. Une pastille de plus, un espacement
+   changé d'un côté, et les deux fenêtres divergent sans que rien ne le dise.
+   =========================================================================== */
+
+.tab-bar {
+    display: flex;
+    gap: var(--space-2);
+    margin-bottom: var(--space-3);
+    border-bottom: 2px solid var(--border-primary);
+}
+
+.tab-button {
+    flex: 1;
+    padding: var(--space-3);
+    background: none;
+    border: none;
+    /* La bordure existe déjà, transparente : l'onglet actif la colore sans
+       déplacer le contenu d'un pixel. */
+    border-bottom: 2px solid transparent;
+    color: var(--text-secondary);
+    font-family: inherit;
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    cursor: pointer;
+    transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+
+.tab-button:hover { color: var(--text-primary); }
+
+.tab-button.active {
+    color: var(--encre-primary);
+    border-bottom-color: var(--accent-primary);
+}
+
+.tab-button:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: -2px;
+}
+
+/* ===========================================================================
+   Fenêtre de validation d'un rôle
+   ---------------------------------------------------------------------------
+   Deux fenêtres — rôle applicatif, rôle métier — écrites deux fois, habillées
+   entièrement en ligne. Elles partagent désormais leur structure ; seule la
+   teinte du bandeau de type les distingue, et elle vient du thème.
+   =========================================================================== */
+
+/* La fenêtre prend la largeur de l'écran, à une marge près. Bornée à
+   900 px, elle laissait au tableau des identités la place de trois colonnes,
+   et c'est la colonne de gauche qui cédait : le nom et la description du rôle
+   tombaient à cent vingt pixels, illisibles. */
+.modal-overlay .modal.modal--role-validation {
+    width: min(1440px, 96vw);
+    max-width: min(1440px, 96vw);
+    max-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+/* La colonne de gauche a un plancher ; celle de droite prend le reste et ne
+   pousse jamais la première. `minmax(0, …)` est ce qui interdit au tableau
+   d'élargir sa colonne : il défile dans sa zone au lieu de repousser le
+   formulaire. */
+.role-validation {
+    display: grid;
+    grid-template-columns: minmax(18rem, 1fr) minmax(0, 2.4fr);
+    gap: var(--space-6);
+    overflow-y: auto;
+    flex: 1;
+}
+
+.role-validation > * { min-width: 0; }
+
+@media (max-width: 960px) {
+    .role-validation { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Le tableau d'un onglet défile dans sa propre zone. C'est ce qui garde son
+   en-tête en vue : une cellule collante colle à la zone qui défile, et c'est
+   la fenêtre entière qui défilait. */
+.role-validation .table-wrapper {
+    max-height: min(52vh, 34rem);
+}
+
+/* La barre d'outils d'un onglet : recherche, choix des colonnes, retour au
+   tri d'origine, sur une ligne. */
+.role-validation__outils {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    margin-bottom: var(--space-2);
+}
+
+.role-validation__outils .form-input { flex: 1; min-width: 0; }
+
+/* Le diagnostic : le texte ne colle plus au bord de son cadre. */
+.scroll-pane--aere { padding: var(--space-4) var(--space-5); }
+
+.role-validation__note {
+    padding: var(--space-3);
+    border-radius: var(--radius-md);
+    margin-top: var(--space-4);
+}
+
+.role-validation__note--app { background: var(--role-type-app-surface); }
+.role-validation__note--biz { background: var(--role-type-biz-surface); }
+
+.role-validation__note-label {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+}
+
+.role-validation__note-value { font-weight: var(--font-weight-semibold); }
+.role-validation__note-value--app { color: var(--role-type-app); }
+.role-validation__note-value--biz { color: var(--role-type-biz); }
+
+.role-validation__impact {
+    margin-top: var(--space-4);
+    padding: var(--space-4);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md);
+}
+
+.impact-figure-block { text-align: center; margin-bottom: var(--space-3); }
+
+.impact-label {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+}
+
+.impact-figure {
+    font-size: var(--font-size-3xl);
+    font-weight: var(--font-weight-bold);
+    color: var(--encre-primary);
+    /* Un compteur qui change de valeur ne doit pas faire sauter la mise en
+       page autour de lui. */
+    font-variant-numeric: tabular-nums;
+}
+
+.impact-hint {
+    font-size: var(--font-size-xs);
+    color: var(--text-muted);
+    text-align: center;
+}
+
+/* ===========================================================================
+   Panneaux et listes
+   =========================================================================== */
+
+/* Liste sans puces ni retrait : c'est un conteneur de lignes, pas une
+   énumération de prose. */
+.list-bare {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Zone défilante de hauteur fixe. La hauteur était écrite quatre fois dans le
+   gabarit ; deux valeurs différentes s'y étaient déjà glissées ailleurs. */
+.scroll-pane {
+    overflow-y: auto;
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+}
+
+.scroll-pane--tall { height: 380px; }
+.scroll-pane--medium { max-height: 400px; }
+
+/* Barre d'outils réduite à son contenu, sans fond ni cadre. */
+.table-toolbar--nu {
+    padding: 0;
+    background: transparent;
+    border: none;
+}
+
+.champ-pleine-largeur { width: 100%; }
+.bloc-espace-sous { margin-bottom: var(--space-2); }
+.separateur-au-dessus { border-top: 1px solid var(--border-secondary); }
+
+/* Icône précédant un libellé, dans un titre ou un sélecteur. */
+.icone-prefixe { margin-right: var(--space-2); }
+.icone-prefixe--serree { margin-right: 5px; }
+.icone-prefixe--app { color: var(--role-type-app); }
+.icone-prefixe--biz { color: var(--role-type-biz); }
+
+/* ===========================================================================
+   Identité du compte connecté, dans le pied de la barre latérale
+   ---------------------------------------------------------------------------
+   Le bloc était habillé par `style.cssText` et une carte de couleurs écrite en
+   JavaScript, avec quatre valeurs hexadécimales en dur — dont une teinte de
+   repli que le thème ne connaît pas. Les couleurs de rôle vivent maintenant
+   dans le thème, comme le reste.
+   =========================================================================== */
+
+.user-info {
+    padding: var(--space-3) var(--space-4);
+    /* La barre latérale est sombre dans les deux thèmes : ses traits et ses
+       textes se prennent dans la palette, jamais dans les jetons de surface du
+       thème — sinon le clair y peint du gris foncé sur du bleu nuit. */
+    border-bottom: 1px solid var(--sidebar-border);
+    margin-bottom: var(--space-2);
+}
+
+.user-info__ligne {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.user-info__pastille {
+    width: 36px;
+    height: 36px;
+    flex: none;
+    border-radius: var(--radius-full);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: var(--font-weight-semibold);
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-900);
+    background: var(--compte-role-inconnu);
+}
+
+.user-info__pastille--admin { background: var(--compte-role-admin); }
+.user-info__pastille--analyst { background: var(--compte-role-analyst); }
+.user-info__pastille--viewer { background: var(--compte-role-viewer); }
+
+.user-info__textes {
+    flex: 1;
+    min-width: 0;
+}
+
+.user-info__nom {
+    font-weight: var(--font-weight-medium);
+    font-size: var(--font-size-sm);
+    color: var(--color-neutral-0);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.user-info__role {
+    font-size: var(--font-size-xs);
+    color: var(--color-neutral-400);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+/* ===========================================================================
+   États vides d'un panneau
+   =========================================================================== */
+
+.panneau-vide {
+    padding: var(--space-5);
+    text-align: center;
+}
+
+.panneau-vide__icone {
+    font-size: var(--font-size-2xl);
+    color: var(--text-muted);
+    margin-bottom: var(--space-2);
+}
+
+.panneau-vide__icone--alerte { color: var(--encre-warning); }
+
+.panneau-vide__texte {
+    margin: 0 0 var(--space-3);
+    color: var(--text-secondary);
+}
+
+.panneau-vide__texte--sans-suite { margin-bottom: 0; }
+.panneau-vide__action { margin-top: var(--space-3); }
+
+/* État vide occupant toute la largeur d'une grille de cartes. */
+.empty-state--pleine-largeur {
+    grid-column: 1 / -1;
+    padding: var(--space-16) var(--space-5);
+}
+
+.empty-state--pleine-largeur.error { padding: var(--space-10); }
+
+.empty-state__icone-large {
+    font-size: var(--font-size-4xl);
+    color: var(--text-muted);
+}
+
+.empty-state__icone-large--danger { color: var(--encre-danger); }
+.empty-state__titre { margin-top: var(--space-4); }
+.empty-state__texte {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-5);
+}
+
+/* ===========================================================================
+   Bandeaux d'information
+   ---------------------------------------------------------------------------
+   `alert alert-info` était porté par le bandeau des droits socles du mining
+   applicatif, et par aucune règle : le bandeau s'affichait sans cadre, sans
+   fond et sans couleur. C'est un des écarts visibles entre les deux écrans de
+   mining, et il tenait à deux classes qui ne désignaient rien.
+   =========================================================================== */
+
+.alert {
+    margin-bottom: var(--space-4);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    border: 1px solid var(--border-primary);
+    border-left-width: 3px;
+    border-radius: var(--radius-md);
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+}
+
+.alert i { margin-top: 2px; flex: none; }
+
+.alert-info {
+    border-left-color: var(--accent-info);
+    background: color-mix(in srgb, var(--accent-info) 10%, transparent);
+}
+
+.alert-success {
+    border-left-color: var(--accent-success);
+    background: color-mix(in srgb, var(--accent-success) 10%, transparent);
+}
+
+.alert-warning {
+    border-left-color: var(--accent-warning);
+    background: color-mix(in srgb, var(--accent-warning) 10%, transparent);
+}
+
+.badge-info {
+    background: color-mix(in srgb, var(--accent-info) 15%, transparent);
+    color: var(--encre-info);
+}
+
+/* ===========================================================================
+   Volets d'onglets
+   Le volet actif est le seul visible ; l'état est porté par la classe, pas par
+   un style en ligne, pour que le JavaScript n'ait qu'une chose à basculer.
+   =========================================================================== */
+
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* ===========================================================================
+   Utilitaires nommés
+   Ils étaient employés dans le gabarit sans exister nulle part.
+   =========================================================================== */
+
+.text-secondary { color: var(--text-secondary); }
+.me-2 { margin-right: var(--space-2); }
+
+.card-description {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin-top: var(--space-1);
+}
+
+.form-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+    /* Une rangée de boutons ne touche ni ce qui la précède ni ce qu'elle
+       produit : le bouton « Sauvegarder » collé au bloc suivant, celui de
+       détection collé au champ d'après, étaient le même défaut. */
+    margin-block: var(--space-4);
+}
+
+/* Une case à cocher posée parmi des boutons s'aligne sur eux : sa marge du
+   bas, utile en colonne, la décalait vers le haut. */
+.form-actions > .chart-option { margin-bottom: 0; }
+
+.table-filters {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    flex-wrap: wrap;
+}
+
+.table-toolbar-compact { padding: var(--space-2) var(--space-3); }
+
+/* Cases à cocher d'attributs : une colonne de choix, pas une grille. */
+.attribute-checkboxes {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+/* Une case à cocher et sa phrase, sur une ligne cliquable entière.
+   Le libellé porte la case : cliquer la phrase coche, ce qui vaut mieux qu'une
+   cible de treize pixels — et c'est ce que l'étiquette promet déjà. */
+.form-check {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-1) 0;
+    cursor: pointer;
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.form-check input[type="checkbox"] {
+    /* Alignée sur la première ligne du texte, et non centrée sur un libellé
+       qui peut passer à la ligne. */
+    margin-top: 0.2em;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.language-switcher-container {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+/* Bouton de déconnexion du pied de barre latérale. Il était habillé par
+   `style.cssText`, donc invisible depuis la feuille. */
+.sidebar-logout {
+    width: 100%;
+    margin-top: var(--space-2);
+    color: var(--encre-danger);
+}
+
+/* ===========================================================================
+   Définitions au survol
+   ---------------------------------------------------------------------------
+   Le vocabulaire du role mining n'est pas évident : « compression 2,33 » ne
+   dit rien à qui ne connaît pas la mesure, et c'est pourtant sur ces chiffres
+   qu'un comité tranche. La tuile s'allumait déjà au survol — donc promettait
+   une interaction — sans rien livrer.
+   =========================================================================== */
+
+.definition-bulle {
+    position: fixed;
+    z-index: var(--z-tooltip);
+    max-width: 34ch;
+    padding: var(--space-3) var(--space-4);
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    /* Elle suit le curseur d'une tuile à l'autre : elle ne doit jamais
+       intercepter le survol de ce qu'elle recouvre. */
+    pointer-events: none;
+}
+
+/* Marque d'appel : sans elle, la définition n'existe que pour qui survole par
+   hasard. Un « i » cerclé, dessiné en CSS — la police d'icônes n'est pas
+   garantie sur un poste isolé. */
+[data-definition] {
+    position: relative;
+    cursor: help;
+}
+
+[data-definition] .stat-label::after,
+[data-definition] > .definition-appel {
+    content: 'i';
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 13px;
+    height: 13px;
+    margin-left: var(--space-2);
+    border: 1px solid currentColor;
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-xs);
+    font-style: italic;
+    font-weight: var(--font-weight-bold);
+    line-height: 1;
+    opacity: 0.55;
+    transition: opacity var(--transition-fast);
+    vertical-align: middle;
+}
+
+[data-definition]:hover .stat-label::after,
+[data-definition]:focus-visible .stat-label::after { opacity: 1; }
+
+[data-definition]:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .definition-bulle,
+    [data-definition] .stat-label::after { transition: none; }
+}
+
+/* ------------------------------------------------------------------
+   Explication métier d'un rôle
+
+   La règle, ses chiffres et le diagnostic vivent dans l'onglet de la
+   fenêtre de validation. Les couleurs viennent des jetons : un verdict
+   ne doit pas changer de sens entre le thème clair et le thème sombre.
+   ------------------------------------------------------------------ */
+
+.explication__titre {
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-2);
+}
+
+.explication__regle {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    padding: var(--space-3);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--space-4);
+}
+
+.explication__terme {
+    padding: var(--space-1) var(--space-2);
+    background: var(--bg-elevated);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-sm);
+}
+
+.explication__terme--absent {
+    color: var(--text-secondary);
+    font-style: italic;
+}
+
+.explication__liaison {
+    font-size: var(--font-size-xs);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+}
+
+.explication__chiffres {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(140px, 100%), 1fr));
+    gap: var(--space-3);
+    margin-bottom: var(--space-4);
+}
+
+.explication__diagnostic {
+    list-style: none;
+    padding: 0;
+    /* Ce qui suit la liste — le nom proposé par un modèle — s'en détache. */
+    margin: 0 0 var(--space-5);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.explication__constat {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    line-height: 1.5;
+}
+
+.explication__constat--favorable i {
+    color: var(--color-success-500);
+}
+
+.explication__constat--reserve i {
+    color: var(--color-warning-500);
+}
+
+.explication__constat--bloquant i {
+    color: var(--color-danger-500);
+}
+
+/* ------------------------------------------------------------------
+   Proposition de l'annotateur sémantique
+
+   Elle est visiblement distincte des champs du formulaire : c'est une
+   proposition, et elle n'a d'effet que si quelqu'un la reprend.
+   ------------------------------------------------------------------ */
+
+.annotateur__proposition {
+    padding: var(--space-3);
+    background: var(--bg-tertiary);
+    border: 1px dashed var(--border-primary);
+    border-radius: var(--radius-md);
+    margin-top: var(--space-3);
+}
+
+.annotateur__nom {
+    font-weight: 600;
+    margin-bottom: var(--space-1);
+}
+
+.annotateur__description {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-3);
+}
+
+.annotateur__avertissement {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-size: var(--font-size-xs);
+    color: var(--color-warning-500);
+    margin-top: var(--space-1);
+}
+
+/* Colonne de sélection d'un tableau.
+
+   Étroite et fixe : elle ne porte qu'une case et, pour les droits, le
+   marqueur qui signale un droit sensible. Lui laisser la largeur d'une
+   colonne de données volerait de la place aux colonnes du client, qui sont
+   la raison d'être du tableau. */
+.data-table th.colonne-selection,
+.data-table td.colonne-selection {
+    width: 64px;
+    max-width: 64px;
+    white-space: nowrap;
+    text-align: center;
+}
+
+.data-table td.colonne-selection .mining-choix__alerte {
+    margin-left: var(--space-1);
+}
+
+/* Classe proposée pour une colonne d'identités.
+
+   Discrète et distincte du décompte : le modèle lit des mots, la cardinalité
+   compte des valeurs, et l'utilisateur doit voir lequel des deux lui parle. */
+.attribute-choice__classe {
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-secondary);
+}
+
+/* ===========================================================================
+   Compositeur de rôles : une ligne cochable, et rien de plus.
+   ===========================================================================
+   Ces trois classes étaient écrites dans le JavaScript et n'existaient dans
+   aucune feuille de style. Un `<label>` est en ligne, un `<div>` est un bloc :
+   la case se retrouvait seule sur sa ligne, et l'intitulé en dessous. Les deux
+   colonnes de l'écran affichaient donc deux items par ligne de texte, sur le
+   double de la hauteur nécessaire.
+
+   La règle vaut pour les deux colonnes — rôles applicatifs et droits
+   complémentaires — parce qu'elles montrent la même chose : quelque chose
+   qu'on coche. Les distinguer visuellement n'aiderait personne à choisir. */
+.composer-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-3);
+    border: 1px solid transparent;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: background-color var(--transition-fast),
+                border-color var(--transition-fast);
+}
+
+.composer-item:hover {
+    background-color: var(--bg-hover);
+}
+
+.composer-item.selected {
+    background-color: var(--bg-active);
+    border-color: var(--encre-primary);
+}
+
+.composer-item input[type="checkbox"] {
+    flex-shrink: 0;
+    margin: 0;
+}
+
+/* Le contenu prend la place restante et tronque plutôt que de déborder : un
+   identifiant de droit d'un référentiel réel dépasse volontiers la colonne, et
+   c'est la colonne qui doit tenir, pas l'intitulé. */
+.composer-item-content {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    min-width: 0;
+    flex: 1;
+}
+
+.composer-item-content strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.composer-item-meta {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Un secret affiché masqué, sans que le navigateur le prenne pour un mot de
+   passe : sans cela, il proposait de l'enregistrer dans son gestionnaire. */
+.champ-secret {
+    -webkit-text-security: disc;
+}
+
+/* Un tableau dans une fenêtre défile dans sa zone, en-tête en vue. */
+.table-wrapper--fenetre { max-height: min(56vh, 36rem); }

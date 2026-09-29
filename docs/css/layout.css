@@ -1,0 +1,698 @@
+/* ==========================================================================
+   Layout - App Structure
+   ========================================================================== */
+
+/* ===== App Container ===== */
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ===== Sidebar ===== */
+.sidebar {
+    width: var(--sidebar-width);
+    background: var(--sidebar-bg);
+    color: var(--sidebar-encre);
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    z-index: var(--z-fixed);
+    transition: width var(--transition-normal);
+    overflow: hidden;
+}
+
+.sidebar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(180deg, transparent 0%, var(--color-neutral-700) 50%, transparent 100%);
+}
+
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-5);
+    border-bottom: 1px solid var(--sidebar-border);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+.logo-icon {
+    width: 40px;
+    height: 40px;
+    color: var(--sidebar-marque);
+}
+
+.logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.logo-title {
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-bold);
+    letter-spacing: -0.02em;
+}
+
+.logo-subtitle {
+    font-size: var(--font-size-xs);
+    /* Le sous-titre empruntait un palier de la rampe de gris, déclaré dans
+       `:root` : il échappait donc au contrat de contraste de la barre, qui ne
+       porte que sur ses propres encres, et un thème client repeignant le fond
+       de la barre l'aurait laissé derrière. Même valeur, jeton opposable. */
+    color: var(--sidebar-encre-attenuee);
+    letter-spacing: 0.05em;
+}
+
+/* Logo du client, posé à côté de la marque du produit. Sa hauteur est bornée
+   pour qu'une image déposée dans n'importe quelle définition ne déforme pas
+   l'en-tête de la barre. */
+.logo-client {
+    max-height: 32px;
+    max-width: 96px;
+    object-fit: contain;
+    margin-left: var(--space-2);
+}
+
+.sidebar-toggle {
+    display: none;
+    width: 32px;
+    height: 32px;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    color: var(--sidebar-encre-attenuee);
+    transition: all var(--transition-fast);
+}
+
+.sidebar-toggle:hover {
+    background: var(--sidebar-hover);
+    color: var(--sidebar-encre);
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-4) 0;
+}
+
+.nav-section {
+    margin-bottom: var(--space-4);
+}
+
+.nav-section-title {
+    display: block;
+    padding: var(--space-2) var(--space-5);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-semibold);
+    color: var(--sidebar-titre-de-section);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.nav-list {
+    padding: 0 var(--space-3);
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-3) var(--space-4);
+    color: var(--sidebar-encre-lien);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    margin-bottom: var(--space-1);
+    position: relative;
+}
+
+.nav-link:hover {
+    color: var(--sidebar-encre);
+    background: var(--sidebar-hover);
+}
+
+.nav-link.active {
+    color: var(--sidebar-encre);
+    background: linear-gradient(90deg, var(--sidebar-selection-debut) 0%,
+                                var(--sidebar-selection-fin) 100%);
+    box-shadow: var(--shadow-md);
+}
+
+.nav-link.active::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 60%;
+    background: var(--sidebar-encre);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.nav-link i {
+    width: 20px;
+    text-align: center;
+    font-size: var(--font-size-base);
+}
+
+.nav-link span {
+    flex: 1;
+    font-size: var(--font-size-sm);
+}
+
+.nav-count {
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-medium);
+    background: var(--sidebar-surface);
+    color: var(--sidebar-encre-attenuee);
+    border-radius: var(--radius-full);
+    font-family: var(--font-family-mono);
+}
+
+/* Sur un lien actif, la pastille se pose sur l'aplat bleu et non sur le fond
+   de la barre : le voile clair l'éclaircit encore, et le compte tombait à
+   1,59:1. Un voile sombre creuse au lieu d'éclaircir. */
+.nav-link.active .nav-count {
+    background: var(--voile-sombre);
+    color: var(--sidebar-encre);
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+    padding: var(--space-4);
+    border-top: 1px solid var(--sidebar-border);
+}
+
+.sidebar-footer .nav-link {
+    margin-bottom: var(--space-3);
+}
+
+.sidebar-version {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-2) var(--space-4);
+    font-size: var(--font-size-xs);
+    color: var(--sidebar-encre-attenuee);
+}
+
+.theme-toggle {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    color: var(--sidebar-encre-attenuee);
+    transition: all var(--transition-fast);
+}
+
+.theme-toggle:hover {
+    background: var(--sidebar-hover);
+    color: var(--sidebar-encre);
+}
+
+/* ===== Main Content ===== */
+.main-content {
+    flex: 1;
+    /* Un élément flexible ne descend pas sous la largeur minimale de son
+       contenu tant qu'on ne le lui permet pas. Sans cette ligne, un tableau
+       large au fond d'un écran élargissait tout ce qui est au-dessus de lui —
+       la barre supérieure comprise — et la page défilait horizontalement quel
+       que soit le zoom. Critère WCAG 1.4.10, repris par le RGAA 10.4. */
+    min-width: 0;
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+}
+
+/* ===== Topbar ===== */
+.topbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-2);
+    min-height: var(--topbar-height);
+    padding: 0 var(--space-6);
+    background: var(--bg-secondary);
+    border-bottom: 1px solid var(--border-secondary);
+    position: sticky;
+    top: 0;
+    z-index: var(--z-sticky);
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    gap: var(--space-4);
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+}
+
+.breadcrumb i {
+    font-size: var(--font-size-xs);
+    opacity: 0.5;
+}
+
+.breadcrumb-item.active {
+    color: var(--text-primary);
+    font-weight: var(--font-weight-medium);
+}
+
+.topbar-right {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    min-width: 0;
+    gap: var(--space-4);
+}
+
+.search-global {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    padding: var(--space-2) var(--space-4);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-lg);
+    transition: all var(--transition-fast);
+}
+
+.search-global:focus-within {
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-primary) 15%, transparent);
+}
+
+.search-global i {
+    color: var(--text-muted);
+}
+
+.search-global input {
+    width: 200px;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: var(--font-size-sm);
+    color: var(--text-primary);
+}
+
+.search-global input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-global input:focus {
+    outline: none;
+}
+
+.search-global kbd {
+    padding: var(--space-1) var(--space-2);
+    font-size: var(--font-size-xs);
+    font-family: var(--font-family-mono);
+    background: var(--bg-hover);
+    border-radius: var(--radius-sm);
+    color: var(--text-secondary);
+}
+
+.topbar-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.topbar-btn {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    position: relative;
+    transition: all var(--transition-fast);
+}
+
+.topbar-btn:hover {
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
+}
+
+/* ===== Cloche : le travail en attente =====
+
+   La pastille portait un point rouge permanent. Elle porte désormais un
+   nombre, et disparaît quand il n'y a rien : une couleur seule ne dit pas
+   combien, et un indicateur toujours allumé n'indique rien. */
+
+.cloche {
+    position: relative;
+}
+
+.notification-dot {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 var(--space-1, 0.25rem);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--pastille-fond);
+    color: var(--pastille-encre);
+    font-size: var(--font-size-xs, 0.8125rem);
+    font-weight: var(--font-weight-semibold, 600);
+    line-height: 1;
+    border-radius: var(--radius-full, 9999px);
+    border: 2px solid var(--bg-secondary);
+}
+
+.cloche-panneau {
+    position: absolute;
+    top: calc(100% + var(--space-2, 0.5rem));
+    right: 0;
+    /* La largeur suit la fenêtre : à 320 px, un panneau fixe déborderait et
+       ferait défiler la page entière à l'horizontale (WCAG 1.4.10). */
+    width: min(340px, calc(100vw - 2 * var(--space-4, 1rem)));
+    max-height: min(60vh, 420px);
+    overflow-y: auto;
+    padding: var(--space-3, 0.75rem);
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg, 0.75rem);
+    box-shadow: var(--shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.3));
+    z-index: var(--z-dropdown, 100);
+    text-align: left;
+}
+
+.cloche-titre {
+    margin: 0 0 var(--space-2, 0.5rem);
+    font-size: var(--font-size-sm, 0.875rem);
+    font-weight: var(--font-weight-semibold, 600);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.cloche-vide {
+    margin: 0;
+    font-size: var(--font-size-sm, 0.875rem);
+    color: var(--text-secondary);
+}
+
+.cloche-liste {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2, 0.5rem);
+}
+
+.cloche-lien {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--space-1, 0.25rem);
+    padding: var(--space-2, 0.5rem) var(--space-3, 0.75rem);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-md, 0.5rem);
+    color: var(--text-primary);
+    font-size: var(--font-size-sm, 0.875rem);
+    text-align: left;
+    cursor: pointer;
+}
+
+.cloche-lien:hover {
+    background: var(--bg-hover);
+}
+
+.cloche-libelle {
+    font-weight: var(--font-weight-semibold, 600);
+}
+
+.cloche-compte,
+.cloche-date {
+    color: var(--text-secondary);
+    font-size: var(--font-size-xs, 0.8125rem);
+}
+
+/* L'obsolescence se lit, elle ne se devine pas à la couleur (RGAA 3.1). */
+.cloche-obsolete {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1, 0.25rem);
+    color: var(--encre-warning);
+    font-size: var(--font-size-xs, 0.8125rem);
+}
+
+/* ===== Page Container ===== */
+/* La gouttière de la page est publiée comme jeton : un écran qui veut la
+   déborder — le graphe le fait, pour gagner en surface — doit connaître sa
+   valeur courante et non la valeur du grand écran, sinon il dépasse dès que
+   la gouttière se resserre. */
+.page-container {
+    flex: 1;
+    min-width: 0;
+    --page-gouttiere: var(--space-6);
+    padding: var(--page-gouttiere);
+    max-width: var(--container-max-width);
+    width: 100%;
+    margin: 0 auto;
+}
+
+.page {
+    display: none;
+    animation: page-in 0.3s ease;
+}
+
+.page.active {
+    display: block;
+}
+
+@keyframes page-in {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Page Header */
+/* Les rangées de la page passent à la ligne quand la place manque.
+
+   Un en-tête de page tient un titre et une rangée de boutons ; une rangée de
+   filtres tient des sélecteurs. Sans `flex-wrap`, elles restent sur une seule
+   ligne quelle que soit la largeur, et la page défile horizontalement — ce
+   qui interdit le zoom à 200 % sur un écran ordinaire. Critère WCAG 1.4.10. */
+.page-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+}
+
+.page-header-content {
+    flex: 1 1 min(20rem, 100%);
+    min-width: 0;
+}
+
+.page-title {
+    font-size: var(--font-size-2xl);
+    font-weight: var(--font-weight-bold);
+    margin-bottom: var(--space-1);
+}
+
+.page-description {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    margin: 0;
+}
+
+.page-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3);
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1200px) {
+    .sidebar {
+        width: var(--sidebar-collapsed-width);
+    }
+    
+    .sidebar .logo-text,
+    .sidebar .nav-section-title,
+    .sidebar .nav-link span,
+    .sidebar .nav-badge,
+    .sidebar .nav-count {
+        display: none;
+    }
+    
+    .sidebar .nav-link {
+        justify-content: center;
+        padding: var(--space-3);
+    }
+    
+    .sidebar .nav-link i {
+        width: auto;
+        font-size: var(--font-size-lg);
+    }
+    
+    .main-content {
+        margin-left: var(--sidebar-collapsed-width);
+    }
+    
+    .sidebar-version span {
+        display: none;
+    }
+    
+    .sidebar-version {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        width: var(--sidebar-width);
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    
+    .sidebar .logo-text,
+    .sidebar .nav-section-title,
+    .sidebar .nav-link span,
+    .sidebar .nav-badge,
+    .sidebar .nav-count {
+        display: block;
+    }
+    
+    .sidebar .nav-link {
+        justify-content: flex-start;
+        padding: var(--space-3) var(--space-4);
+    }
+    
+    .sidebar-toggle {
+        display: flex;
+    }
+    
+    .main-content {
+        margin-left: 0;
+    }
+    
+    .topbar {
+        padding: 0 var(--space-4);
+    }
+    
+    .search-global {
+        display: none;
+    }
+    
+    .page-container {
+        --page-gouttiere: var(--space-4);
+    }
+    
+    .page-header {
+        flex-direction: column;
+        gap: var(--space-4);
+    }
+}
+
+/* ===== Résultat conservé d'un mining précédent =====
+
+   Le bandeau propose de reprendre un calcul déjà fait. Il se pose au-dessus du
+   résultat qu'il décrit et disparaît dès que celui-ci est affiché. */
+
+.run-conserve {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-3, 0.75rem);
+    margin-bottom: var(--space-4, 1rem);
+    padding: var(--space-3, 0.75rem) var(--space-4, 1rem);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-secondary);
+    border-radius: var(--radius-md, 0.5rem);
+}
+
+.run-conserve__texte {
+    margin: 0;
+    flex: 1 1 min(320px, 100%);
+    color: var(--text-primary);
+    font-size: var(--font-size-sm, 0.875rem);
+}
+
+/* L'obsolescence se lit, elle ne se devine pas à la couleur (RGAA 3.1). */
+.run-conserve__obsolete {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-1, 0.25rem);
+    color: var(--encre-warning);
+    font-size: var(--font-size-xs, 0.8125rem);
+}
+
+.run-conserve__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2, 0.5rem);
+}
+
+/* ===== Paliers du modèle =====
+
+   Les repères de progression d'un modèle, reportables dans la couverture
+   visée. Ils se posent sous la phrase de synthèse qu'ils chiffrent. */
+
+.paliers {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2, 0.5rem);
+    margin-bottom: var(--space-4, 1rem);
+}
+
+.paliers__intitule {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm, 0.875rem);
+}
+
+/* Ce que la sélection accorderait, sous la colonne des droits. En encre
+   d'accent — c'est une information, pas une alerte. */
+.access-column__ajoutes {
+    display: block;
+    margin-top: var(--space-1, 0.25rem);
+    color: var(--encre-warning);
+    font-size: var(--font-size-xs, 0.8125rem);
+}
