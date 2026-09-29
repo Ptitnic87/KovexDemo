@@ -1,0 +1,20 @@
+# Dépendances d'exécution de PyGIA.
+# Versions minimales validées ; à figer avec pip freeze avant une mise en production.
+
+fastapi>=0.110
+# Importee directement — `run_in_threadpool` et `BackgroundTask`, dans onze
+# modules. FastAPI l'embarque, mais une dependance qu'on importe se declare :
+# rien ne garantit que la prochaine version de FastAPI garde la meme.
+starlette>=0.37
+uvicorn[standard]>=0.27
+pydantic>=2.6
+pandas>=2.0
+numpy>=1.24
+scipy>=1.11
+PyJWT>=2.8
+python-multipart>=0.0.9
+python-dotenv>=1.0
+openpyxl>=3.1
+# Generation du rapport PDF. Python pur : aucune bibliotheque systeme a
+# installer, ce qui compte sur un serveur isole.
+reportlab>=4.0

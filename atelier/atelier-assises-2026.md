@@ -28,7 +28,7 @@ c'est la **preuve** et la **dérive**.
 
 ## 1. Préparer (la veille)
 
-**Version requise : celle du sous-module `kovex/` de ce dépôt (lot 103 inclus).** Sans lui, la toile de
+**Version requise : celle copiée dans `kovex/` de ce dépôt (lot 103 inclus).** Sans lui, la toile de
 l'acte 5.3 n'a pas ses axes écrits, et les tuiles du mining affichent
 « 63.73 % » au lieu de « 63,73 % ».
 

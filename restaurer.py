@@ -21,7 +21,7 @@ serveur (``poser_la_cle.py``) et survit aux restaurations.
 
     python restaurer.py
 
-Kovex est le sous-module ``kovex/`` de ce dépôt : c'est lui que la
+Kovex est copié dans ``kovex/`` : c'est lui que la
 restauration remplit, et l'instantané doit avoir été construit pour **cette
 version-là** de Kovex. Une autre version pourrait relire autrement la base de
 connaissance ou les minings conservés ; la restauration refuse donc de tourner
@@ -47,10 +47,10 @@ from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 from urllib.parse import urlsplit
 
 ICI = Path(__file__).resolve().parent
-#: Le sous-module Kovex, figé sur la version pour laquelle l'instantané a été
-#: construit.
+#: Kovex, copié dans ce dépôt à la version pour laquelle l'instantané a été
+#: construit (``mettre_a_jour_kovex.py``).
 KOVEX = ICI / "kovex"
-#: Écrit par ``empaqueter.py`` dans une archive, qui n'a plus de ``.git``.
+#: Écrit par ``mettre_a_jour_kovex.py`` : le commit de Kovex copié.
 FICHIER_VERSION = ".kovex_version"
 
 #: Un identifiant d'espace ne sort jamais du dossier des espaces.
@@ -71,6 +71,10 @@ def version_de_kovex(racine: Path) -> Optional[str]:
     fichier = racine / FICHIER_VERSION
     if fichier.exists():
         return fichier.read_text(encoding="utf-8").strip() or None
+    # Sans dépôt git propre, `git -C` remonterait au dépôt parent et rendrait
+    # son commit à lui : mieux vaut ne rien savoir que se tromper de version.
+    if not (racine / ".git").exists():
+        return None
     try:
         sortie = subprocess.run(["git", "-C", str(racine), "rev-parse", "HEAD"],
                                 capture_output=True, text=True, timeout=30, check=True)
@@ -193,7 +197,7 @@ def restaurer(racine: Path, instantane: Path, modele: Dict[str, Any],
         raise RestaurationRefusee(
             "l'instantané a été construit pour Kovex %s, la version installée est %s. "
             "Reconstruisez l'instantané (construire_la_demo.py) ou remettez le "
-            "sous-module sur la version attendue." % (attendue[:12], installee[:12]))
+            "Kovex de la version attendue (mettre_a_jour_kovex.py)." % (attendue[:12], installee[:12]))
     ecart = (aujourd_hui - date.fromisoformat(index["construit_le"])).days
     espaces = racine / "workspaces"
     espaces.mkdir(parents=True, exist_ok=True)
@@ -238,7 +242,7 @@ def restaurer(racine: Path, instantane: Path, modele: Dict[str, Any],
 def main(arguments: Optional[Sequence[str]] = None) -> int:
     analyseur = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     analyseur.add_argument("--racine", default=str(KOVEX),
-                           help="dossier de Kovex ; le sous-module kovex/ par défaut")
+                           help="dossier de Kovex ; kovex/ par défaut")
     analyseur.add_argument("--instantane", default=str(ICI / "instantane"))
     analyseur.add_argument("--modele", default=str(ICI / "modele.json"))
     analyseur.add_argument("--actif", default=None,

@@ -1,0 +1,68 @@
+# Secrets et configuration locale
+.env
+config/users.json
+config/cles_annotateur.json
+
+# Donnees clients : ne jamais versionner.
+#
+# Ces motifs designent des dossiers **a la racine du depot**, et ils sont
+# ancres par une barre de tete. Sans elle, git les fait correspondre a
+# n'importe quel dossier du meme nom, a n'importe quelle profondeur : la regle
+# `workspaces/`, ecrite pour les donnees clients, masquait aussi
+# `src/core/workspaces/`, et la regle `audit/`, ecrite pour la piste d'audit,
+# masquait `src/core/audit/` — dont les deux fichiers n'ont jamais ete
+# versionnes. Un depot clone ne demarrait pas, et rien ne le signalait :
+# `git status` ne montre pas ce qu'il ignore.
+/workspaces/
+*/applications.csv
+*/droits.csv
+*/habilitations.csv
+*/identities.csv
+knowledge_base.json
+rbac_roles_db.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Sorties et fichiers temporaires
+/output/
+*.zip
+*.old
+*.backup
+/_a_supprimer/
+
+# Lanceurs locaux
+START_PYGIA.bat
+STOP_PYGIA.bat
+
+# Artefacts de mesure de couverture
+.coverage
+.coverage.*
+coverage.json
+/htmlcov/
+
+# Donnees d'exploitation : elles grossissent et n'appartiennent pas au depot.
+# La piste d'audit est la trace des decisions de gouvernance : elle se sauvegarde,
+# elle ne se versionne pas.
+/audit/
+/logs/
+
+# Fichiers mis de cote en attendant leur suppression definitive.
+/_to_delete/
+
+# Dossier de sortie de l'assistant : il recoit les archives de livraison, qui
+# n'ont pas a entrer dans le depot — elles en sont deja le contenu.
+/Claude outputs/
+
+# Sauvegardes et copies de travail du .env : `.env` seul ne les couvrait pas,
+# et `.env.avant-20260831-173803` s'est retrouve dans le depot avec la cle de
+# signature des jetons.
+.env.*
+!.env.example
+
+# Sauvegardes de la base de connaissances. `knowledge_base.json` etait ignore,
+# mais pas ses copies sous un autre nom dans backups/.
+/backups/

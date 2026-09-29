@@ -4,15 +4,16 @@ Ce dépôt fait une démonstration de Kovex sans rien attendre ni préparer : de
 référentiels fictifs par secteur, six mois de gouvernance déjà posés, et les
 minings **déjà calculés**.
 
-Kovex n'y est pas copié : c'est le sous-module `kovex/`, figé sur la version
-pour laquelle l'instantané a été construit. `restaurer.py` refuse de remettre
-l'instantané sous une autre version.
+**Le dépôt se suffit à lui-même.** Kovex y est copié dans `kovex/`, à la
+version pour laquelle l'instantané a été construit : cloner ce seul dépôt donne
+une démonstration qui fonctionne, sans accès au dépôt du produit.
+`restaurer.py` refuse de remettre l'instantané sous une autre version de Kovex.
 
 ## Organisation
 
 | Chemin | Rôle |
 |---|---|
-| `kovex/` | sous-module : le produit, à la version de l'instantané |
+| `kovex/` | le produit, copié à la version de l'instantané (`kovex/.kovex_version`) |
 | `secteurs/` | une fiche par secteur : organisation, applications, cas plantés, gouvernance |
 | `generer_secteur.py` | génère le référentiel d'une fiche, et recompte les cas plantés |
 | `construire_la_demo.py` | construit les espaces par l'API de Kovex et les fige dans `instantane/` |
@@ -21,6 +22,7 @@ l'instantané sous une autre version.
 | `modele.json` | point de terminaison et usages ouverts au modèle — **aucune clé** |
 | `poser_la_cle.py` | pose la clé une fois dans le porte-clés du serveur |
 | `lancer_la_demo.sh`, `LANCER_LA_DEMO.bat` | restaurer, puis lancer Kovex |
+| `mettre_a_jour_kovex.py` | la seule façon de changer la version de Kovex copiée |
 | `empaqueter.py` | une archive unique pour un serveur sans réseau |
 | `atelier/` | le déroulé de l'atelier en direct des Assises |
 | `tests/` | générateur, restauration, contrôle de version |
@@ -62,15 +64,13 @@ est décidé, tout se joue devant la salle.
 
 ## Récupérer
 
-Avec un accès au dépôt de Kovex :
-
 ```
-git clone --recurse-submodules https://github.com/Ptitnic87/KovexDemo.git
+git clone https://github.com/Ptitnic87/KovexDemo.git
 ```
 
-Pour un serveur sans réseau, sur un poste qui a les deux dépôts :
-`python empaqueter.py --sortie KovexDemo.zip`, puis copier et décompresser
-l'archive sur le serveur. Seuls les fichiers suivis par git y entrent.
+Pour un serveur sans réseau : `python empaqueter.py --sortie KovexDemo.zip`,
+puis copier et décompresser l'archive sur le serveur. Seuls les fichiers
+suivis par git y entrent.
 
 ## Installer, une fois
 
@@ -126,12 +126,16 @@ Pour passer à une nouvelle version de Kovex, ou ajouter un secteur (une fiche
 de plus dans `secteurs/`) :
 
 ```
-git -C kovex fetch && git -C kovex checkout <commit de main>
+python mettre_a_jour_kovex.py --source <clone de KovexD-mo> --commit <commit de main>
 python -m pytest tests -q
 # Kovex lancé depuis kovex/, sans espace existant, authentification désactivée
 python construire_la_demo.py
-git add kovex instantane && git commit
+git add -A kovex instantane && git commit
 ```
+
+La copie écarte la page autonome et la suite de tests du produit, qui tournent
+dans son intégration continue. Elle ne touche pas ce qui vit sur le serveur
+(`.env`, comptes, porte-clés, espaces, piste d'audit).
 
 La construction dure une quinzaine de minutes. Elle écrit `instantane/` :
 une archive par espace, et `index.json` avec la version de Kovex utilisée.

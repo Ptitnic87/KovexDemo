@@ -1,0 +1,37 @@
+{
+  "libelles": {
+    "fr": "Exemple",
+    "en": "Example",
+    "de": "Beispiel"
+  },
+  "variantes": {
+    "dark": {
+      "sidebar-fond-haut": "#0f3d3a",
+      "sidebar-fond-bas": "#08211f",
+      "sidebar-titre-de-section": "#7fe3d8",
+      "sidebar-encre-lien": "#c7f0eb",
+      "sidebar-encre-attenuee": "#c7f0eb",
+      "sidebar-encre": "#ffffff",
+      "sidebar-marque": "#7fe3d8",
+      "sidebar-selection-debut": "#0f766e",
+      "sidebar-selection-fin": "#08211f",
+      "accent-primary": "#0f766e",
+      "encre-primary": "#5eead4",
+      "border-focus": "#5eead4"
+    },
+    "light": {
+      "sidebar-fond-haut": "#0f3d3a",
+      "sidebar-fond-bas": "#08211f",
+      "sidebar-titre-de-section": "#7fe3d8",
+      "sidebar-encre-lien": "#c7f0eb",
+      "sidebar-encre-attenuee": "#c7f0eb",
+      "sidebar-encre": "#ffffff",
+      "sidebar-marque": "#7fe3d8",
+      "sidebar-selection-debut": "#0f766e",
+      "sidebar-selection-fin": "#08211f",
+      "accent-primary": "#0f766e",
+      "encre-primary": "#0f766e",
+      "border-focus": "#0f766e"
+    }
+  }
+}

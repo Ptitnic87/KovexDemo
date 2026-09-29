@@ -286,7 +286,7 @@ def main(arguments: Optional[Sequence[str]] = None) -> int:
     analyseur = argparse.ArgumentParser(description=__doc__.split("\n")[0])
     analyseur.add_argument("--api", default="http://127.0.0.1:8000")
     analyseur.add_argument("--racine", default=str(KOVEX),
-                           help="dossier de Kovex ; le sous-module kovex/ par défaut")
+                           help="dossier de Kovex ; kovex/ par défaut")
     analyseur.add_argument("--secteurs", nargs="*", default=None,
                            help="fiches à construire ; toutes par défaut")
     analyseur.add_argument("--sortie", default=str(ICI / "instantane"))

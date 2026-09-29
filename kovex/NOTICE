@@ -1,0 +1,94 @@
+Kovex — composants tiers
+Copyright (c) 2025-2026 Nicolas Cudon. Voir LICENSE.
+
+Ce fichier énumère les composants tiers dont Kovex dépend. Ils ne sont pas
+couverts par la licence de Kovex : chacun reste régi par la sienne. Aucun n'est
+sous une licence à réciprocité forte — aucune n'oblige donc à publier le code de
+Kovex.
+
+Le contrôle `tests/test_licence.py` refuse toute dépendance figée dans
+`requirements.lock`, et toute bibliothèque déposée sous `frontend/vendor/`, qui
+ne serait pas nommée ici : une dépendance ajoutée sans sa licence fait échouer
+la campagne.
+
+================================================================================
+1. EMBARQUÉ ET REDISTRIBUÉ AVEC LE PRODUIT
+================================================================================
+
+Ces fichiers sont dans le dépôt et partent avec le produit. Le texte intégral de
+chaque licence est conservé à côté du composant.
+
+  Chart.js 4.4.1                     MIT
+    (c) 2023 Chart.js Contributors
+    frontend/vendor/chartjs/LICENSE
+
+  vis-network 9.1.9                  Apache-2.0 OU MIT, au choix
+    (c) 2011-2017 Almende B.V. ; (c) 2017-2019 visjs contributors
+    frontend/vendor/vis-network/LICENSE-APACHE-2.0
+    frontend/vendor/vis-network/LICENSE-MIT
+
+  Font Awesome Free 6.5.1            icônes CC BY 4.0 ; polices SIL OFL 1.1 ;
+                                     code MIT
+    (c) 2023 Fonticons, Inc.
+    frontend/vendor/fontawesome/LICENSE.txt
+
+  JetBrains Mono                     SIL Open Font License 1.1
+    (c) 2020 The JetBrains Mono Project Authors
+    frontend/vendor/fonts/LICENSE-JetBrainsMono
+
+  Outfit                             SIL Open Font License 1.1
+    (c) 2021 The Outfit Project Authors
+    frontend/vendor/fonts/LICENSE-Outfit
+
+Les polices sont servies localement et non depuis un service tiers : la mise en
+page ne dépend d'aucun accès réseau, et aucune adresse IP d'utilisateur n'est
+transmise à un tiers.
+
+================================================================================
+2. INSTALLÉ À L'EXÉCUTION, NON REDISTRIBUÉ
+================================================================================
+
+Ces paquets sont installés par `pip install -r requirements.lock` sur le serveur
+qui exécute Kovex. Ils ne sont pas dans le dépôt. Les licences relevées sont
+celles déclarées par les paquets aux versions figées.
+
+  annotated-doc                      MIT
+  annotated-types                    MIT
+  anyio                              MIT
+  charset-normalizer                 MIT
+  click                              BSD-3-Clause
+  colorama                           BSD-3-Clause
+  et-xmlfile                         MIT
+  fastapi                            MIT
+  h11                                MIT
+  httptools                          MIT
+  idna                               BSD-3-Clause
+  numpy                              BSD-3-Clause ET 0BSD ET MIT ET Zlib ET CC0-1.0
+  openpyxl                           MIT
+  pandas                             BSD-3-Clause
+  pillow                             MIT-CMU
+  pydantic                           MIT
+  pydantic-core                      MIT
+  pyjwt                              MIT
+  python-dateutil                    BSD-3-Clause ET Apache-2.0
+  python-dotenv                      BSD-3-Clause
+  python-multipart                   Apache-2.0
+  pyyaml                             MIT
+  reportlab                          BSD-3-Clause
+  scipy                              BSD-3-Clause
+  six                                MIT
+  starlette                          BSD-3-Clause
+  typing-extensions                  PSF-2.0
+  typing-inspection                  MIT
+  tzdata                             Apache-2.0
+  uvicorn                            BSD-3-Clause
+  uvloop                             Apache-2.0 ET MIT
+  watchfiles                         MIT
+  websockets                         BSD-3-Clause
+
+`tzdata` ne s'installe que sous Windows et `uvloop` que hors Windows : la
+licence de `tzdata` est celle déclarée par le paquet, elle n'a pas été relevée
+sur la plateforme de mesure.
+
+L'outillage de test — `requirements-dev.txt` — n'est pas listé : il ne part pas
+avec le produit et ne s'exécute pas chez le client.

@@ -1,0 +1,26 @@
+{
+    "admin": {
+        "username": "admin",
+        "email": "admin@pygia.local",
+        "full_name": "Administrateur PyGIA",
+        "role": "admin",
+        "password_hash": "<a generer au premier demarrage>",
+        "disabled": false
+    },
+    "analyst": {
+        "username": "analyst",
+        "email": "analyst@pygia.local",
+        "full_name": "Analyste IAM",
+        "role": "analyst",
+        "password_hash": "<a generer au premier demarrage>",
+        "disabled": false
+    },
+    "viewer": {
+        "username": "viewer",
+        "email": "viewer@pygia.local",
+        "full_name": "Lecteur",
+        "role": "viewer",
+        "password_hash": "<a generer au premier demarrage>",
+        "disabled": false
+    }
+}

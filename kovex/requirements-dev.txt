@@ -1,0 +1,48 @@
+# Dependances de developpement et de test.
+#
+# On herite du **verrou**, pas des bornes. Herite de `requirements.txt`, un
+# environnement de developpement neuf resolvait librement les bornes basses et
+# recuperait reportlab 5.x la ou la suite tourne sur 4.4.10 : la campagne
+# validait alors autre chose que ce qui est livre, et
+# `test_les_versions_installees_sont_celles_du_verrou` echouait sur un poste
+# pourtant installe selon la procedure.
+-r requirements.lock
+
+pytest>=8.0
+pytest-cov>=5.0
+# Ordre d'execution aleatoire. Ce n'est pas un confort : une suite qui ne passe
+# que dans un ordre laisse un test passer **par accident**, en profitant d'un
+# etat qu'un autre a laisse. Le cas s'est produit ici — une branche du chargeur
+# n'etait parcourue que grace a un workspace actif laisse de travers, et la
+# couverture a 100 % etait d'autant optimiste.
+#
+# La suite serveur passe desormais dans n'importe quel ordre. Le paquet est
+# declare pour que la propriete soit *verifiee* a chaque campagne plutot
+# qu'esperee : sans lui, la dette se reforme en silence.
+pytest-randomly>=3.15
+# Client HTTP de `fastapi.testclient`. Jamais importe directement, toujours
+# requis.
+httpx>=0.27
+
+# Tests d'interface et mesure de couverture du JavaScript.
+#
+# `tests/ihm/conftest.py` passe son import a `pytest.importorskip` : sans
+# Playwright, les 758 tests navigateur sont *ignores en silence* et
+# `couverture_frontend.py` ne mesure rien. Un chiffre de couverture absent
+# ressemble beaucoup a un chiffre de couverture bon.
+#
+# Le paquet ne suffit pas : il faut aussi le navigateur.
+#
+#     pip install -r requirements-dev.txt
+#     python -m playwright install chromium
+#
+# Ce second appel telecharge Chromium et demande donc un acces reseau. Sur un
+# poste isole, recuperer le navigateur ailleurs et poser
+# PLAYWRIGHT_BROWSERS_PATH sur son emplacement. Rien de tout cela ne concerne
+# le produit livre : Playwright ne sert qu'a le tester.
+playwright>=1.44
+
+# Analyse des versions et des marqueurs de plateforme, pour
+# `tools/verrou_dependances.py` qui regenere `requirements.lock`. pytest
+# l'installe deja ; une dependance qu'on importe se declare quand meme.
+packaging>=23.0

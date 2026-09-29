@@ -1,0 +1,42 @@
+# Mesure de couverture.
+#
+# `parallel` et `concurrency` permettent de compter aussi ce qui s'exécute
+# dans un sous-processus. Trois branches ne se testent pas autrement : un
+# refus de démarrage se déclenche **à l'import** du module, une seule fois par
+# processus. Sans ce réglage, elles apparaissaient comme non couvertes alors
+# qu'un test les exerce bel et bien — et une couverture qui ment sur ce qu'elle
+# mesure est pire qu'un chiffre plus bas.
+[run]
+# Le périmètre est le produit, plus le serveur d'interface : celui-ci porte
+# désormais de la logique — la résolution de l'adresse de l'API reportée dans
+# le gabarit — et non plus seulement l'ouverture d'un port.
+#
+# Les deux outils livrés à la racine — `rotation_secrets.py` et
+# `banc_performance.py` — se mesurent à la demande :
+#
+#     pytest tests/test_rotation_secrets.py --cov=rotation_secrets
+#     pytest tests/test_banc_performance.py --cov=banc_performance
+#     pytest tests/test_verrou_dependances.py --cov=tools.verrou_dependances
+#     pytest tests/test_tranches_ihm.py --cov=tools.tranches_ihm
+#     pytest tests/test_couverture_frontend.py --cov=couverture_frontend
+#
+# Les inclure ici faisait importer `tests.performance.generateur` sous deux
+# noms de module, et numpy refuse de charger deux fois son extension native.
+source =
+    src
+    serve_frontend
+parallel = True
+concurrency = thread,multiprocessing
+sigterm = True
+
+[report]
+exclude_also =
+    # Point d'entrée d'un script : il ne s'exécute pas sous pytest, et le
+    # couvrir demanderait de lancer le serveur pour de bon.
+    if __name__ == .__main__.:
+    # Dépendance facultative absente : `python-dotenv` n'est pas requis, le
+    # produit lit alors l'environnement tel quel.
+    except ImportError:
+    # Amorçage du chemin d'import d'un script exécutable : il est déjà en
+    # place quand la suite l'importe.
+    if str\(RACINE\) not in sys.path:

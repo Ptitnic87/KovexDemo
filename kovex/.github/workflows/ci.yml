@@ -1,0 +1,271 @@
+# Intégration continue de Kovex.
+#
+# Le dépôt n'en avait aucune. La consigne du projet — « merger si les
+# résultats CI/CD sont bons » — n'avait donc rien sur quoi s'appuyer : les
+# campagnes étaient exécutées à la main, sur un seul poste, et le résultat
+# tenait dans un message. Rien n'empêchait une régression d'entrer.
+#
+# Trois exigences décident de la forme de ce fichier :
+#
+#   - **100 % de couverture, serveur et interface.** Le seuil est opposé par
+#     `tests/test_couverture.py`, qui relit les rapports produits par la
+#     campagne. Il est donc exécuté dans une **seconde** invocation de pytest,
+#     après que le rapport existe : dans la même, il lirait le rapport de la
+#     campagne précédente, ou rien.
+#   - **la suite doit passer dans n'importe quel ordre.** `pytest-randomly`
+#     tire une graine par exécution ; elle est imprimée dans le journal, et
+#     `-p randomly --randomly-seed=<n>` rejoue exactement la même.
+#   - **ce qui est mesuré doit être ce qui est livré.** L'installation part du
+#     verrou, jamais des bornes basses de `requirements.txt`, sans quoi la
+#     campagne valide d'autres versions que celles installées chez le client.
+#
+# La campagne d'interface se découpe en tranches parallèles : d'un seul tenant
+# les tests navigateur épuisent la mémoire du runner. Chaque tranche rend un
+# relevé **partiel** — elle ne charge qu'une partie des écrans — et le seuil
+# n'est opposable qu'après la réunion. Opposer le seuil tranche par tranche
+# ferait échouer chacune sur les fichiers que les autres exercent.
+
+# Le système de la machine d'exécution est **épinglé** : `ubuntu-latest`
+# change de version à une date fixée par GitHub, et une campagne qui passe au
+# vert la veille peut échouer le lendemain sans qu'une ligne ait changé.
+#
+# Les actions tierces sont épinglées par **empreinte de commit**, la version
+# en commentaire. Une étiquette comme `v7` se déplace : celui qui la contrôle
+# peut y substituer un autre code, qui s'exécuterait avec les droits de la
+# campagne. Une empreinte ne se déplace pas.
+
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+# Une nouvelle poussée sur la même branche annule la campagne en cours : elle
+# mesurerait du code déjà remplacé.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  PYTHON_VERSION: "3.11"
+  # Nombre de tranches de la campagne d'interface. Écrit **une seule fois** :
+  # le job `decoupage` en dérive la matrice. Écrit deux fois — ici et dans la
+  # matrice — les deux finissent par diverger, et une tranche cesse d'être
+  # exécutée. Rien n'échoue alors : la couverture baisse, et on la met sur le
+  # compte du code.
+  TRANCHES_IHM: "4"
+
+jobs:
+  decoupage:
+    name: Découpage de la campagne d'interface
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    outputs:
+      tranches: ${{ steps.calcul.outputs.tranches }}
+    steps:
+      - id: calcul
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, os
+          total = int(os.environ["TRANCHES_IHM"])
+          print("tranches=" + json.dumps(list(range(1, total + 1))))
+          PY
+
+  serveur:
+    name: Suite serveur et couverture
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Installer les dépendances figées
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Campagne serveur
+        run: |
+          python -m pytest tests --ignore=tests/ihm \
+            --cov=src --cov-report=json --cov-report=term-missing -q
+
+      # Le contrôle de seuil se **saute** quand le rapport manque — un seuil
+      # qu'on ne peut pas mesurer n'est pas un seuil tenu. En intégration
+      # continue, un test sauté passe pour un test vert : l'existence du
+      # rapport est donc vérifiée avant de l'opposer.
+      - name: Opposer le seuil de couverture serveur
+        run: |
+          test -s coverage.json || {
+            echo "::error::Rapport de couverture absent : la campagne n'a rien mesuré."
+            exit 1
+          }
+          python -m pytest tests/test_couverture.py -q -k "module or total"
+
+      - name: Conserver le rapport
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: couverture-serveur
+          path: coverage.json
+          if-no-files-found: warn
+
+  interface:
+    name: Interface — tranche ${{ matrix.tranche }}
+    runs-on: ubuntu-24.04
+    needs: decoupage
+    timeout-minutes: 60
+    strategy:
+      # Une tranche qui échoue ne doit pas emporter les autres : leurs relevés
+      # servent à situer la régression.
+      fail-fast: false
+      matrix:
+        tranche: ${{ fromJSON(needs.decoupage.outputs.tranches) }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Installer les dépendances figées
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Installer le navigateur
+        run: python -m playwright install --with-deps chromium
+
+      - name: Campagne d'interface, tranche ${{ matrix.tranche }}
+        env:
+          KOVEX_COUVERTURE_JS: ${{ github.workspace }}/output/tranche-${{ matrix.tranche }}.json
+        run: |
+          MODULES=$(python tools/tranches_ihm.py ${{ matrix.tranche }} ${{ env.TRANCHES_IHM }})
+          python -m pytest $MODULES -q
+
+      - name: Conserver le relevé de la tranche
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: couverture-interface-${{ matrix.tranche }}
+          path: output/tranche-${{ matrix.tranche }}.json
+          if-no-files-found: error
+
+  couverture-interface:
+    name: Couverture de l'interface, tranches réunies
+    runs-on: ubuntu-24.04
+    needs: interface
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Installer les dépendances figées
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Récupérer les relevés de tranches
+        uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
+        with:
+          pattern: couverture-interface-*
+          path: tranches
+          merge-multiple: true
+
+      # La réunion écrit le relevé **après** le checkout : il est donc plus
+      # récent que les fichiers qu'il mesure, et le contrôle de fraîcheur —
+      # qui refuse un relevé plus vieux que le code — est satisfait par
+      # construction plutôt que par chance.
+      - name: Réunir les tranches et opposer le seuil
+        run: |
+          python couverture_frontend.py \
+            --fusionner tranches/tranche-*.json \
+            --releve output/couverture_frontend.json \
+            --seuil 100
+
+      - name: Opposer le contrôle de non-régression
+        run: |
+          test -s output/couverture_frontend.json || {
+            echo "::error::Relevé d'interface absent : la réunion n'a rien produit."
+            exit 1
+          }
+          python -m pytest tests/test_couverture.py -q -k "javascript"
+
+      - name: Conserver le relevé réuni
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: couverture-interface
+          path: output/couverture_frontend.json
+          if-no-files-found: warn
+
+  page:
+    name: La page autonome, reconstruite et confrontée
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: pip
+          cache-dependency-path: requirements-dev.txt
+
+      - name: Installer les dépendances figées
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Installer le navigateur
+        run: python -m playwright install --with-deps chromium
+
+      # Le garde-fou qui rend « iso » opposable. La page est du code du
+      # produit, copié : si elle n'est pas reconstruite quand le frontend
+      # change, elle sert un écran d'une version précédente — et aucun test ne
+      # le dit. La construction est reproductible (archive triée, date figée),
+      # donc une reconstruction identique est une comparaison valable.
+      - name: Reconstruire la page et refuser toute dérive
+        run: |
+          python tools/construire_la_page.py --racine . --destination pages
+          if ! git diff --quiet -- pages; then
+            echo "::error::La page publiée ne correspond plus au produit. Relancer python tools/construire_la_page.py --racine . --destination pages puis committer pages/."
+            git diff --stat -- pages
+            exit 1
+          fi
+
+      # Sans navigateur, et immédiat : le contrat du pont — redirections,
+      # multipart, corps binaires, disque durable, la clé hors du stockage.
+      - name: Banc du pont
+        run: node pages/banc/pont.mjs
+
+      - name: Banc du modèle
+        run: python pages/banc/modele.py
+
+      - name: Banc de la persistance
+        run: python pages/banc/persistance.py
+
+      # Celui qui décide : le même parcours par les écrans, dans la page et
+      # sur le produit natif, puis chaque chiffre confronté.
+      - name: Banc iso — page contre natif
+        run: python pages/banc/iso.py deux
+
+      - name: Conserver les relevés du banc iso
+        if: always()
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
+        with:
+          name: banc-iso
+          path: /tmp/iso-releves
+          if-no-files-found: warn

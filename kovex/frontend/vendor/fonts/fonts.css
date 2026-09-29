@@ -1,0 +1,71 @@
+/*
+ * Polices servies localement.
+ * Elles etaient chargees depuis fonts.googleapis.com, ce qui rendait la mise en
+ * page dependante d'un acces internet et transmettait l'adresse IP de chaque
+ * utilisateur a un tiers. Seules les graisses latines utilisees par le theme
+ * sont embarquees.
+ */
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 300;
+    src: url('./files/outfit-latin-300-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url('./files/outfit-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: url('./files/outfit-latin-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src: url('./files/outfit-latin-600-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'Outfit';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: url('./files/outfit-latin-700-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url('./files/jetbrains-mono-latin-400-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 500;
+    src: url('./files/jetbrains-mono-latin-500-normal.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-display: swap;
+    font-weight: 600;
+    src: url('./files/jetbrains-mono-latin-600-normal.woff2') format('woff2');
+}

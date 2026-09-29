@@ -1,0 +1,38 @@
+{
+  "libelles": {
+    "fr": "Wavestone sobre",
+    "en": "Wavestone subdued",
+    "de": "Wavestone dezent"
+  },
+  "logo": "logo.png",
+  "variantes": {
+    "dark": {
+      "sidebar-fond-haut": "#250f6b",
+      "sidebar-fond-bas": "#150836",
+      "sidebar-encre": "#ffffff",
+      "sidebar-encre-attenuee": "#c7bbee",
+      "accent-primary": "#451dc7",
+      "accent-secondary": "#4682b4",
+      "chart-coverage": "#04f06a",
+      "chart-roles": "#4682b4",
+      "chart-over-granted": "#ff2a49",
+      "encre-primary": "#a28ee3",
+      "border-focus": "#a28ee3",
+      "input-focus-border": "#a28ee3"
+    },
+    "light": {
+      "sidebar-fond-haut": "#250f6b",
+      "sidebar-fond-bas": "#150836",
+      "sidebar-encre": "#ffffff",
+      "sidebar-encre-attenuee": "#c7bbee",
+      "accent-primary": "#451dc7",
+      "accent-secondary": "#4682b4",
+      "chart-coverage": "#04f06a",
+      "chart-roles": "#4682b4",
+      "chart-over-granted": "#ff2a49",
+      "encre-primary": "#451dc7",
+      "border-focus": "#451dc7",
+      "input-focus-border": "#451dc7"
+    }
+  }
+}

@@ -1,0 +1,45 @@
+{
+    "files": {
+        "identities": {
+            "path": "",
+            "delimiter": ";",
+            "encoding": "utf-8",
+            "id_column": "",
+            "app_id_column": "",
+            "user_id_column": "",
+            "right_id_column": ""
+        },
+        "applications": {
+            "path": "",
+            "delimiter": ";",
+            "encoding": "utf-8",
+            "id_column": "",
+            "app_id_column": "",
+            "user_id_column": "",
+            "right_id_column": ""
+        },
+        "rights": {
+            "path": "",
+            "delimiter": ";",
+            "encoding": "utf-8",
+            "id_column": "",
+            "app_id_column": "",
+            "user_id_column": "",
+            "right_id_column": ""
+        },
+        "habs": {
+            "path": "",
+            "delimiter": ";",
+            "encoding": "utf-8",
+            "id_column": "",
+            "app_id_column": "",
+            "user_id_column": "",
+            "right_id_column": ""
+        }
+    },
+    "mining_min_users": 3,
+    "mining_min_rights": 2,
+    "health_threshold_alert": 10.0,
+    "health_threshold_critical": 50.0,
+    "mining_attribute_max_cardinality_ratio": 0.5
+}

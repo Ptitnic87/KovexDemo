@@ -2,7 +2,7 @@
 REM ===========================================================================
 REM Kovex - Plateforme de demonstration
 REM Remet les espaces de demonstration dans leur etat fige, dates du jour,
-REM puis lance le Kovex du sous-module kovex\. Ce qu'une seance precedente a
+REM puis lance le Kovex copie dans kovex\. Ce qu'une seance precedente a
 REM valide ou supprime disparait ; la cle du modele, posee une fois sur ce
 REM serveur, reste.
 REM Les arguments sont passes a restaurer.py (ex. : --actif Alvea_ATELIER).
@@ -12,7 +12,7 @@ cd /d "%~dp0"
 if "%KOVEX_API_PORT%"=="" set KOVEX_API_PORT=8000
 
 if not exist kovex\run_api.py (
-    echo [ERREUR] Kovex est absent de kovex\ : git submodule update --init,
+    echo [ERREUR] Kovex est absent de kovex\ : python mettre_a_jour_kovex.py,
     echo          ou utilisez l'archive produite par empaqueter.py.
     pause
     exit /b 1

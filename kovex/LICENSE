@@ -1,0 +1,130 @@
+Kovex — Licence propriétaire
+Copyright (c) 2025-2026 Nicolas Cudon. Tous droits réservés.
+
+Version française. Une traduction anglaise, fournie à titre indicatif, suit ce
+texte. En cas de divergence, la version française prévaut.
+
+--------------------------------------------------------------------------------
+
+1. TITULARITÉ
+
+Le présent logiciel — code source, code objet, documentation, jeux de tests,
+éléments graphiques et tout autre élément contenu dans ce dépôt, ci-après « le
+Logiciel » — est l'œuvre de Nicolas Cudon, qui en est seul titulaire des droits
+patrimoniaux et moraux.
+
+Les bibliothèques tierces distribuées avec le Logiciel ne sont pas couvertes par
+la présente licence : elles restent régies par leurs licences respectives,
+énumérées dans le fichier NOTICE et reproduites aux emplacements qu'il indique.
+
+2. AUCUNE CONCESSION IMPLICITE
+
+Aucun droit d'utilisation, de reproduction, de modification, de traduction,
+d'adaptation, de distribution, de mise à disposition ni d'exploitation
+quelconque du Logiciel n'est concédé par le seul fait d'y avoir accès.
+
+L'accès au dépôt, la remise d'une copie, la participation à un développement ou
+l'exécution du Logiciel dans un cadre professionnel ne valent pas concession de
+droits. Toute concession de droits sur le Logiciel résulte exclusivement d'une
+convention écrite, signée par le titulaire, désignant nommément le
+bénéficiaire, l'étendue des droits concédés, leur durée et leurs conditions.
+
+3. INTERDICTIONS
+
+Sont notamment interdits, sauf autorisation écrite préalable du titulaire :
+
+  a. la reproduction du Logiciel, en tout ou partie, sur quelque support que ce
+     soit, au-delà des copies techniques nécessaires à un usage expressément
+     autorisé ;
+  b. sa modification, sa décompilation et son ingénierie inverse, hors des cas
+     où la loi les autorise impérativement ;
+  c. sa distribution, sa revente, sa location, son prêt, sa mise à disposition
+     d'un tiers, y compris sous forme de service ;
+  d. l'usage de tout ou partie du Logiciel pour concevoir un produit concurrent ;
+  e. la suppression ou l'altération des mentions de titularité portées par le
+     Logiciel ou par le présent fichier.
+
+4. MARQUE
+
+« Kovex » et les éléments d'identité visuelle associés ne sont pas concédés par
+la présente licence. Aucun droit d'usage du nom ou de la marque n'est accordé,
+y compris à un bénéficiaire d'une convention portant sur le Logiciel, sauf
+stipulation expresse de cette convention.
+
+5. DONNÉES
+
+Le Logiciel traite des données fournies par son utilisateur. Ces données restent
+la propriété de celui qui les fournit ; le titulaire du Logiciel n'y a aucun
+droit et n'y accède pas. Réciproquement, l'utilisateur est seul responsable de
+la licéité des données qu'il traite, notamment au regard de la réglementation
+applicable aux données à caractère personnel.
+
+6. ABSENCE DE GARANTIE
+
+LE LOGICIEL EST FOURNI « EN L'ÉTAT », SANS GARANTIE D'AUCUNE SORTE, EXPRESSE OU
+IMPLICITE, NOTAMMENT SANS GARANTIE DE QUALITÉ MARCHANDE, D'ADÉQUATION À UN
+USAGE PARTICULIER OU D'ABSENCE DE CONTREFAÇON. LE TITULAIRE NE SAURAIT ÊTRE
+TENU RESPONSABLE D'UN DOMMAGE, DIRECT OU INDIRECT, RÉSULTANT DE L'USAGE OU DE
+L'IMPOSSIBILITÉ D'USAGE DU LOGICIEL.
+
+Les résultats produits par le Logiciel — notamment les rôles proposés et les
+mesures qui les accompagnent — sont des éléments d'aide à la décision. Ils ne
+se substituent pas au jugement de la gouvernance qui les examine.
+
+7. DROIT APPLICABLE
+
+La présente licence est soumise au droit français. Tout litige relève des
+juridictions françaises compétentes.
+
+Contact : nicolas.cudon@gmail.com
+
+--------------------------------------------------------------------------------
+
+ENGLISH TRANSLATION — FOR INFORMATION ONLY
+
+Kovex — Proprietary licence
+Copyright (c) 2025-2026 Nicolas Cudon. All rights reserved.
+
+1. OWNERSHIP. This software — source code, object code, documentation, test
+suites, graphical elements and every other item contained in this repository,
+hereafter "the Software" — is the work of Nicolas Cudon, its sole owner. Third
+party libraries distributed with the Software are not covered by this licence
+and remain governed by their own, listed in the NOTICE file.
+
+2. NO IMPLIED GRANT. No right to use, reproduce, modify, translate, adapt,
+distribute, make available or otherwise exploit the Software is granted by the
+mere fact of having access to it. Access to the repository, receipt of a copy,
+participation in development or execution of the Software in a professional
+setting do not constitute a grant of rights. Any grant results exclusively from
+a written agreement signed by the owner, naming the beneficiary, the scope of
+the rights granted, their duration and their conditions.
+
+3. PROHIBITIONS. Without the owner's prior written authorisation, the following
+are prohibited: reproduction beyond the technical copies required by an
+expressly authorised use; modification, decompilation and reverse engineering,
+save where mandatorily permitted by law; distribution, resale, rental, lending
+or provision to a third party, including as a service; use of any part of the
+Software to design a competing product; removal or alteration of ownership
+notices.
+
+4. TRADEMARK. "Kovex" and the associated visual identity are not granted by
+this licence, including to the beneficiary of an agreement covering the
+Software, unless that agreement expressly says so.
+
+5. DATA. The Software processes data supplied by its user, which remains the
+property of whoever supplies it; the owner of the Software has no right to it
+and does not access it. The user is solely responsible for the lawfulness of
+the data processed, in particular under applicable personal data regulations.
+
+6. NO WARRANTY. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING WITHOUT LIMITATION THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. THE
+OWNER SHALL NOT BE LIABLE FOR ANY DIRECT OR INDIRECT DAMAGE ARISING FROM THE
+USE OR THE INABILITY TO USE THE SOFTWARE. The results produced by the Software
+are decision-support material; they do not replace the judgement of the
+governance that reviews them.
+
+7. GOVERNING LAW. This licence is governed by French law. Any dispute falls
+under the competent French courts.
+
+Contact: nicolas.cudon@gmail.com

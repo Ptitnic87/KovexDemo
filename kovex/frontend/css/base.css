@@ -1,0 +1,437 @@
+/* ==========================================================================
+   Base Styles - Reset & Foundations
+   ========================================================================== */
+
+/* ===== CSS Reset ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    /* 100 %, pas 16px. Une racine en pixels écrase la taille de texte que
+       l'utilisateur a réglée dans son navigateur : toute l'échelle est en
+       `rem`, elle ne servait donc qu'à annuler cette préférence. Critère
+       RGAA 10.4. La valeur rendue est identique par défaut. */
+    font-size: 100%;
+    -webkit-text-size-adjust: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+}
+
+body {
+    font-family: var(--font-family-display);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-normal);
+    line-height: var(--line-height-normal);
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    /* Les valeurs affichées viennent des fichiers du client : un identifiant
+       de droit, un nom d'application, une URL peuvent être une longue chaîne
+       sans espace. Sans coupure autorisée, elle sort de son conteneur et fait
+       défiler la page — un débordement qui ne dépend pas de la mise en page
+       mais de la donnée, donc qu'aucune largeur ne rattrape. */
+    overflow-wrap: break-word;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* ===== Typography Base ===== */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-family-display);
+    font-weight: var(--font-weight-semibold);
+    line-height: var(--line-height-tight);
+    color: var(--text-primary);
+}
+
+h1 { font-size: var(--font-size-3xl); }
+h2 { font-size: var(--font-size-2xl); }
+h3 { font-size: var(--font-size-xl); }
+h4 { font-size: var(--font-size-lg); }
+h5 { font-size: var(--font-size-md); }
+h6 { font-size: var(--font-size-base); }
+
+p {
+    margin-bottom: var(--space-4);
+}
+
+a {
+    color: var(--encre-primary);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--color-primary-400);
+}
+
+/* ===== Lists ===== */
+ul, ol {
+    list-style: none;
+}
+
+/* ===== Media ===== */
+img, svg, video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* ===== Form Elements ===== */
+button, input, select, textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    color: inherit;
+}
+
+button {
+    cursor: pointer;
+    background: none;
+    border: none;
+}
+
+input, select, textarea {
+    background-color: var(--input-bg);
+    border: 1px solid var(--input-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: var(--input-focus-border);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent-primary) 15%, transparent);
+}
+
+input::placeholder, textarea::placeholder {
+    color: var(--text-muted);
+}
+
+/* ===== Tables ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ===== Selection ===== */
+::selection {
+    background-color: var(--color-primary-500);
+    color: var(--color-neutral-0);
+}
+
+/* ===== Scrollbar ===== */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-full);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border-primary);
+    border-radius: var(--radius-full);
+    transition: background var(--transition-fast);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text-tertiary);
+}
+
+/* Firefox scrollbar */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: var(--border-primary) var(--bg-secondary);
+}
+
+/* ===== Focus Visible =====
+
+   L'anneau doit tenir 3:1 face à la surface qu'il borde, sur toutes les
+   surfaces du thème. `--accent-primary` a changé de métier — il porte
+   désormais du texte blanc, donc il s'est assombri, et il tombait à 2,52:1
+   sur une surface tertiaire sombre. `--border-focus` est le jeton dont c'est
+   le seul métier. */
+:focus-visible {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+/* ===== Lien d'évitement =====
+
+   Il n'apparaît qu'au clavier. Le sortir de l'écran plutôt que le masquer est
+   la seule façon de le garder dans l'ordre de tabulation : `display: none` ou
+   `visibility: hidden` le retireraient du parcours, et il ne servirait alors
+   à personne. Critère RGAA 12.7. */
+.lien-evitement {
+    position: absolute;
+    left: var(--space-4);
+    top: calc(-1 * var(--space-20));
+    z-index: var(--z-loader);
+    padding: var(--space-3) var(--space-5);
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    border: 1px solid var(--border-focus);
+    border-radius: var(--radius-md);
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-medium);
+    text-decoration: none;
+    transition: top var(--transition-fast);
+}
+
+.lien-evitement:focus {
+    top: var(--space-4);
+}
+
+/* La cible du lien reçoit le focus pour que la lecture reprenne là. L'anneau
+   n'a pas lieu d'être sur une région entière : ce n'est pas une commande. */
+.main-content:focus {
+    outline: none;
+}
+
+/* ===== Utility Classes ===== */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+.truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.text-mono {
+    font-family: var(--font-family-mono);
+}
+
+.text-muted {
+    color: var(--text-secondary);
+}
+
+.text-success { color: var(--encre-success); }
+.text-warning { color: var(--encre-warning); }
+.text-danger { color: var(--encre-danger); }
+.text-info { color: var(--encre-info); }
+
+/* ===== Loader Overlay ===== */
+.loader-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: var(--z-loader);
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-logo {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto var(--space-6);
+    color: var(--encre-primary);
+}
+
+.loader-icon {
+    width: 100%;
+    height: 100%;
+}
+
+.loader-circle {
+    stroke-dasharray: 175;
+    stroke-dashoffset: 175;
+    animation: loader-circle 2s ease-in-out infinite;
+}
+
+.loader-hand {
+    transform-origin: 30px 30px;
+    animation: loader-hand 2s linear infinite;
+}
+
+@keyframes loader-circle {
+    0% { stroke-dashoffset: 175; }
+    50% { stroke-dashoffset: 0; }
+    100% { stroke-dashoffset: -175; }
+}
+
+@keyframes loader-hand {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loader-text {
+    font-size: var(--font-size-md);
+    color: var(--text-secondary);
+    margin-bottom: var(--space-4);
+}
+
+.loader-progress {
+    width: 200px;
+    height: 4px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-full);
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+.loader-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--color-primary-500), var(--color-secondary-500));
+    border-radius: var(--radius-full);
+    animation: loader-progress 2s ease-in-out infinite;
+}
+
+@keyframes loader-progress {
+    0% { width: 0; transform: translateX(0); }
+    50% { width: 100%; transform: translateX(0); }
+    100% { width: 100%; transform: translateX(100%); }
+}
+
+/* ===== Loading Spinner ===== */
+.loading-spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--border-primary);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+.loading-spinner.sm {
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+}
+
+.loading-spinner.lg {
+    width: 40px;
+    height: 40px;
+    border-width: 4px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ===== Stat Loading ===== */
+.stat-loading {
+    display: inline-block;
+    width: 60px;
+    height: 24px;
+    background: linear-gradient(90deg, var(--bg-tertiary) 25%, var(--bg-hover) 50%, var(--bg-tertiary) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--space-12);
+    text-align: center;
+    color: var(--text-secondary);
+}
+
+.empty-state.mini {
+    padding: var(--space-6);
+}
+
+.empty-state-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-xl);
+    margin-bottom: var(--space-4);
+    color: var(--text-tertiary);
+}
+
+.empty-state-icon i {
+    font-size: var(--font-size-2xl);
+}
+
+.empty-state :is(h2, h3, h4) {
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.empty-state p {
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    max-width: 300px;
+    margin: 0;
+}
+
+/* L'attribut `hidden` doit l'emporter sur toute règle d'affichage.
+
+   `[hidden]` vaut `display: none` par la feuille du navigateur, dont la
+   spécificité est nulle : la moindre classe qui pose `display: flex` la
+   supprime. Un bloc d'actions marqué caché restait donc visible, et le
+   produit proposait un bouton qu'il venait de déclarer indisponible. */
+[hidden] {
+    display: none !important;
+}
+
+/* Espacements utilitaires, sur l'échelle des jetons.
+
+   Le gabarit employait `mb-2`, `mb-4`, `mt-4`, `mt-5` et `pt-3` sans qu'aucune
+   feuille ne les définisse : l'espace prévu ne s'appliquait nulle part, et
+   les blocs se touchaient — un bandeau collé au champ suivant, un bouton
+   collé aux résultats qu'il venait de produire. Un test interdit désormais
+   d'employer une classe utilitaire qui n'est pas écrite ici. */
+.mt-0 { margin-top: var(--space-0); }
+.mt-1 { margin-top: var(--space-1); }
+.mt-2 { margin-top: var(--space-2); }
+.mt-3 { margin-top: var(--space-3); }
+.mt-4 { margin-top: var(--space-4); }
+.mt-5 { margin-top: var(--space-5); }
+.mt-6 { margin-top: var(--space-6); }
+.mb-0 { margin-bottom: var(--space-0); }
+.mb-1 { margin-bottom: var(--space-1); }
+.mb-2 { margin-bottom: var(--space-2); }
+.mb-3 { margin-bottom: var(--space-3); }
+.mb-4 { margin-bottom: var(--space-4); }
+.mb-5 { margin-bottom: var(--space-5); }
+.mb-6 { margin-bottom: var(--space-6); }
+.pt-1 { padding-top: var(--space-1); }
+.pt-2 { padding-top: var(--space-2); }
+.pt-3 { padding-top: var(--space-3); }
+.pt-4 { padding-top: var(--space-4); }
+.ms-2 { margin-inline-start: var(--space-2); }
+.ms-3 { margin-inline-start: var(--space-3); }

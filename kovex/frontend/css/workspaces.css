@@ -1,0 +1,737 @@
+/**
+ * PyGIA - Workspaces CSS
+ * Styles pour le sélecteur de workspace et la page de gestion
+ */
+
+/* ============================================
+   WORKSPACE SELECTOR (Topbar)
+   ============================================ */
+
+.workspace-selector {
+    position: relative;
+    margin-right: var(--space-4, 1rem);
+}
+
+.workspace-dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2, 0.5rem);
+    padding: var(--space-2, 0.5rem) var(--space-4, 1rem);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-primary);
+    border-radius: var(--radius-md, 0.5rem);
+    color: var(--text-primary);
+    font-size: var(--font-size-sm, 0.875rem);
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+    min-width: min(200px, 100%);
+}
+
+.workspace-dropdown-toggle:hover {
+    background: var(--bg-hover);
+    border-color: var(--accent-primary);
+}
+
+.workspace-dropdown-toggle i.fa-briefcase {
+    color: var(--encre-primary);
+    font-size: 1rem;
+}
+
+.workspace-dropdown-toggle i.fa-chevron-down {
+    margin-left: auto;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    transition: transform var(--transition-fast, 0.15s ease);
+}
+
+.workspace-dropdown-toggle.open i.fa-chevron-down {
+    transform: rotate(180deg);
+}
+
+#current-workspace-name {
+    flex: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Dropdown Menu */
+.workspace-dropdown-menu {
+    position: absolute;
+    top: calc(100% + var(--space-2, 0.5rem));
+    left: 0;
+    min-width: min(320px, 100%);
+    max-width: 400px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg, 0.75rem);
+    box-shadow: var(--shadow-xl, 0 20px 25px -5px rgba(0, 0, 0, 0.3));
+    z-index: var(--z-dropdown, 1000);
+    max-height: 500px;
+    overflow: hidden;
+    display: none;
+}
+
+.workspace-menu-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3, 0.75rem) var(--space-4, 1rem);
+    border-bottom: 1px solid var(--border-secondary);
+    background: var(--bg-tertiary);
+}
+
+.workspace-menu-header :is(h3, h4) {
+    font-size: var(--font-size-sm, 0.875rem);
+    font-weight: var(--font-weight-semibold, 600);
+    color: var(--text-secondary);
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.workspace-menu-header .btn-icon {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--accent-primary);
+    border: none;
+    border-radius: var(--radius-md, 0.5rem);
+    color: white;
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+.workspace-menu-header .btn-icon:hover {
+    background: var(--color-primary-700);
+    transform: scale(1.05);
+}
+
+/* Workspace List */
+.workspace-list {
+    padding: var(--space-2, 0.5rem);
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+.workspace-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3, 0.75rem);
+    padding: var(--space-3, 0.75rem);
+    border-radius: var(--radius-md, 0.5rem);
+    cursor: pointer;
+    transition: all var(--transition-fast, 0.15s ease);
+    margin-bottom: var(--space-1, 0.25rem);
+    position: relative;
+}
+
+.workspace-item:hover {
+    background: var(--bg-hover);
+}
+
+.workspace-item.active {
+    background: color-mix(in srgb, var(--accent-primary) 15%, transparent);
+    border-left: 3px solid var(--accent-primary);
+    padding-left: calc(var(--space-3, 0.75rem) - 3px);
+}
+
+.workspace-icon {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md, 0.5rem);
+    font-size: var(--font-size-lg, 1.125rem);
+    color: var(--encre-primary);
+    flex-shrink: 0;
+}
+
+.workspace-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.workspace-name {
+    font-weight: var(--font-weight-medium, 500);
+    font-size: var(--font-size-sm, 0.875rem);
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.workspace-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2, 0.5rem);
+    font-size: var(--font-size-xs, 0.75rem);
+    color: var(--text-muted);
+    margin-top: var(--space-1, 0.25rem);
+}
+
+.workspace-badge {
+    padding: 2px 8px;
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-sm, 0.25rem);
+    font-size: var(--font-size-xs);
+    font-weight: var(--font-weight-bold, 700);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.workspace-badge.dev {
+    background: color-mix(in srgb, var(--accent-primary) 20%, transparent);
+    color: var(--color-info-400);
+}
+
+.workspace-badge.prod {
+    background: color-mix(in srgb, var(--accent-success) 20%, transparent);
+    color: var(--color-success-400);
+}
+
+.workspace-badge.test {
+    background: color-mix(in srgb, var(--accent-warning) 20%, transparent);
+    color: var(--color-warning-400);
+}
+
+.workspace-badge.uat {
+    background: color-mix(in srgb, var(--accent-info) 20%, transparent);
+    color: var(--encre-info);
+}
+
+.workspace-stats {
+    color: var(--text-muted);
+}
+
+.workspace-active-check {
+    color: var(--color-success-400);
+    font-size: 0.875rem;
+}
+
+/* Empty State */
+.workspace-empty {
+    padding: var(--space-6, 1.5rem);
+    text-align: center;
+    color: var(--text-muted);
+}
+
+.workspace-empty i {
+    font-size: 2rem;
+    margin-bottom: var(--space-3, 0.75rem);
+    opacity: 0.5;
+}
+
+.workspace-empty p {
+    margin-bottom: var(--space-4, 1rem);
+    font-size: var(--font-size-sm, 0.875rem);
+}
+
+/* Menu Footer */
+.workspace-menu-footer {
+    padding: var(--space-3, 0.75rem);
+    border-top: 1px solid var(--border-secondary);
+    background: var(--bg-tertiary);
+}
+
+.workspace-menu-footer .btn {
+    width: 100%;
+    justify-content: center;
+}
+
+
+/* ============================================
+   CREATE WORKSPACE MODAL
+   ============================================ */
+
+#create-workspace-modal .modal {
+    max-width: 500px;
+}
+
+#create-workspace-modal .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4, 1rem);
+}
+
+@media (max-width: 600px) {
+    #create-workspace-modal .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* ============================================
+   WORKSPACES MANAGEMENT PAGE
+   ============================================ */
+
+.workspaces-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-6, 1.5rem);
+}
+
+.workspaces-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(350px, 100%), 1fr));
+    gap: var(--space-5, 1.25rem);
+}
+
+/* Workspace Card */
+.workspace-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-lg, 0.75rem);
+    overflow: hidden;
+    transition: all var(--transition-fast, 0.15s ease);
+}
+
+.workspace-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg, 0 10px 15px -3px rgba(0, 0, 0, 0.2));
+    border-color: var(--accent-primary);
+}
+
+.workspace-card.active {
+    border-color: var(--color-success-500);
+    box-shadow: 0 0 0 1px var(--color-success-500);
+}
+
+.workspace-card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4, 1rem);
+    padding: var(--space-4, 1rem);
+    background: var(--bg-tertiary);
+    border-bottom: 1px solid var(--border-secondary);
+}
+
+.workspace-card-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+    border-radius: var(--radius-md, 0.5rem);
+    color: white;
+    font-size: 1.25rem;
+}
+
+/* Couleur de l'icône selon l'environnement.
+ *
+ * Ces teintes étaient écrites en hexadécimal dans le JavaScript, en double
+ * des règles `.workspace-badge.dev` etc. ci-dessus. Un environnement inconnu
+ * garde le dégradé neutre défini par `.workspace-card-icon`. */
+.workspace-card-icon--dev {
+    background: color-mix(in srgb, var(--accent-primary) 20%, transparent);
+    color: var(--color-info-400);
+}
+
+.workspace-card-icon--prod {
+    background: color-mix(in srgb, var(--accent-success) 20%, transparent);
+    color: var(--color-success-400);
+}
+
+.workspace-card-icon--test {
+    background: color-mix(in srgb, var(--accent-warning) 20%, transparent);
+    color: var(--color-warning-400);
+}
+
+.workspace-card-icon--uat {
+    background: color-mix(in srgb, var(--accent-info) 20%, transparent);
+    color: var(--encre-info);
+}
+
+.workspace-card-title {
+    flex: 1;
+}
+
+.workspace-card-title h3 {
+    font-size: var(--font-size-lg, 1.125rem);
+    font-weight: var(--font-weight-semibold, 600);
+    color: var(--text-primary);
+    margin: 0 0 var(--space-1, 0.25rem) 0;
+}
+
+.workspace-card-title .workspace-client {
+    font-size: var(--font-size-sm, 0.875rem);
+    color: var(--text-secondary);
+}
+
+.workspace-card-status {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: var(--space-1, 0.25rem);
+}
+
+.workspace-card-status .active-badge {
+    padding: var(--space-1, 0.25rem) var(--space-2, 0.5rem);
+    background: color-mix(in srgb, var(--accent-success) 20%, transparent);
+    color: var(--color-success-400);
+    font-size: var(--font-size-xs, 0.75rem);
+    font-weight: var(--font-weight-bold, 700);
+    border-radius: var(--radius-full, 9999px);
+    text-transform: uppercase;
+}
+
+.workspace-card-body {
+    padding: var(--space-4, 1rem);
+}
+
+.workspace-card-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-3, 0.75rem);
+    margin-bottom: var(--space-4, 1rem);
+}
+
+.workspace-stat {
+    text-align: center;
+    padding: var(--space-3, 0.75rem);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md, 0.5rem);
+}
+
+.workspace-stat-value {
+    display: block;
+    font-size: var(--font-size-xl, 1.25rem);
+    font-weight: var(--font-weight-bold, 700);
+    color: var(--encre-primary);
+    font-family: var(--font-family-mono, monospace);
+}
+
+.workspace-stat-label {
+    font-size: var(--font-size-xs, 0.75rem);
+    color: var(--text-muted);
+    margin-top: var(--space-1, 0.25rem);
+}
+
+/* La carte n'a pas de corps : l'environnement, les compteurs et les dates
+   en sont des enfants directs. Chacun porte donc sa propre marge — sans elle,
+   ils collaient au bord gauche de la carte. */
+.workspace-card-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--space-3, 0.75rem);
+    font-size: var(--font-size-xs, 0.75rem);
+    color: var(--text-muted);
+    padding: var(--space-3, 0.75rem) var(--space-4, 1rem);
+}
+
+.workspace-card-stats .stat-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1, 0.25rem);
+    min-width: 0;
+    padding: var(--space-3, 0.75rem);
+    background: var(--bg-tertiary);
+    border-radius: var(--radius-md, 0.5rem);
+}
+
+.workspace-card-stats .stat-item i { color: var(--encre-primary); }
+
+.workspace-card-stats .stat-value {
+    font-size: var(--font-size-xl, 1.25rem);
+    font-weight: var(--font-weight-bold, 700);
+    font-variant-numeric: tabular-nums;
+}
+
+.workspace-card-stats .stat-label {
+    font-size: var(--font-size-xs, 0.75rem);
+    color: var(--text-muted);
+}
+
+/* Trois compteurs — identités, applications, droits —, et non quatre. */
+.workspace-card .workspace-card-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    padding: 0 var(--space-4, 1rem);
+}
+
+.workspace-card-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1, 0.25rem);
+    padding: 0 var(--space-4, 1rem) var(--space-4, 1rem);
+    font-size: var(--font-size-sm, 0.875rem);
+    color: var(--text-secondary);
+}
+
+.workspace-card-info .info-item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2, 0.5rem);
+}
+
+/* Les boutons passent à la ligne plutôt que de couper leur libellé :
+   « Importer » se lisait « Importe ». */
+.workspace-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2, 0.5rem);
+    padding: var(--space-4, 1rem);
+    background: var(--bg-tertiary);
+    border-top: 1px solid var(--border-secondary);
+}
+
+.workspace-card-actions .btn {
+    flex: 1 1 auto;
+    white-space: nowrap;
+}
+
+/* La suppression n'a qu'une icône : elle garde sa taille au lieu de
+   s'étirer sur toute une ligne. */
+.workspace-card-actions .btn-danger { flex: 0 0 auto; }
+
+
+/* ============================================
+   SWITCHING OVERLAY
+   ============================================ */
+
+#workspace-switching-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.switching-loader {
+    text-align: center;
+    color: white;
+}
+
+.switching-loader .loading-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid var(--voile-clair-fort);
+    border-top-color: var(--accent-primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto var(--space-4, 1rem);
+}
+
+.switching-loader p {
+    font-size: var(--font-size-lg, 1.125rem);
+    margin: 0;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+    .workspace-selector {
+        margin-right: var(--space-2, 0.5rem);
+    }
+    
+    .workspace-dropdown-toggle {
+        min-width: auto;
+        padding: var(--space-2, 0.5rem);
+    }
+    
+    #current-workspace-name {
+        display: none;
+    }
+    
+    .workspace-dropdown-toggle i.fa-chevron-down {
+        display: none;
+    }
+    
+    .workspace-dropdown-menu {
+        position: fixed;
+        top: var(--topbar-height, 64px);
+        left: 0;
+        right: 0;
+        min-width: auto;
+        max-width: none;
+        border-radius: 0;
+        border-left: none;
+        border-right: none;
+    }
+    
+    .workspaces-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .workspace-card-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+
+/* Voile affiché pendant un changement de workspace.
+ *
+ * Il était construit par une chaîne de styles en ligne dans le JavaScript,
+ * couleur et profondeur comprises — donc hors du thème, et invisible pour
+ * qui cherche d'où vient l'écran noir. */
+.workspace-switching-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: var(--z-modal-backdrop, 9999);
+}
+
+.workspace-switching-overlay__contenu {
+    text-align: center;
+    color: var(--text-primary);
+}
+
+.workspace-switching-overlay__contenu .loading-spinner {
+    margin: 0 auto var(--space-4, 1rem);
+}
+
+.workspace-switching-overlay__contenu p {
+    margin: 0;
+    font-size: var(--font-size-sm, 0.875rem);
+}
+
+.workspace-active-check {
+    color: var(--color-success-500);
+}
+
+
+/* ==========================================================================
+   Choix du thème d'un workspace
+   ========================================================================== */
+
+.theme-choix-groupe {
+    border: 0;
+    margin: 0 0 var(--space-4);
+    padding: 0;
+}
+
+.theme-choix {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-2);
+    padding: var(--space-3);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    cursor: pointer;
+}
+
+.theme-choix:hover {
+    background: var(--bg-hover);
+}
+
+/* Le focus se pose sur le bouton radio, qui est à l'intérieur de l'étiquette :
+   sans `:focus-within`, la cible cliquable ne montrait jamais qu'elle avait le
+   focus, alors que c'est elle qu'on voit. */
+.theme-choix:focus-within {
+    outline: 2px solid var(--border-focus);
+    outline-offset: 2px;
+}
+
+.theme-choix__libelle {
+    flex: 1;
+    color: var(--text-primary);
+}
+
+.theme-choix__teintes {
+    display: flex;
+    gap: var(--space-1);
+}
+
+/* Aperçu des teintes du thème. Décoratif : le thème est désigné par son nom,
+   jamais par sa couleur seule — une pastille ne se lit pas. */
+.theme-choix__teinte {
+    width: 16px;
+    height: 16px;
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-sm);
+}
+
+.theme-refus-groupe {
+    margin-top: var(--space-4);
+}
+
+.theme-refus-liste {
+    margin: var(--space-2) 0 0;
+    padding-left: var(--space-5);
+}
+
+.theme-refus {
+    color: var(--encre-warning);
+    /* Le motif d'un refus de contraste énumère les paires fautives, une par
+       ligne : les retours à la ligne du message doivent être rendus. */
+    white-space: pre-line;
+}
+
+
+/* ===== Import : ce que contiennent les fichiers =====
+   Kovex ne connaît pas les colonnes à l'avance. Il lit un extrait, montre ce
+   qu'il y a vu, et la personne confirme — rien n'est deviné en silence. */
+.import-correspondance {
+    margin-top: var(--space-4);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+}
+
+.import-correspondance[hidden] {
+    display: none;
+}
+
+.import-fichier {
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-4);
+}
+
+.import-fichier h3 {
+    font-size: var(--font-size-sm);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--space-2);
+}
+
+.import-apercu {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--font-size-xs);
+    margin-top: var(--space-3);
+    display: block;
+    overflow-x: auto;
+}
+
+.import-apercu caption {
+    text-align: left;
+    color: var(--text-muted);
+    padding-bottom: var(--space-2);
+}
+
+.import-apercu th,
+.import-apercu td {
+    border: 1px solid var(--border-secondary);
+    padding: var(--space-1) var(--space-2);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.import-apercu th {
+    color: var(--text-secondary);
+    font-weight: var(--font-weight-semibold);
+}

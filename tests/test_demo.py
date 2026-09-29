@@ -2,8 +2,7 @@
 
     python -m pytest tests -q
 
-Kovex doit être présent dans ``kovex/`` (``git submodule update --init``) : le
-réglage du modèle passe par ses lecteurs.
+Le réglage du modèle passe par les lecteurs de Kovex, copié dans ``kovex/``.
 """
 
 import io
@@ -217,3 +216,58 @@ def test_la_meme_version_passe(tmp_path):
     restaures, _, _ = restaurer.restaurer(racine, instantane, {"assistance": {}}, None,
                                           date(2026, 9, 28))
     assert restaures == ["X_DEMO"]
+
+
+def test_sans_fichier_ni_depot_la_version_est_inconnue(tmp_path):
+    """`git -C` remonterait au dépôt parent : il ne doit pas être consulté."""
+    assert restaurer.version_de_kovex(tmp_path) is None
+
+
+# -- la copie de Kovex ---------------------------------------------------------
+
+
+import subprocess  # noqa: E402
+
+import mettre_a_jour_kovex  # noqa: E402
+
+
+def _depot(tmp_path, fichiers):
+    depot = tmp_path / "source"
+    depot.mkdir()
+    for nom, contenu in fichiers.items():
+        (depot / nom).parent.mkdir(parents=True, exist_ok=True)
+        (depot / nom).write_text(contenu, encoding="utf-8")
+    for commande in (["init", "-q"], ["add", "-A"],
+                     ["-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "-m", "v"]):
+        subprocess.run(["git", "-C", str(depot)] + commande, check=True)
+    return depot
+
+
+def test_la_copie_ecarte_la_page_et_les_tests_et_note_la_version(tmp_path):
+    depot = _depot(tmp_path, {"run_api.py": "x", "src/a.py": "a",
+                              "pages/gros.whl": "w", "tests/t.py": "t", "page/p.js": "p"})
+    cible = tmp_path / "kovex"
+    complet = mettre_a_jour_kovex.mettre_a_jour(depot, "HEAD", cible)
+    assert (cible / "src" / "a.py").exists()
+    assert not (cible / "pages").exists() and not (cible / "tests").exists()
+    assert not (cible / "page").exists()
+    assert restaurer.version_de_kovex(cible) == complet
+
+
+def test_une_mise_a_jour_garde_ce_qui_vit_sur_le_serveur(tmp_path):
+    depot = _depot(tmp_path, {"run_api.py": "x", "src/ancien.py": "a"})
+    cible = tmp_path / "kovex"
+    mettre_a_jour_kovex.mettre_a_jour(depot, "HEAD", cible)
+    (cible / ".env").write_text("SECRET", encoding="utf-8")
+    (cible / "workspaces").mkdir()
+    (cible / "workspaces" / "w.json").write_text("{}", encoding="utf-8")
+    (depot / "src" / "ancien.py").unlink()
+    (depot / "src" / "nouveau.py").write_text("n", encoding="utf-8")
+    subprocess.run(["git", "-C", str(depot), "add", "-A"], check=True)
+    subprocess.run(["git", "-C", str(depot), "-c", "user.name=t", "-c", "user.email=t@t",
+                    "commit", "-q", "-m", "v2"], check=True)
+    mettre_a_jour_kovex.mettre_a_jour(depot, "HEAD", cible)
+    assert (cible / ".env").read_text(encoding="utf-8") == "SECRET"
+    assert (cible / "workspaces" / "w.json").exists()
+    assert not (cible / "src" / "ancien.py").exists()
+    assert (cible / "src" / "nouveau.py").exists()

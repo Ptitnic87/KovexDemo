@@ -1,0 +1,64 @@
+# Versions figées de l'exécution — les seules que la suite de tests a réellement
+# exécutées.
+#
+# `requirements.txt` ne pose que des bornes basses : il décrit ce que le code
+# exige, et convient au développement. Il ne convient pas à une installation.
+# Une résolution faite aujourd'hui à partir de ces bornes ramène reportlab 5.x
+# et starlette 1.6 — deux montées de version majeure qu'aucun test n'a jamais
+# exercées. Sur un serveur isolé, où l'on installe une fois à partir d'un
+# miroir, l'écart ne se découvre qu'en production.
+#
+# Installation d'un serveur :
+#
+#     pip install -r requirements.lock
+#
+# Régénération, après avoir mis à jour une borne dans `requirements.txt` et
+# vérifié que toute la suite passe :
+#
+#     python outils_verrou.py --ecrire
+#
+# Trois entrées dépendent de la plateforme, et toutes ne s'installent pas
+# partout : `uvloop` hors Windows, `colorama` et `tzdata` sous Windows.
+# `pandas` n'exige `tzdata` que sur Windows, où le système ne fournit pas de
+# base de fuseaux horaires ; relevé sous Linux, le verrou l'ignorait, et `pip`
+# en choisissait librement la version sur le poste cible. Ces deux lignes sont
+# les seules que la suite n'exécute pas — elles ne s'installent pas sur la
+# plateforme qui la fait tourner. Un verrou entièrement clos se régénère sur la
+# plateforme cible.
+#
+# `requirements-dev.txt` n'est pas figé : l'outillage de test ne part pas chez
+# le client.
+
+annotated-doc==0.0.5
+annotated-types==0.7.0
+anyio==4.13.0
+charset-normalizer==3.4.7
+click==8.3.3
+colorama==0.4.6 ; sys_platform == "win32"
+et-xmlfile==2.0.0
+fastapi==0.141.1
+h11==0.16.0
+httptools==0.8.0
+idna==3.13
+numpy==2.4.4
+openpyxl==3.1.5
+pandas==3.0.2
+pillow==12.2.0
+pydantic==2.13.3
+pydantic-core==2.46.3
+pyjwt==2.12.1
+python-dateutil==2.9.0.post0
+python-dotenv==1.2.2
+python-multipart==0.0.26
+pyyaml==6.0.3
+reportlab==4.4.10
+scipy==1.17.1
+six==1.17.0
+starlette==1.0.0
+typing-extensions==4.15.0
+typing-inspection==0.4.2
+tzdata==2026.3 ; sys_platform == "win32"
+uvicorn==0.46.0
+uvloop==0.22.1 ; sys_platform != "win32" and sys_platform != "cygwin" and platform_python_implementation != "PyPy"
+watchfiles==1.2.0
+websockets==17.1

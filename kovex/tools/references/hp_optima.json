@@ -1,0 +1,14 @@
+{
+  "source": "Nombres minimaux de rôles couvrant exactement chaque jeu HP, tels que les publie ConstrainedRM (MIT), PythonCode/PostProcessing/library.py, get_data_opt. Le jeu customer n'a pas d'optimum publié.",
+  "depot": "https://github.com/RoleMining/ConstrainedRM",
+  "optima": {
+    "americas_large": 398,
+    "americas_small": 178,
+    "apj": 453,
+    "domino": 20,
+    "emea": 34,
+    "fire1": 64,
+    "fire2": 10,
+    "hc": 14
+  }
+}

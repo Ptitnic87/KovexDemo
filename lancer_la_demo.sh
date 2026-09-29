@@ -3,7 +3,7 @@
 # Kovex - Plateforme de démonstration (serveur Linux)
 #
 # Remet les espaces de démonstration dans leur état figé, datés du jour, puis
-# lance l'API et l'interface du Kovex du sous-module kovex/. La clé du
+# lance l'API et l'interface du Kovex copié dans kovex/. La clé du
 # modèle, posée une fois sur ce serveur, reste.
 #
 # Les arguments sont passés à restaurer.py (ex. : --actif Alvea_ATELIER).
@@ -16,7 +16,7 @@ PYTHON="${PYTHON:-python3}"
 PORT_API="${KOVEX_API_PORT:-8000}"
 
 if [ ! -f kovex/run_api.py ]; then
-    echo "Kovex est absent de kovex/ : git submodule update --init, ou utilisez l'archive d'empaqueter.py." >&2
+    echo "Kovex est absent de kovex/ : python mettre_a_jour_kovex.py, ou utilisez l'archive d'empaqueter.py." >&2
     exit 1
 fi
 
