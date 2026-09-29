@@ -120,6 +120,63 @@ const WorkspacesPage = {
         }
         
         container.innerHTML = this.workspaces.map(ws => this.renderWorkspaceCard(ws)).join('');
+        this.poserLesLogos(container);
+    },
+
+    /** URL d'objet des logos posés sur les cartes, à révoquer au rendu suivant. */
+    adressesDesLogos: [],
+
+    /** Numéro du rendu en cours : un logo lu pour un rendu dépassé est jeté. */
+    rendu: 0,
+
+    /**
+     * Remplace l'icône d'une carte par le logo du thème de son espace.
+     *
+     * Une carte ne disait pas de quel client elle parlait autrement que par
+     * son nom : sur un écran qui en aligne dix, l'œil cherche une marque. Le
+     * logo est celui que le thème de l'espace porte déjà — le même que
+     * l'en-tête affiche pour l'espace actif —, lu par un appel authentifié et
+     * posé en URL d'objet, pour la même raison que là-bas : une balise
+     * `<img src>` vers l'API ne porte pas le jeton.
+     *
+     * Un espace sans thème, sur le thème d'origine ou dont le logo ne se lit
+     * pas garde son icône : une marque absente vaut mieux qu'une image brisée.
+     * Les adresses du rendu précédent sont révoquées ; un logo qui arrive
+     * après un nouveau rendu est révoqué aussitôt au lieu d'être posé sur une
+     * carte qui n'est plus affichée.
+     */
+    poserLesLogos(container) {
+        this.adressesDesLogos.forEach((adresse) => URL.revokeObjectURL(adresse));
+        this.adressesDesLogos = [];
+        this.rendu += 1;
+        const rendu = this.rendu;
+        const icones = container.querySelectorAll('.workspace-card-icon[data-logo-theme]');
+        return Promise.all(Array.from(icones).map(async (icone) => {
+            const carte = icone.closest('[data-workspace-id]');
+            if (!carte) return;
+            let contenu;
+            try {
+                contenu = await API.blob(
+                    `/workspaces/${encodeURIComponent(carte.dataset.workspaceId)}`
+                    + `/themes/${encodeURIComponent(icone.dataset.logoTheme)}/logo`);
+            } catch (erreur) {
+                return;
+            }
+            const adresse = URL.createObjectURL(contenu);
+            if (rendu !== this.rendu) {
+                URL.revokeObjectURL(adresse);
+                return;
+            }
+            this.adressesDesLogos.push(adresse);
+            const image = document.createElement('img');
+            image.className = 'workspace-card-logo';
+            image.src = adresse;
+            // Le nom de l'espace est écrit à côté : l'image n'ajoute rien à
+            // ce qu'un lecteur d'écran annonce déjà.
+            image.alt = '';
+            icone.replaceChildren(image);
+            icone.classList.add('workspace-card-icon--logo');
+        }));
     },
     
     /**
@@ -133,11 +190,14 @@ const WorkspacesPage = {
         // définitions de la même couleur finissent toujours par diverger.
         const environnement = ws.environment || '';
         const classeEnv = environnement.toLowerCase();
+        // Le thème d'origine n'a pas de logo : inutile de le demander.
+        const aUnTheme = Boolean(ws.theme) && ws.theme !== ThemeVisuel.IDENTIFIANT_PAR_DEFAUT;
 
         return `
             <div class="workspace-card ${isActive ? 'active' : ''}" data-workspace-id="${Utils.escapeHtml(ws.id)}">
                 <div class="workspace-card-header">
-                    <div class="workspace-card-icon workspace-card-icon--${Utils.escapeHtml(classeEnv)}">
+                    <div class="workspace-card-icon workspace-card-icon--${Utils.escapeHtml(classeEnv)}"${
+                        aUnTheme ? ` data-logo-theme="${Utils.escapeHtml(ws.theme)}"` : ''}>
                         <i class="fas fa-briefcase" aria-hidden="true"></i>
                     </div>
                     <div class="workspace-card-title">

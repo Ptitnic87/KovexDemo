@@ -324,6 +324,9 @@ def main(arguments: Optional[Sequence[str]] = None) -> int:
     construits.append(brut)
 
     figer(racine, construits, Path(options.sortie))
+    # Chaque espace aux couleurs et au logo de son client fictif.
+    from habiller import habiller
+    habiller(Path(options.sortie))
     print("Instantané écrit dans %s : %s" % (options.sortie, ", ".join(construits)))
     return 0
 

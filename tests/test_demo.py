@@ -320,3 +320,45 @@ def test_une_page_sans_archive_du_produit_est_refusee(tmp_path):
     (tmp_path / "pages" / "moteur").mkdir(parents=True)
     with pytest.raises(construire_le_site.SiteImpossible):
         construire_le_site.construire(tmp_path / "pages", tmp_path / "docs")
+
+
+# -- l'habillage ----------------------------------------------------------------
+
+
+import habiller  # noqa: E402
+
+BASE_WAVESTONE = RACINE / "config" / "themes" / "wavestone" / "theme.json"
+
+
+@pytest.mark.parametrize("theme", sorted(p.name for p in habiller.HABILLAGE.iterdir()
+                                          if (p / "theme.json").exists()))
+def test_chaque_habillage_est_un_theme_que_kovex_accepte(tmp_path, theme):
+    """Couleurs Wavestone, logo du client : validé par le lecteur du produit."""
+    from src.core.workspaces import theme_visuel
+    dossier = tmp_path / theme
+    dossier.mkdir()
+    (dossier / "theme.json").write_bytes(habiller.document_du_theme(theme, base=BASE_WAVESTONE))
+    (dossier / "logo.png").write_bytes((habiller.HABILLAGE / theme / "logo.png").read_bytes())
+    lu = theme_visuel.charger(dossier, theme)
+    assert lu.logo == "logo.png"
+    base = json.loads(BASE_WAVESTONE.read_text(encoding="utf-8"))["variantes"]
+    assert lu.variantes["dark"] == {k: v.lower() for k, v in base["dark"].items()}
+
+
+def test_chaque_secteur_a_son_habillage():
+    themes = habiller.themes_par_client()
+    for fiche in FICHES:
+        document = json.loads(fiche.read_text(encoding="utf-8"))
+        assert themes[document["client"]] == document["theme"]
+        assert (habiller.HABILLAGE / document["theme"] / "logo.png").exists()
+
+
+def test_habiller_une_archive_pose_le_theme_et_garde_le_reste(tmp_path):
+    archive = tmp_path / "X_DEMO.tar.gz"
+    _archive(archive, [("X_DEMO/config.json", "{}")])
+    habiller.habiller_l_archive(archive, "X_DEMO", "alvea", base=BASE_WAVESTONE)
+    habiller.habiller_l_archive(archive, "X_DEMO", "alvea", base=BASE_WAVESTONE)
+    with tarfile.open(archive) as tar:
+        noms = sorted(tar.getnames())
+    assert noms == ["X_DEMO/config.json", "X_DEMO/themes/alvea/logo.png",
+                    "X_DEMO/themes/alvea/theme.json"]
