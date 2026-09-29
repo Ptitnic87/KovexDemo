@@ -278,14 +278,18 @@ def test_une_mise_a_jour_garde_ce_qui_vit_sur_le_serveur(tmp_path):
 
 import construire_le_site  # noqa: E402
 
-PONT = ("(function () {\n  async function monterLeDisque(p) {}\n"
+PONT = ("(function () {\n  const VERROU_DU_DISQUE = \"kovex-disque\";\n"
+        "  async function monterLeDisque(p) {}\n"
         "  async function demarrer() {\n    await monterLeDisque(pyodide);\n  }\n})();\n")
 
 
 def test_l_amorce_s_insere_une_fois_aux_deux_ancres():
     resultat = construire_le_site.inserer_l_amorce(PONT, "  async function amorcerLaDemo(p) {}\n")
     assert resultat.count("async function amorcerLaDemo") == 1
-    assert "    await monterLeDisque(pyodide);\n    await amorcerLaDemo(pyodide);\n" in resultat
+    assert ("    isolerLeDisqueDeLaDemo(pyodide);\n    await monterLeDisque(pyodide);\n"
+            "    await amorcerLaDemo(pyodide);\n") in resultat
+    # Ni le disque ni le verrou de KovexPublic, servi depuis la même origine.
+    assert '"kovex-demo-disque"' in resultat and '"kovex-disque"' not in resultat
 
 
 def test_une_ancre_deplacee_arrete_la_construction():

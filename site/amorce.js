@@ -1,4 +1,28 @@
   /**
+   * Le disque de la démonstration, séparé de celui de KovexPublic.
+   *
+   * Les deux pages sont servies depuis la même origine (le compte GitHub
+   * Pages), et le pont nomme ses bases IndexedDB d'après le dossier monté :
+   * sans cette séparation, la démonstration écrivait ses espaces dans le disque
+   * de KovexPublic — et changeait son espace actif —, et un onglet de l'une
+   * prenait le verrou d'écriture de l'autre. Le second onglet travaillait
+   * alors en mémoire, et chaque changement d'espace, qui recharge la page,
+   * ramenait l'amorce et le premier espace.
+   *
+   * On préfixe donc le nom des bases, au seul endroit où l'IDBFS les ouvre, et
+   * le verrou porte un autre nom (remplacé à la construction).
+   */
+  function isolerLeDisqueDeLaDemo(pyodide) {
+    const idbfs = pyodide.FS.filesystems.IDBFS;
+    if (!idbfs || idbfs.__kovexDemo) return;
+    const ouvrir = idbfs.getDB;
+    idbfs.getDB = function (nom, rappel) {
+      return ouvrir.call(idbfs, "kovex-demo:" + nom, rappel);
+    };
+    idbfs.__kovexDemo = true;
+  }
+
+  /**
    * L'amorce de la démonstration : les espaces figés, remis à chaque ouverture.
    *
    * Inséré dans le pont de la page par `construire_le_site.py` (KovexDemo),

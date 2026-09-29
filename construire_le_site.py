@@ -39,6 +39,8 @@ SORTIE = ICI / "docs"
 #: Où l'amorce s'insère dans le pont. Chacune doit apparaître une fois.
 ANCRE_FONCTION = "  async function demarrer() {\n"
 ANCRE_APPEL = "    await monterLeDisque(pyodide);\n"
+ANCRE_VERROU = 'const VERROU_DU_DISQUE = "kovex-disque";'
+VERROU_DE_LA_DEMO = 'const VERROU_DU_DISQUE = "kovex-demo-disque";'
 
 
 class SiteImpossible(RuntimeError):
@@ -62,11 +64,15 @@ def extraire_les_pages(source: Path, commit: str, destination: Path) -> None:
 
 
 def inserer_l_amorce(pont: str, amorce: str) -> str:
-    for ancre in (ANCRE_FONCTION, ANCRE_APPEL):
+    for ancre in (ANCRE_FONCTION, ANCRE_APPEL, ANCRE_VERROU):
         if pont.count(ancre) != 1:
             raise SiteImpossible("ancre introuvable ou ambiguë dans pont.js : %r" % ancre)
     pont = pont.replace(ANCRE_FONCTION, amorce + ANCRE_FONCTION)
-    return pont.replace(ANCRE_APPEL, ANCRE_APPEL + "    await amorcerLaDemo(pyodide);\n")
+    # Un disque et un verrou à part : KovexPublic est servi depuis la même
+    # origine, et partagerait sinon les deux avec la démonstration.
+    pont = pont.replace(ANCRE_VERROU, VERROU_DE_LA_DEMO)
+    return pont.replace(ANCRE_APPEL, "    isolerLeDisqueDeLaDemo(pyodide);\n" + ANCRE_APPEL
+                        + "    await amorcerLaDemo(pyodide);\n")
 
 
 def marquer_le_pont(index_html: str) -> str:
